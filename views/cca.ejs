@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" style="--cca-color: <%= cca.color %>">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= cca.name %> — SMU Vivace 2026</title>
+
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/cca.css">
+</head>
+<body>
+
+<!-- Pennant marquee -->
+<div class="cca-pennant">
+  <div class="strip" aria-hidden="true">
+    <span>Vivace 2026 · <%= cca.categoryShort %> · <%= cca.cluster %></span>
+    <span>Booth <%= cca.booth %> · Intake <%= cca.intake %></span>
+    <span>Pick what fills your basket</span>
+    <span>Vivace 2026 · <%= cca.categoryShort %> · <%= cca.cluster %></span>
+    <span>Booth <%= cca.booth %> · Intake <%= cca.intake %></span>
+    <span>Pick what fills your basket</span>
+  </div>
+</div>
+
+<!-- Simplified nav -->
+<nav class="cca-nav">
+  <div class="nav-row">
+    <a class="logo" href="/">
+      <span class="logo-dot">V</span>
+      VIVACE<span style="font-size:.55em; color:var(--yellow); margin-left:6px">'26</span>
+    </a>
+    <a class="back-link" href="/#explore">← Back to CCA shelf</a>
+  </div>
+</nav>
+
+<main class="cca-main">
+  <div class="cca-page">
+
+    <!-- Hero: title + gallery -->
+    <section class="cca-hero">
+      <div class="title-panel">
+        <span class="cca-eyebrow"><%= cca.categoryShort %> · <%= cca.cluster %></span>
+        <h1><%= cca.name %></h1>
+        <div class="cca-meta-row">
+          <span>Booth <%= cca.booth %></span>
+          <span>Commitment: <%= cca.commitment %></span>
+          <span>Intake: <%= cca.intake %></span>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <% cca.images.forEach(function(src) { %>
+          <div class="paper-img">
+            <img src="<%= src %>" alt="">
+          </div>
+        <% }) %>
+      </div>
+    </section>
+
+    <!-- Content: about + quick facts -->
+    <section class="cca-content">
+      <div class="info-panel">
+        <h2>About This CCA</h2>
+        <p><%= cca.description %></p>
+        <p><%= cca.extra %></p>
+        <div class="cca-actions">
+          <a href="mailto:vivace@smu.edu.sg">Email interest</a>
+          <a class="ghost" href="/#explore">Browse more CCAs</a>
+        </div>
+      </div>
+
+      <div class="info-panel">
+        <h2>Quick Facts</h2>
+        <div class="cca-facts">
+          <div class="cca-fact"><b>Booth</b><%= cca.booth %></div>
+          <div class="cca-fact"><b>Commitment</b><%= cca.commitment %></div>
+          <div class="cca-fact"><b>Intake</b><%= cca.intake %></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<script src="/js/cursor.js"></script>
+</body>
+</html>

@@ -38,12 +38,27 @@ body{
   overflow-x:hidden;
 
   background:
-    conic-gradient(
-      from 90deg at 1px 1px,
-      transparent 90deg,
-      rgba(26,26,26,0.04) 0
-    ) 0 0/40px 40px,
-    var(--cream);
+    repeating-linear-gradient(90deg, rgba(21,21,21,.045) 0 2px, transparent 2px 34px),
+    repeating-linear-gradient(0deg,  rgba(255,255,255,.32) 0 1px, transparent 1px 34px),
+    linear-gradient(135deg,
+      var(--blue)   0   22%,
+      var(--cyan)   22% 38%,
+      var(--yellow) 38% 57%,
+      var(--pink)   57% 75%,
+      var(--mint)   75% 100%
+    );
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.28;
+  background:
+    repeating-linear-gradient(45deg,  transparent 0 18px, rgba(21,21,21,.22)    18px 21px, transparent 21px 38px),
+    repeating-linear-gradient(-45deg, transparent 0 26px, rgba(255,255,255,.52) 26px 30px, transparent 30px 54px);
 }
 
 /* ---------- Media ---------- */

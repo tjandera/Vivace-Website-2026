@@ -1,0 +1,53 @@
+<%- include('partials/head') %>
+<body>
+
+<%- include('partials/intro') %>
+<%- include('partials/nav') %>
+
+<!-- Page header -->
+<section class="page-header" style="background:var(--blue); color:#fff; border-bottom:4px solid var(--ink)">
+  <div class="container">
+    <span class="section-eyebrow" style="background:var(--yellow); color:var(--ink)">★ Aisle 3 · Partners</span>
+    <h1 class="section-h2" style="color:#fff">Stock up <span class="hi">on perks.</span></h1>
+    <p style="font-size:18px; max-width:54ch; margin:0; color:rgba(255,255,255,.9)">Six brands rolling out exclusive student deals across the three days. Flash your matric card to redeem.</p>
+  </div>
+</section>
+
+<!-- Partners & Deals -->
+<section class="partners" id="partners" style="background:var(--blue); border-top:none; padding-top:40px">
+  <div class="container">
+
+    <!-- Sponsor tiles -->
+    <div class="partners-row">
+      <% partners.sponsors.forEach(sponsor => { %>
+        <div class="partner-tile <%= sponsor.tileClass %>"><%= sponsor.name %></div>
+      <% }) %>
+    </div>
+
+    <!-- Deal cards -->
+    <div class="deals-grid">
+      <% partners.deals.forEach(deal => { %>
+        <div class="deal">
+          <div class="head" style="<%= deal.headStyle %>">
+            <div class="perc" style="<%= deal.percStyle %>"><%= deal.perc %></div>
+            <div>
+              <h4><%= deal.title %></h4>
+              <div class="who" style="<%= deal.whoStyle %>"><%= deal.who %></div>
+            </div>
+          </div>
+          <div class="body"><%= deal.body %></div>
+          <div class="foot">
+            <span><%= deal.validity %></span>
+            <span class="go"><%= deal.cta %></span>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+
+  </div>
+</section>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

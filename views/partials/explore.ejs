@@ -17,11 +17,7 @@
         <span class="icon"></span>
         <input type="text" placeholder="Search a CCA…" id="search-input">
       </div>
-      <div class="sort">Sort: A–Z ▾</div>
-    </div>
-    <div class="store-status" id="store-status" aria-live="polite">
-      <div class="status-copy">Currently browsing <strong>all stocked aisles</strong>.</div>
-      <div class="status-ticket">120 CCAs · receipt #VVC26</div>
+      <div class="sort" id="results-count" aria-live="polite">Full shelf: loading…</div>
     </div>
 
     <!-- School chips -->
@@ -37,30 +33,32 @@
       <% }) %>
     </div>
 
-    <!-- CCA grid -->
-    <div class="cca-grid" id="cca-grid">
+    <!-- CCA grid — rendered from catalogue model, links to /cca/:id -->
+    <div class="cca-grid" id="cca-grid" aria-live="polite">
       <% ccas.forEach(cca => { %>
-        <article class="cca-card" data-cat="<%= cca.school %>">
-          <div class="top tone-<%= cca.school %>">
-            <div class="logo-circle"><%= cca.emoji %></div>
+        <article class="cca-card" data-cat="<%= cca.category %>">
+          <div class="top <%= cca.tone %>">
+            <div class="logo-circle"><%= cca.icon %></div>
             <div>
               <h3><%= cca.name %></h3>
-              <div class="meta"><%= cca.meta %></div>
+              <div class="meta"><%= cca.categoryShort %> · <%= cca.cluster.toUpperCase() %></div>
             </div>
           </div>
           <div class="body">
-            <p><%= cca.desc %></p>
+            <p><%= cca.cardText %></p>
           </div>
           <div class="foot">
-            <span class="badge <%= cca.badge !== 'open' ? cca.badge : '' %>"><%= cca.badgeText %></span>
-            <span class="more">View →</span>
+            <span class="badge <%= cca.badge %>"><%= cca.intake %></span>
+            <a class="more" href="/cca/<%= cca.id %>">View →</a>
           </div>
         </article>
       <% }) %>
     </div>
 
-    <div class="more-row">
-      <button class="btn ghost"><span>Load 12 more</span><span>↓</span></button>
+    <div class="more-row" id="load-more-row">
+      <button class="btn load-more" id="load-more" type="button">
+        <span>Load more</span><span class="arrow">→</span>
+      </button>
     </div>
 
   </div>

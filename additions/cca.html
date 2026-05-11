@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CCA Detail - SMU Vivace 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Balsamiq+Sans:wght@400;700&family=Fredoka:wght@500;600;700&family=Lilita+One&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#ff4438;
+    --green:#11ad69;
+    --orange:#ff7a1a;
+    --blue:#1f78f2;
+    --yellow:#ffd735;
+    --pink:#ff5aa2;
+    --purple:#7a35ff;
+    --mint:#44d99a;
+    --ink:#151515;
+    --cream:#fff0d0;
+    --cream-2:#fff8e7;
+    --paper:#fffdf2;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; color:var(--ink); font-family:'Balsamiq Sans', system-ui, sans-serif}
+  body{
+    min-height:100vh;
+    background:
+      repeating-linear-gradient(90deg, rgba(21,21,21,.05) 0 2px, transparent 2px 34px),
+      repeating-linear-gradient(0deg, rgba(255,255,255,.4) 0 1px, transparent 1px 34px),
+      linear-gradient(135deg, var(--blue), var(--cyan, #20c7ff) 30%, var(--yellow) 52%, var(--pink) 75%, var(--mint));
+  }
+  img{max-width:100%; display:block}
+  a{color:inherit; text-decoration:none}
+  .top-pennant{
+    overflow:hidden;
+    background:var(--red);
+    border-bottom:4px solid var(--ink);
+  }
+  .strip{
+    display:flex;
+    gap:34px;
+    padding:9px 0;
+    color:#fff;
+    white-space:nowrap;
+    font-family:'Fredoka',sans-serif;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    animation:marquee 34s linear infinite;
+  }
+  .strip span{display:inline-flex; gap:34px}
+  .strip span::after{content:"*"; color:var(--yellow)}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  nav{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--cream-2);
+    border-bottom:4px solid var(--ink);
+  }
+  .nav-row{
+    max-width:1180px;
+    margin:0 auto;
+    padding:14px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:14px;
+  }
+  .logo{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:30px;
+    line-height:1;
+    transform:rotate(-2deg);
+  }
+  .logo-dot{
+    width:36px;
+    height:36px;
+    border:3px solid var(--ink);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:var(--blue);
+    color:#fff;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 16px;
+    border:3px solid var(--ink);
+    border-radius:999px;
+    background:var(--yellow);
+    font-family:'Lilita One',sans-serif;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  main{
+    padding:44px 20px 80px;
+  }
+  .page{
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .hero{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:28px;
+    align-items:stretch;
+  }
+  .title-panel,
+  .info-panel,
+  .gallery-card{
+    border:4px solid var(--ink);
+    border-radius:14px;
+    box-shadow:10px 10px 0 var(--ink);
+    background:var(--paper);
+  }
+  .title-panel{
+    min-height:560px;
+    padding:28px;
+    color:#fff;
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,.2) 0 12px, transparent 12px 28px),
+      var(--cca-color, var(--blue));
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    position:relative;
+    overflow:hidden;
+  }
+  .title-panel::after{
+    content:"";
+    position:absolute;
+    right:-40px;
+    bottom:-32px;
+    width:220px;
+    height:220px;
+    border:5px dashed rgba(255,255,255,.65);
+    border-radius:50%;
+  }
+  .eyebrow{
+    align-self:flex-start;
+    background:var(--yellow);
+    color:var(--ink);
+    border:3px solid var(--ink);
+    border-radius:999px;
+    padding:7px 13px;
+    font-family:'Lilita One',sans-serif;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  h1{
+    margin:0;
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:clamp(58px, 8vw, 112px);
+    line-height:.86;
+    letter-spacing:0;
+    text-shadow:5px 5px 0 var(--ink);
+    position:relative;
+    z-index:1;
+  }
+  .meta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    position:relative;
+    z-index:1;
+  }
+  .meta-row span{
+    background:#fff;
+    color:var(--ink);
+    border:3px solid var(--ink);
+    border-radius:999px;
+    padding:7px 12px;
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .gallery-card{
+    padding:22px;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:14px;
+    background:
+      repeating-linear-gradient(90deg, rgba(21,21,21,.07) 0 2px, transparent 2px 24px),
+      var(--cream-2);
+  }
+  .paper-img{
+    min-height:180px;
+    background:#fff;
+    border:5px solid #fff;
+    outline:3px solid var(--ink);
+    border-radius:20px;
+    display:grid;
+    place-items:center;
+    box-shadow:7px 7px 0 var(--ink);
+    transform:rotate(var(--rot, -3deg));
+    position:relative;
+  }
+  .paper-img:nth-child(2){--rot:3deg}
+  .paper-img:nth-child(3){grid-column:1 / -1; --rot:-1deg}
+  .paper-img::after{
+    content:"";
+    position:absolute;
+    right:12px;
+    top:12px;
+    width:48px;
+    height:64px;
+    border:2px solid var(--ink);
+    background:repeating-linear-gradient(90deg, var(--ink) 0 4px, transparent 4px 7px, var(--ink) 7px 9px, transparent 9px 13px), #fff;
+    transform:rotate(7deg);
+  }
+  .paper-img img{
+    width:62%;
+    max-height:150px;
+    object-fit:contain;
+    filter:drop-shadow(3px 3px 0 var(--ink));
+  }
+  .content-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:22px;
+    margin-top:28px;
+  }
+  .info-panel{
+    padding:24px;
+  }
+  .info-panel h2{
+    margin:0 0 14px;
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:42px;
+    letter-spacing:0;
+  }
+  .info-panel p{
+    margin:0 0 14px;
+    font-size:17px;
+    line-height:1.58;
+  }
+  .facts{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:12px;
+  }
+  .fact{
+    min-height:92px;
+    border:3px solid var(--ink);
+    border-radius:12px;
+    padding:12px;
+    background:var(--cream);
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    line-height:1.3;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .fact b{
+    display:block;
+    margin-bottom:5px;
+    font-family:'Lilita One',sans-serif;
+    font-size:16px;
+  }
+  .actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:18px;
+  }
+  .actions a{
+    border:3px solid var(--ink);
+    border-radius:999px;
+    padding:11px 16px;
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Lilita One',sans-serif;
+    box-shadow:4px 4px 0 var(--yellow);
+  }
+  @media (max-width: 860px){
+    .hero,
+    .content-grid{grid-template-columns:1fr}
+    .title-panel{min-height:420px}
+    .facts{grid-template-columns:1fr}
+  }
+  @media (max-width: 520px){
+    .nav-row{align-items:flex-start; flex-direction:column}
+    .gallery-card{grid-template-columns:1fr}
+    .paper-img:nth-child(3){grid-column:auto}
+    h1{font-size:56px}
+  }
+
+  @media (max-width: 640px){
+    body{
+      background:
+        repeating-linear-gradient(90deg, rgba(21,21,21,.05) 0 2px, transparent 2px 26px),
+        linear-gradient(150deg, var(--blue) 0 24%, #20c7ff 24% 42%, var(--yellow) 42% 64%, var(--pink) 64% 82%, var(--mint) 82%);
+    }
+    .strip{
+      gap:22px;
+      font-size:11px;
+      letter-spacing:.1em;
+    }
+    .nav-row{
+      padding:10px 14px;
+      gap:10px;
+    }
+    .logo{
+      font-size:24px;
+    }
+    .logo-dot{
+      width:32px;
+      height:32px;
+      flex:0 0 auto;
+    }
+    .back-link{
+      width:100%;
+      justify-content:center;
+      padding:10px 12px;
+      border-width:3px;
+      box-shadow:3px 3px 0 var(--ink);
+    }
+    main{
+      padding:24px 14px 58px;
+    }
+    .hero{
+      gap:16px;
+    }
+    .title-panel,
+    .info-panel,
+    .gallery-card{
+      border-width:3px;
+      border-radius:12px;
+      box-shadow:5px 5px 0 var(--ink);
+    }
+    .title-panel{
+      min-height:360px;
+      padding:20px;
+    }
+    .title-panel::after{
+      right:-70px;
+      bottom:-74px;
+      width:190px;
+      height:190px;
+      border-width:4px;
+    }
+    .eyebrow{
+      max-width:100%;
+      font-size:14px;
+      border-width:3px;
+      box-shadow:3px 3px 0 var(--ink);
+    }
+    h1{
+      font-size:clamp(42px, 16vw, 66px);
+      line-height:.9;
+      overflow-wrap:anywhere;
+      text-shadow:3px 3px 0 var(--ink);
+    }
+    .meta-row{
+      gap:8px;
+    }
+    .meta-row span{
+      max-width:100%;
+      padding:7px 10px;
+      font-size:11px;
+      border-width:2px;
+      overflow-wrap:anywhere;
+    }
+    .gallery-card{
+      grid-template-columns:1fr 1fr;
+      padding:16px;
+      gap:12px;
+    }
+    .paper-img{
+      min-height:126px;
+      border-width:4px;
+      outline-width:2px;
+      border-radius:14px;
+      box-shadow:4px 4px 0 var(--ink);
+    }
+    .paper-img::after{
+      width:30px;
+      height:42px;
+      right:8px;
+      top:8px;
+    }
+    .paper-img img{
+      width:68%;
+      max-height:108px;
+    }
+    .content-grid{
+      gap:16px;
+      margin-top:18px;
+    }
+    .info-panel{
+      padding:18px;
+    }
+    .info-panel h2{
+      font-size:34px;
+      line-height:1;
+    }
+    .info-panel p{
+      font-size:16px;
+      line-height:1.52;
+    }
+    .facts{
+      grid-template-columns:1fr;
+    }
+    .fact{
+      min-height:auto;
+      padding:11px;
+      border-width:3px;
+      box-shadow:3px 3px 0 var(--ink);
+    }
+    .actions{
+      flex-direction:column;
+    }
+    .actions a{
+      width:100%;
+      text-align:center;
+      padding:11px 14px;
+      border-width:3px;
+    }
+  }
+
+  @media (max-width: 380px){
+    .logo{
+      font-size:21px;
+    }
+    h1{
+      font-size:40px;
+    }
+    .title-panel{
+      min-height:320px;
+      padding:16px;
+    }
+    .gallery-card{
+      grid-template-columns:1fr;
+    }
+    .paper-img:nth-child(3){
+      grid-column:auto;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="top-pennant">
+  <div class="strip" aria-hidden="true">
+    <span>Vivace 2026 CCA shelf</span>
+    <span>Fresh profile page</span>
+    <span>Pick what fills your basket</span>
+    <span>Vivace 2026 CCA shelf</span>
+    <span>Fresh profile page</span>
+    <span>Pick what fills your basket</span>
+  </div>
+</div>
+
+<nav>
+  <div class="nav-row">
+    <a class="logo" href="index.html"><span class="logo-dot">V</span> Vivace<span style="font-size:.6em; color:var(--red); margin-left:6px">'26</span></a>
+    <a class="back-link" href="index.html#explore">Back to CCA shelf</a>
+  </div>
+</nav>
+
+<main>
+  <div class="page">
+    <section class="hero">
+      <div class="title-panel" id="title-panel">
+        <span class="eyebrow" id="category">CCA</span>
+        <h1 id="name">CCA Profile</h1>
+        <div class="meta-row">
+          <span id="booth">Booth -</span>
+          <span id="commitment">Commitment -</span>
+          <span id="intake">Intake -</span>
+        </div>
+      </div>
+      <div class="gallery-card" id="gallery"></div>
+    </section>
+
+    <section class="content-grid">
+      <div class="info-panel">
+        <h2>About This CCA</h2>
+        <p id="description"></p>
+        <p id="extra"></p>
+        <div class="actions">
+          <a href="mailto:vivace@smu.edu.sg">Email interest</a>
+          <a href="index.html#explore">Browse more CCAs</a>
+        </div>
+      </div>
+      <div class="info-panel">
+        <h2>Quick Facts</h2>
+        <div class="facts">
+          <div class="fact"><b>Booth</b><span id="fact-booth"></span></div>
+          <div class="fact"><b>Commitment</b><span id="fact-commitment"></span></div>
+          <div class="fact"><b>Intake</b><span id="fact-intake"></span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="assets/cca-data.js"></script>
+<script>
+  const ccas = window.VIVACE_CCAS || [];
+  const fallback = ccas[0] || {
+    name:"CCA Profile",
+    categoryShort:"CCA",
+    categoryName:"Vivace",
+    cluster:"Fresh Pick",
+    color:"var(--blue)",
+    booth:"-",
+    commitment:"-",
+    intake:"-",
+    images:["assets/sticker-new-arrival.svg"],
+    description:"This CCA profile is ready for content.",
+    extra:"Add final description, images and sign-up links when available."
+  };
+  const id = new URLSearchParams(window.location.search).get("id");
+  const cca = ccas.find(function(item){ return item.id === id; }) || fallback;
+
+  document.title = cca.name + " - SMU Vivace 2026";
+  document.documentElement.style.setProperty("--cca-color", cca.color);
+  document.getElementById("category").textContent = cca.categoryShort + " - " + cca.cluster;
+  document.getElementById("name").textContent = cca.name;
+  document.getElementById("booth").textContent = "Booth " + cca.booth;
+  document.getElementById("commitment").textContent = "Commitment " + cca.commitment;
+  document.getElementById("intake").textContent = "Intake " + cca.intake;
+  document.getElementById("description").textContent = cca.description;
+  document.getElementById("extra").textContent = cca.extra;
+  document.getElementById("fact-booth").textContent = cca.booth;
+  document.getElementById("fact-commitment").textContent = cca.commitment;
+  document.getElementById("fact-intake").textContent = cca.intake;
+  document.getElementById("gallery").innerHTML = cca.images.map(function(src){
+    return '<div class="paper-img"><img src="' + src + '" alt=""></div>';
+  }).join("");
+</script>
+</body>
+</html>

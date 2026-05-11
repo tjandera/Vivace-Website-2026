@@ -34,13 +34,6 @@
   var el = document.getElementById('store-intro');
   if (!el) return;
 
-  // Skip on repeat visits within the same browser session
-  if (sessionStorage.getItem('vivace-intro')) {
-    el.remove();
-    return;
-  }
-  sessionStorage.setItem('vivace-intro', '1');
-
   // CSS already hides it for reduced-motion users, but also bail here
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     el.remove();

@@ -1,134 +1,220 @@
-  /* ============================ NAV ============================ */
-  .top-pennant{
-    background:var(--ink);
-    position:relative;
-    overflow:hidden;
-  }
-  .top-pennant .strip{
-    display:flex; align-items:center; gap:32px;
-    padding:8px 0;
-    color:var(--cream-2);
-    font-family:'Fredoka', sans-serif; font-weight:600; font-size:13px; letter-spacing:.18em; text-transform:uppercase;
-    white-space:nowrap;
-    animation: marquee 40s linear infinite;
-  }
-  .top-pennant .strip span{display:inline-flex; align-items:center; gap:32px}
-  .top-pennant .strip span::after{content:"★"; color:var(--yellow); font-size:14px; margin-left:32px}
-  @keyframes marquee {
-    from{ transform: translateX(0) }
-    to  { transform: translateX(-50%) }
-  }
+/* ============================ NAV ============================ */
 
-  nav.main{
-    position:sticky; top:0; z-index:50;
-    background:var(--cream);
-    border-bottom:4px solid var(--ink);
-  }
-  nav.main .row{
-    max-width:1280px; margin:0 auto;
-    display:flex; align-items:center; gap:18px;
-    padding:14px 22px;
-  }
-  .logo{
-    display:inline-flex; align-items:center;
-    font-family:'DoubleBass', sans-serif;
-    font-weight:bold;
-    font-size:34px; line-height:1; letter-spacing:.01em;
-    color:var(--green);
-    text-shadow:
-      1.5px 1.5px 0 #fff,
-      3px 3px 0 rgba(26,26,26,.18);
-    transform:rotate(-1deg);
-  }
-  .logo .dot{ display:none }
-  .logo-year{
-    font-family:'Bagel Fat One', sans-serif;
-    font-size:.45em; font-weight:400;
-    color:var(--red);
-    align-self:flex-start;
-    margin-top:.18em;
-    margin-left:3px;
-  }
-  .nav-links{
-    display:flex; gap:4px; margin-left:auto; align-items:center;
-    position:relative;
-  }
-  /* Filtered layer that holds the sliding blob — links sit above it */
-  .nav-blob-layer{
-    position:absolute;
-    inset:0;
-    filter:url('#nav-goo');
-    pointer-events:none;
-    z-index:0;
-  }
-  /* Fast leader — snaps to target quickly */
-  .nav-blob{
-    position:absolute;
-    top:0; left:0;
-    height:100%;
-    border-radius:999px;
-    background:var(--ink);
-    opacity:0;
-    transition:
-      left    .28s cubic-bezier(0.34, 1.4, 0.64, 1),
-      width   .24s cubic-bezier(0.34, 1.4, 0.64, 1),
-      opacity .15s ease;
-  }
-  /* Slow trailer — lags behind so the filter merges the two shapes into a gooey bridge */
-  .nav-blob-trail{
-    position:absolute;
-    top:0; left:0;
-    height:100%;
-    border-radius:999px;
-    background:var(--ink);
-    opacity:0;
-    transition:
-      left    .55s ease,
-      width   .48s ease,
-      opacity .15s ease;
-  }
-  .nav-links a{
-    position:relative; z-index:1;
-    padding:8px 14px; border-radius:999px;
-    font-family:'Fredoka', sans-serif; font-weight:700; font-size:14px;
-    border:3px solid transparent;
-    text-transform:uppercase; letter-spacing:.04em;
-    color:var(--ink);
-    transition:color .2s ease;
-  }
-  /* blob-on is set by JS — only the item the blob is actually behind gets light text */
-  .nav-links a.blob-on{ color:var(--cream); }
-  .nav-cta{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--red); color:#fff;
-    border:3px solid var(--ink); border-radius:999px;
-    padding:9px 18px;
-    font-family:'Fredoka', sans-serif; font-weight:700; font-size:16px; letter-spacing:.01em;
-    box-shadow:4px 4px 0 var(--ink);
-    transition: transform .14s ease, box-shadow .14s ease;
-  }
-  .nav-cta:hover{ transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink) }
+/* ── Pennant marquee ── */
+.top-pennant{
+  background:var(--ink);
+  position:relative;
+  overflow:hidden;
+}
+.top-pennant .strip{
+  display:flex; align-items:center; gap:32px;
+  padding:8px 0;
+  color:var(--cream-2);
+  font-family:'Fredoka', sans-serif; font-weight:600; font-size:13px;
+  letter-spacing:.18em; text-transform:uppercase;
+  white-space:nowrap;
+  animation: marquee 40s linear infinite;
+}
+.top-pennant .strip span{ display:inline-flex; align-items:center; gap:32px }
+.top-pennant .strip span::after{ content:"★"; color:var(--yellow); font-size:14px; margin-left:32px }
+@keyframes marquee {
+  from{ transform:translateX(0) }
+  to  { transform:translateX(-50%) }
+}
 
-  .hamb{
-    display:none; width:42px; height:42px; border:3px solid var(--ink); border-radius:12px;
-    background:#fff; box-shadow:3px 3px 0 var(--ink);
-    align-items:center; justify-content:center;
-  }
-  .hamb i{width:18px; height:2.5px; background:var(--ink); display:block; position:relative}
-  .hamb i::before,.hamb i::after{content:""; position:absolute; left:0; right:0; height:2.5px; background:var(--ink)}
-  .hamb i::before{top:-6px}
-  .hamb i::after{top:6px}
+/* ── Main nav bar ── */
+nav.main{
+  position:sticky; top:0; z-index:100;
+  background:#141B4D;
+  border-bottom:none;
+}
+nav.main .nav-row{
+  /* Full-width — no max-width cap so the menu button sits at the true viewport edge */
+  width:100%;
+  display:flex; align-items:stretch;
+  justify-content:space-between;
+  min-height:64px;
+}
 
-  /* mobile nav drawer */
-  .mob-drawer{
-    display:none; position:fixed; inset:64px 0 0 0; z-index:40;
-    background:var(--cream); padding:24px;
-    border-top:4px solid var(--ink);
-  }
-  .mob-drawer.open{display:block}
-  .mob-drawer a{
-    display:block; padding:14px 16px; border:3px solid var(--ink);
-    border-radius:14px; background:#fff; margin-bottom:10px;
-    font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
-  }
+/* ── Brand block (SMU logo + Vivace wordmark) ── */
+/* Parallelogram shape: right edge is diagonal, echoing the reference site */
+.nav-brand{
+  display:flex; align-items:center; gap:0;
+  padding:0 56px 0 28px;
+  position:relative;
+  background:#141B4D;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 22px) 100%, 0 100%);
+  /* slight shadow to separate it visually from the rest of the bar */
+  filter: drop-shadow(4px 0 6px rgba(0,0,0,0.3));
+}
 
+/* SMU logo — invert to white on the dark background */
+.smu-logo-link{
+  display:inline-flex; align-items:center;
+  flex-shrink:0;
+}
+.smu-logo{
+  height:52px; width:auto;
+  display:block;
+  filter: brightness(0) invert(1);
+}
+
+/* Thin vertical divider between SMU logo and Vivace wordmark */
+.nav-brand-sep{
+  display:inline-block;
+  width:1px; height:28px;
+  background:rgba(255,255,255,.3);
+  margin:0 18px;
+  flex-shrink:0;
+}
+
+/* Vivace wordmark */
+.logo{
+  display:inline-flex; align-items:flex-start;
+  font-family:'DoubleBass', sans-serif; font-weight:bold;
+  font-size:26px; line-height:1; letter-spacing:.01em;
+  color:#fff;
+  text-decoration:none;
+  white-space:nowrap;
+  transform:rotate(-1deg);
+}
+.logo-year{
+  font-family:'Bagel Fat One', sans-serif;
+  font-size:.44em; font-weight:400;
+  color:var(--yellow);
+  align-self:flex-start;
+  margin-top:.14em; margin-left:3px;
+}
+
+/* ── Menu button — pinned to far right ── */
+.menu-btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:0 28px;
+  background:transparent; border:none;
+  color:#fff;
+  font-family:'Montserrat', sans-serif; font-weight:700;
+  font-size:14px; letter-spacing:.12em; text-transform:uppercase;
+  cursor:var(--cursor-pointer);
+  transition:background .18s ease;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.menu-btn:hover{ background:rgba(255,255,255,.08) }
+.menu-icon{ font-size:20px; line-height:1 }
+
+/* ── Backdrop ── */
+.menu-backdrop{
+  position:fixed; inset:0; z-index:199;
+  background:rgba(0,0,0,.5);
+  opacity:0; pointer-events:none;
+  transition:opacity .35s ease;
+}
+.menu-backdrop.is-open{ opacity:1; pointer-events:all }
+
+/* ── Right-side drawer ── */
+.menu-overlay{
+  position:fixed; top:0; right:0; bottom:0; z-index:200;
+  width:min(300px, 86vw);
+  background:#141B4D;
+  border-left:1px solid rgba(255,255,255,.1);
+  display:flex; flex-direction:column;
+  padding:0 28px 40px;
+
+  transform:translateX(100%);
+  transition:transform .42s cubic-bezier(0.77, 0, 0.175, 1);
+}
+.menu-overlay.is-open{ transform:translateX(0) }
+
+/* ── Force Montserrat on every element inside the drawer ── */
+.menu-overlay,
+.menu-overlay * {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Close button */
+.menu-close{
+  align-self:flex-end;
+  margin-top:22px;
+  background:none; border:none;
+  color:rgba(255,255,255,.7); font-size:22px; line-height:1;
+  font-weight:700;
+  cursor:var(--cursor-pointer); padding:4px;
+  transition:color .15s ease;
+}
+.menu-close:hover{ color:#fff }
+
+/* Nav list inside drawer */
+.overlay-nav{
+  display:flex; flex-direction:column;
+  margin-top:18px;
+  overflow-y:auto; flex:1;
+}
+
+/* Accordion wrapper */
+.overlay-item{
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+/* Main nav links + toggle buttons */
+.overlay-link{
+  display:flex; align-items:center; justify-content:space-between;
+  width:100%;
+  color:#fff;
+  font-weight:700;
+  font-size:24px;
+  letter-spacing:-.01em;
+  line-height:1.2;
+  padding:18px 0;
+  border-bottom:1px solid rgba(255,255,255,.12);
+  border-left:none; border-right:none; border-top:none;
+  text-decoration:none;
+  background:transparent;
+  cursor:var(--cursor-pointer);
+  text-align:left;
+  transition:opacity .18s ease;
+}
+.overlay-item > .overlay-link{ border-bottom:none }
+.overlay-link:hover{ opacity:.65 }
+
+/* Chevron on expandable items */
+.chev{
+  font-size:16px; font-weight:600; opacity:.6;
+  transition:transform .3s ease;
+  flex-shrink:0; margin-left:10px;
+}
+.overlay-toggle[aria-expanded="true"] .chev{ transform:rotate(180deg) }
+
+/* Sub-menu */
+.overlay-sub{
+  display:flex; flex-direction:column;
+  overflow:hidden; max-height:0; opacity:0;
+  transition:
+    max-height .35s cubic-bezier(0.4,0,0.2,1),
+    opacity    .25s ease;
+}
+.overlay-sub.is-open{ max-height:500px; opacity:1 }
+
+.overlay-sub-link{
+  display:block;
+  color:rgba(255,255,255,.6);
+  font-weight:600;
+  font-size:14px; letter-spacing:.01em;
+  padding:10px 0 10px 16px;
+  text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:color .15s ease, padding-left .15s ease;
+}
+.overlay-sub-link:last-child{ border-bottom:none; padding-bottom:16px }
+.overlay-sub-link:hover{ color:#fff; padding-left:22px }
+
+/* ── Mobile: tighten padding on small phones ── */
+@media (max-width:480px){
+  nav.main .nav-row{ min-height:54px }
+  .nav-brand{ padding:0 44px 0 16px }
+  .smu-logo{ height:28px }
+  .logo{ font-size:22px }
+  .menu-btn{ padding:0 18px; font-size:13px }
+  .menu-overlay{ padding:0 20px 32px }
+  .overlay-link{ font-size:20px; padding:15px 0 }
+  .overlay-sub-link{ font-size:13px }
+}

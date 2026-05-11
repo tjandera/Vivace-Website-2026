@@ -7,16 +7,19 @@
 
   /* ---------- Tokens ---------- */
   :root{
-    --red:#E23A29;
-    --green:#49AD77;
-    --orange:#FF7828;
-    --blue:#3C73D6;
-    --yellow:#F1AD2B;
-    --pink:#EA5A89;
-    --ink:#1A1A1A;
-    --cream:#FFF6E7;
-    --cream-2:#FFFDF5;
-    --paper:#FFFFFF;
-    --tile-1:#FFF6E7;
-    --tile-2:#F1AD2B;
+    --red:    #ff4438;
+    --green:  #11ad69;
+    --orange: #ff7a1a;
+    --blue:   #1f78f2;
+    --yellow: #ffd735;
+    --pink:   #ff5aa2;
+    --purple: #7a35ff;
+    --cyan:   #20c7ff;
+    --mint:   #44d99a;
+    --ink:    #151515;
+    --cream:  #fff0d0;
+    --cream-2:#fff8e7;
+    --paper:  #fffdf2;
+    --tile-1: #fff0d0;
+    --tile-2: #ffc66d;
   }

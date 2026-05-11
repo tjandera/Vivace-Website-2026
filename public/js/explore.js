@@ -1,115 +1,135 @@
-const chips    = document.querySelectorAll('#chips .chip');
-const products = document.querySelectorAll('.product');
-const cards    = document.querySelectorAll('#cca-grid .cca-card');
+// ── State ────────────────────────────────────────────────────────────────────
+const chips         = document.querySelectorAll('#chips .chip');
+const products      = document.querySelectorAll('.product');
+const grid          = document.getElementById('cca-grid');
+const search        = document.getElementById('search-input');
+const resultsCount  = document.getElementById('results-count');
+const loadMoreRow   = document.getElementById('load-more-row');
+const loadMoreBtn   = document.getElementById('load-more');
 const basketSummary = document.getElementById('basket-summary');
 const summaryName   = document.getElementById('summary-name');
 const summaryCount  = document.getElementById('summary-count');
 const summaryLine   = document.getElementById('summary-line');
 const summaryClear  = document.getElementById('summary-clear');
-const receiptLive   = document.getElementById('receipt-live');
-const storeStatus   = document.getElementById('store-status');
-const basketScene   = document.getElementById('scene');
 
-// ── Filter ──────────────────────────────────────────────────────────────────
+const ROWS_PER_LOAD = 3;
+let activeCat  = 'all';
+let loadedRows = ROWS_PER_LOAD;
 
-function getFilterData(cat, sourceEl) {
-  const source = sourceEl || document.querySelector(`[data-cat="${cat}"]`);
-  const chip = document.querySelector(`#chips .chip[data-cat="${cat}"]`);
-  return {
-    title: source?.dataset.title || chip?.dataset.title || (cat === 'all' ? 'All aisles' : cat.toUpperCase()),
-    count: source?.dataset.count || chip?.dataset.count || '120',
-    aisle: source?.dataset.aisle || chip?.dataset.aisle || 'Vivace Mart',
-  };
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function getCards() {
+  return grid ? Array.from(grid.querySelectorAll('.cca-card')) : [];
 }
 
-function updateShoppingUI(cat, sourceEl) {
-  const data = getFilterData(cat, sourceEl);
-  products.forEach(p => p.classList.toggle('is-selected', cat !== 'all' && p.dataset.cat === cat));
+function getGridColumns() {
+  if (!grid) return 1;
+  const tracks = getComputedStyle(grid).gridTemplateColumns
+    .split(/\s+/).filter(t => t && t !== 'none');
+  return Math.max(1, tracks.length);
+}
 
+function visibleLimit() {
+  return loadedRows * getGridColumns();
+}
+
+// ── UI updates ───────────────────────────────────────────────────────────────
+function updateResultsCount(visible, total) {
+  if (!resultsCount) return;
+  const chip  = document.querySelector(`#chips .chip[data-cat="${activeCat}"]`);
+  const label = activeCat === 'all' ? 'Full shelf' : (chip?.dataset.title || activeCat.toUpperCase());
+  resultsCount.textContent = `${label}: ${visible} / ${total}`;
+}
+
+function updateLoadMore(shown, total) {
+  if (!loadMoreRow || !loadMoreBtn) return;
+  const hasMore = shown < total;
+  loadMoreRow.hidden = !hasMore;
+  loadMoreBtn.hidden = !hasMore;
+}
+
+function updateBasketSummary(cat) {
+  const chip = document.querySelector(`#chips .chip[data-cat="${cat}"]`);
   if (cat === 'all') {
     basketSummary?.classList.remove('is-active');
-    if (receiptLive) receiptLive.textContent = 'Receipt open · browsing all aisles';
-    if (storeStatus) {
-      storeStatus.querySelector('.status-copy').innerHTML = 'Currently browsing <strong>all stocked aisles</strong>.';
-      storeStatus.querySelector('.status-ticket').textContent = '120 CCAs · receipt #VVC26';
-    }
     return;
   }
-
   basketSummary?.classList.add('is-active');
-  if (summaryName) summaryName.textContent = data.title;
-  if (summaryCount) summaryCount.textContent = `${data.count} in view`;
-  if (summaryLine) summaryLine.textContent = `${data.aisle} added to your basket. Explore the CCAs stocked under this school.`;
-  if (receiptLive) receiptLive.textContent = `Added ${data.title} · ${data.count} CCAs · ${data.aisle}`;
-  if (storeStatus) {
-    storeStatus.querySelector('.status-copy').innerHTML = `Currently browsing <strong>${data.title}</strong>.`;
-    storeStatus.querySelector('.status-ticket').textContent = `${data.count} CCAs · ${data.aisle}`;
-  }
+  if (summaryName)  summaryName.textContent  = chip?.dataset.title || cat.toUpperCase();
+  if (summaryCount) summaryCount.textContent = `${chip?.dataset.count || ''} in view`;
+  if (summaryLine)  summaryLine.textContent  = `${chip?.dataset.aisle || ''} added to your basket.`;
 }
 
-function applyFilter(cat, sourceEl) {
-  chips.forEach(c => c.classList.toggle('active', c.dataset.cat === cat));
-  cards.forEach(card => {
-    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+// ── Filter ───────────────────────────────────────────────────────────────────
+function applyFilter(cat, resetRows) {
+  if (cat !== undefined) activeCat = cat;
+  if (resetRows) loadedRows = ROWS_PER_LOAD;
+
+  chips.forEach(c => c.classList.toggle('active', c.dataset.cat === activeCat));
+  products.forEach(p => p.classList.toggle('is-selected', activeCat !== 'all' && p.dataset.cat === activeCat));
+  updateBasketSummary(activeCat);
+
+  const q     = search ? search.value.trim().toLowerCase() : '';
+  const limit = visibleLimit();
+  let matched = 0;
+  let shown   = 0;
+
+  getCards().forEach(card => {
+    const catMatch  = activeCat === 'all' || card.dataset.cat === activeCat;
+    const textMatch = !q || card.textContent.toLowerCase().includes(q);
+    const isMatch   = catMatch && textMatch;
+    if (isMatch) matched++;
+    const show = isMatch && matched <= limit;
+    card.style.display = show ? '' : 'none';
+    if (show) shown++;
   });
-  updateShoppingUI(cat, sourceEl);
+
+  updateResultsCount(shown, matched);
+  updateLoadMore(shown, matched);
 }
 
-chips.forEach(c => c.addEventListener('click', () => applyFilter(c.dataset.cat, c)));
-summaryClear?.addEventListener('click', () => applyFilter('all'));
+// ── Event binding ─────────────────────────────────────────────────────────────
+chips.forEach(c => c.addEventListener('click', () => applyFilter(c.dataset.cat, true)));
 
-// ── Search ───────────────────────────────────────────────────────────────────
+summaryClear?.addEventListener('click', () => applyFilter('all', true));
 
-const search = document.getElementById('search-input');
+if (loadMoreBtn) {
+  loadMoreBtn.addEventListener('click', () => {
+    loadedRows += ROWS_PER_LOAD;
+    applyFilter(activeCat, false);
+  });
+}
+
 if (search) {
-  search.addEventListener('input', e => {
-    const q = e.target.value.trim().toLowerCase();
-    cards.forEach(card => {
-      card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
-    });
-  });
+  search.addEventListener('input', () => applyFilter(activeCat, true));
 }
 
-// ── Basket fruit animation ───────────────────────────────────────────────────
-
-function animateBasketFruit(product) {
-  if (!product.classList.contains('school-fruit')) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const rect   = product.getBoundingClientRect();
-  const flight = product.cloneNode(true);
-  flight.classList.add('fruit-flight');
-  Object.assign(flight.style, {
-    left:   rect.left + 'px',
-    top:    rect.top  + 'px',
-    width:  rect.width + 'px',
-    height: rect.height + 'px',
-  });
-  flight.style.setProperty('--r', product.style.getPropertyValue('--r') || '0deg');
-  document.body.appendChild(flight);
-  flight.addEventListener('animationend', () => flight.remove(), { once: true });
-
-  if (basketScene) {
-    basketScene.classList.remove('is-scanning');
-    void basketScene.offsetWidth;
-    basketScene.classList.add('is-scanning');
-    window.setTimeout(() => basketScene.classList.remove('is-scanning'), 780);
-  }
-
-  product.classList.add('is-picked');
-  window.setTimeout(() => product.classList.remove('is-picked'), 520);
-}
-
-// ── Product click (basket fruits + CCA cards) ────────────────────────────────
+window.addEventListener('resize', () => applyFilter(activeCat, false), { passive: true });
 
 products.forEach(p => p.addEventListener('click', () => {
-  const cat = p.dataset.cat;
-  applyFilter(cat, p);
-  animateBasketFruit(p);
-
-  const delay = p.classList.contains('school-fruit') ? 260 : 0;
-  window.setTimeout(() =>
-    document.getElementById('explore').scrollIntoView({ behavior: 'smooth', block: 'start' }),
+  applyFilter(p.dataset.cat, true);
+  const delay = p.classList.contains('school-fruit') ? 200 : 0;
+  setTimeout(() =>
+    document.getElementById('explore')?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
     delay
   );
 }));
+
+// ── Card click → navigate (if not clicking the "View →" link directly) ───────
+if (grid) {
+  grid.addEventListener('click', e => {
+    const card = e.target.closest('.cca-card');
+    if (!card || e.target.closest('a')) return;
+    const link = card.querySelector('a.more');
+    if (link) window.location.href = link.href;
+  });
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+// Check for a pre-selected school injected by the page (e.g. /explore/acf)
+const _preset = (typeof window !== 'undefined' && window.VIVACE_ACTIVE_SCHOOL) || '';
+if (_preset) {
+  const preChip = document.querySelector(`#chips .chip[data-cat="${_preset}"]`);
+  preChip ? applyFilter(_preset, true) : applyFilter('all', true);
+} else {
+  applyFilter('all', true);
+}

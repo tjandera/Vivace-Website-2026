@@ -1,63 +1,62 @@
-// ── Mobile drawer ────────────────────────────────────────────────────────────
-const hamb   = document.getElementById('hamb');
-const drawer = document.getElementById('drawer');
+// ── Drawer menu ───────────────────────────────────────────────────────────────
+const menuBtn      = document.getElementById('menu-btn');
+const menuClose    = document.getElementById('menu-close');
+const menuOverlay  = document.getElementById('menu-overlay');
+const menuBackdrop = document.getElementById('menu-backdrop');
 
-if (hamb) hamb.addEventListener('click', () => drawer.classList.toggle('open'));
-drawer.querySelectorAll('a').forEach(a =>
-  a.addEventListener('click', () => drawer.classList.remove('open'))
-);
-
-// ── Gooey blob ───────────────────────────────────────────────────────────────
-const navWrap  = document.getElementById('nav-links');
-const blob     = document.getElementById('nav-blob');
-const trail    = document.getElementById('nav-blob-trail');
-const navLinks = navWrap ? Array.from(navWrap.querySelectorAll('a')) : [];
-
-function moveBlob(el) {
-  if (!el) return;
-
-  // Leader snaps fast, trailer lags — SVG filter merges them into a gooey bridge
-  const x = el.offsetLeft;
-  const w = el.offsetWidth;
-
-  if (blob)  { blob.style.left  = x + 'px'; blob.style.width  = w + 'px'; blob.style.opacity  = '1'; }
-  if (trail) { trail.style.left = x + 'px'; trail.style.width = w + 'px'; trail.style.opacity = '1'; }
-
-  // blob-on controls text colour — only the item behind the blob gets cream text
-  navLinks.forEach(a => a.classList.remove('blob-on'));
-  el.classList.add('blob-on');
+function openMenu() {
+  if (!menuOverlay) return;
+  menuOverlay.classList.add('is-open');
+  menuBackdrop && menuBackdrop.classList.add('is-open');
+  menuOverlay.setAttribute('aria-hidden', 'false');
+  menuBackdrop && menuBackdrop.setAttribute('aria-hidden', 'false');
+  menuBtn && menuBtn.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  menuClose && menuClose.focus();
 }
 
-// Hover: blob follows the cursor, snaps back to the active section on leave
-navLinks.forEach(a => a.addEventListener('mouseenter', () => moveBlob(a)));
-if (navWrap) {
-  navWrap.addEventListener('mouseleave', () => {
-    const active = navWrap.querySelector('a.here');
-    if (active) moveBlob(active);
-  });
+function closeMenu() {
+  if (!menuOverlay) return;
+  menuOverlay.classList.remove('is-open');
+  menuBackdrop && menuBackdrop.classList.remove('is-open');
+  menuOverlay.setAttribute('aria-hidden', 'true');
+  menuBackdrop && menuBackdrop.setAttribute('aria-hidden', 'true');
+  menuBtn && menuBtn.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  menuBtn && menuBtn.focus();
 }
 
-// ── Active link on scroll ────────────────────────────────────────────────────
-const sections = ['home', 'about', 'explore', 'partners', 'faq', 'events'];
+menuBtn      && menuBtn.addEventListener('click', openMenu);
+menuClose    && menuClose.addEventListener('click', closeMenu);
+menuBackdrop && menuBackdrop.addEventListener('click', closeMenu);
 
-function syncNav() {
-  let current = 'home';
-  for (const id of sections) {
-    const el = document.getElementById(id);
-    if (!el) continue;
-    if (el.getBoundingClientRect().top < 200) current = id;
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menuOverlay && menuOverlay.classList.contains('is-open')) {
+    closeMenu();
   }
-  navLinks.forEach(a => {
-    const isActive = a.getAttribute('href') === '#' + current;
-    a.classList.toggle('here', isActive);
-    if (isActive) moveBlob(a);
+});
+
+// ── Accordion sub-menus ───────────────────────────────────────────────────────
+document.querySelectorAll('.overlay-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const targetId = btn.dataset.target;
+    const sub      = document.getElementById(targetId);
+    if (!sub) return;
+
+    const isOpen = sub.classList.contains('is-open');
+
+    // Close any other open sub-menu first
+    document.querySelectorAll('.overlay-sub.is-open').forEach(s => {
+      if (s !== sub) {
+        s.classList.remove('is-open');
+        s.setAttribute('aria-hidden', 'true');
+        const t = document.querySelector(`[data-target="${s.id}"]`);
+        if (t) t.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    sub.classList.toggle('is-open', !isOpen);
+    sub.setAttribute('aria-hidden', String(isOpen));
+    btn.setAttribute('aria-expanded', String(!isOpen));
   });
-}
-
-window.addEventListener('scroll', syncNav, { passive: true });
-
-// Initial blob position — wait for layout so offsetLeft is accurate
-window.addEventListener('load', () => {
-  const active = navWrap && navWrap.querySelector('a.here');
-  if (active) moveBlob(active);
 });

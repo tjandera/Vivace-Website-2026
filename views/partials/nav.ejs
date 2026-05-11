@@ -1,59 +1,71 @@
-<!-- Pennant marquee -->
-<div class="top-pennant">
-  <div class="strip" aria-hidden="true">
-    <span>Doors open 11 Aug · 10am — 18:00</span>
-    <span>120+ CCAs · 7 schools · 1 basket</span>
-    <span>Pick what fills your basket</span>
-    <span>SMU concourse · Free entry</span>
-    <span>Doors open 11 Aug · 10am — 18:00</span>
-    <span>120+ CCAs · 7 schools · 1 basket</span>
-    <span>Pick what fills your basket</span>
-    <span>SMU concourse · Free entry</span>
-  </div>
-</div>
-
-<!-- SVG filter for gooey blob effect -->
-<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
-  <defs>
-    <filter id="nav-goo">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
-      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"/>
-    </filter>
-  </defs>
-</svg>
-
 <!-- Main nav -->
-<nav class="main">
-  <div class="row">
-    <a class="logo" href="#home">VIVACE<span class="logo-year">'26</span></a>
-    <div class="nav-links" id="nav-links">
-      <!-- Blob layer — filtered separately so text stays crisp -->
-      <div class="nav-blob-layer" aria-hidden="true">
-        <div class="nav-blob-trail" id="nav-blob-trail"></div>
-        <div class="nav-blob" id="nav-blob"></div>
-      </div>
-      <a class="here" href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#explore">Explore</a>
-      <a href="#partners">Partners</a>
-      <a href="#faq">FAQ</a>
-      <a href="#events">Events</a>
+<nav class="main" id="main-nav">
+  <div class="nav-row">
+
+    <!-- Left: brand block with diagonal skew -->
+    <div class="nav-brand">
+      <a href="https://www.smu.edu.sg" class="smu-logo-link" target="_blank" rel="noopener noreferrer" aria-label="Singapore Management University">
+        <img src="/assets/logo-smu.svg" class="smu-logo" alt="SMU">
+      </a>
+      <span class="nav-brand-sep" aria-hidden="true"></span>
+      <a class="logo" href="/">VIVACE<span class="logo-year">'26</span></a>
     </div>
-    <a class="nav-cta" href="#explore">
-      <span>Start shopping</span>
-      <span style="font-size:18px">+</span>
-    </a>
-    <button class="hamb" id="hamb" aria-label="Menu"><i></i></button>
+
+    <!-- Right: menu button pinned to viewport edge -->
+    <button class="menu-btn" id="menu-btn"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+      aria-controls="menu-overlay">
+      Menu <span class="menu-icon">☰</span>
+    </button>
+
   </div>
 </nav>
 
-<!-- Mobile drawer -->
-<div class="mob-drawer" id="drawer">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#explore">Explore</a>
-  <a href="#partners">Partners</a>
-  <a href="#faq">FAQ</a>
-  <a href="#events">Events</a>
-  <a class="nav-cta" style="display:flex; justify-content:center" href="#explore">Start shopping</a>
+<!-- Backdrop (click outside to close) -->
+<div class="menu-backdrop" id="menu-backdrop" aria-hidden="true"></div>
+
+<!-- Right-side drawer -->
+<div class="menu-overlay" id="menu-overlay"
+  aria-hidden="true" role="dialog" aria-modal="true" aria-label="Site navigation">
+
+  <button class="menu-close" id="menu-close" aria-label="Close navigation menu">✕</button>
+
+  <nav class="overlay-nav" aria-label="Main">
+
+    <a href="/" class="overlay-link">Home</a>
+
+    <a href="/about" class="overlay-link">About Vivace</a>
+
+    <div class="overlay-item">
+      <button class="overlay-link overlay-toggle" data-target="explore-sub" aria-expanded="false">
+        Explore <span class="chev">&#8964;</span>
+      </button>
+      <div class="overlay-sub" id="explore-sub" aria-hidden="true">
+        <a href="/explore"      class="overlay-sub-link">All CCAs</a>
+        <a href="/explore/acf"  class="overlay-sub-link">ACF — Arts &amp; Cultural</a>
+        <a href="/explore/sics" class="overlay-sub-link">SICS — Service &amp; Community</a>
+        <a href="/explore/icon" class="overlay-sub-link">ICON — International</a>
+        <a href="/explore/smux" class="overlay-sub-link">SMUX — Outdoor &amp; Adventure</a>
+        <a href="/explore/ssu"  class="overlay-sub-link">SSU — Sports Union</a>
+        <a href="/explore/gri"  class="overlay-sub-link">GRI — Growth &amp; Industry</a>
+        <a href="/explore/acad" class="overlay-sub-link">Academic Societies</a>
+      </div>
+    </div>
+
+    <a href="/partners" class="overlay-link">Partners &amp; Deals</a>
+
+    <a href="/faq" class="overlay-link">FAQ</a>
+
+    <div class="overlay-item">
+      <button class="overlay-link overlay-toggle" data-target="events-sub" aria-expanded="false">
+        Upcoming Events <span class="chev">&#8964;</span>
+      </button>
+      <div class="overlay-sub" id="events-sub" aria-hidden="true">
+        <a href="/events"          class="overlay-sub-link">All Events</a>
+        <a href="/events#calendar" class="overlay-sub-link">Calendar View</a>
+      </div>
+    </div>
+
+  </nav>
 </div>

@@ -1,53 +1,129 @@
-<!-- Footer -->
-<footer class="site">
-  <div class="sprinkle" style="left:4%; top:36px; width:90px; opacity:.5; transform:rotate(-12deg)">
-    <img src="assets/sticker-bogo.svg" alt="">
-  </div>
-  <div class="sprinkle" style="right:6%; top:54px; width:80px; opacity:.5; transform:rotate(16deg)">
-    <img src="assets/sticker-new-arrival.svg" alt="">
-  </div>
+<style>
+  /* ── SMU global footer (sourced from vivace.smu.edu.sg) ── */
+  #footer_v2{
+    background-color:#141B4D;
+    color:#fff;
+  }
+  #footer_v2 a{
+    color:rgba(255,255,255,.85);
+    text-decoration:none;
+  }
+  #footer_v2 a:hover{ color:#fff }
+  #footer_v2 .nav-link{
+    color:rgba(255,255,255,.75);
+    font-size:.8125rem;
+  }
+  #footer_v2 .nav-link:hover{ color:#fff }
+  #footer_v2 small{ color:rgba(255,255,255,.6) }
+  #footer_v2 .site-footer--global{ position:relative; overflow:hidden }
+  #footer_v2 svg.mw-600{ max-width:600px; display:block }
 
-  <div class="container">
-    <div class="foot-grid">
-      <div class="foot-col foot-brand">
-        <a class="logo" style="color:var(--green)" href="#">VIVACE<span class="logo-year">'26</span></a>
-        <p>Singapore Management University's annual CCA fair.<br>Three days. Seven schools. One basket.</p>
-        <p style="opacity:1; padding:0">vivace@smu.edu.sg</p>
-        <div class="foot-socials">
-          <a href="#" aria-label="Instagram">IG</a>
-          <a href="#" aria-label="Facebook">FB</a>
-          <a href="#" aria-label="TikTok">TT</a>
+  /* ── Explicit layout — left links / right icons ── */
+  #footer_v2 .footer-main-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-bottom:1.5rem;
+  }
+  #footer_v2 .footer-links-col{
+    flex:1 1 0;
+    min-width:0;
+  }
+  #footer_v2 .footer-icons-col{
+    flex:0 0 auto;
+  }
+
+  /* Legal links row */
+  #footer_v2 .footer-links-col ul{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    list-style:none;
+    padding:0; margin:0;
+  }
+
+  /* Social icons — right-aligned, wrap after 6 */
+  #footer_v2 .footer-icons-col ul{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    align-items:center;
+    gap:2px;
+    list-style:none;
+    padding:0; margin:0;
+    max-width:220px; /* forces wrap after ~6 icons */
+  }
+  #footer_v2 .footer-icons-col ul li{
+    padding:0;
+  }
+  #footer_v2 .footer-icons-col ul li a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:42px; height:42px;
+    font-size:1.35rem;
+    color:rgba(255,255,255,.85);
+    transition:color .15s ease;
+  }
+  #footer_v2 .footer-icons-col ul li a:hover{
+    color:#fff;
+  }
+
+  /* Copyright row */
+  #footer_v2 .footer-copy-row{
+    padding-bottom:1.5rem;
+  }
+</style>
+
+<footer id="footer_v2" class="site-footer">
+    <div class="site-footer--global pt-4">
+        <div class="container">
+            <div class="footer-main-row">
+                <div class="footer-links-col">
+                    <ul>
+                        <li class="nav-item pe-md-3 py-0">
+                            <a href="https://www.smu.edu.sg/terms-use" target="_blank" class="small d-inline nav-link px-0 py-1 remove-icon">Terms of Use</a>
+                        </li>
+                        <li class="nav-item pe-md-3 py-0">
+                            <a target="_blank" href="https://forms.cloud.microsoft/r/8nKFF8sN4k" class="small d-inline nav-link px-0 py-1 remove-icon">Website Feedback</a>
+                        </li>
+                        <li class="nav-item pe-md-3 py-0">
+                            <a href="https://www.smu.edu.sg/forms/whistleblowing-report-form" class="small d-inline nav-link px-0 py-1 remove-icon" target="_blank">Report Whistleblowing</a>
+                        </li>
+                        <li class="nav-item pe-md-3 py-0">
+                            <a href="https://www.smu.edu.sg/personal-data-protection-statement" class="small d-inline nav-link px-0 py-1 remove-icon" target="_blank">Personal Data Protection</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer-icons-col">
+                    <ul>
+                        <li><a target="_blank" title="SMU on Facebook" href="http://facebook.com/sgsmu"><i class="fa-brands fa-facebook-square"></i><span class="visually-hidden">Facebook</span></a></li>
+                        <li><a target="_blank" href="https://www.instagram.com/sgsmu"><i class="fa-brands fa-instagram"></i><span class="visually-hidden">Instagram</span></a></li>
+                        <li><a target="_blank" title="SMU (@sgsmu) on Twitter" href="http://twitter.com/sgsmu"><i class="fa-brands fa-x-twitter"></i><span class="visually-hidden">Twitter</span></a></li>
+                        <li><a target="_blank" title="SMU on LinkedIn" href="http://www.linkedin.com/company/singapore-management-university/"><i class="fa-brands fa-linkedin"></i><span class="visually-hidden">LinkedIn</span></a></li>
+                        <li><a target="_blank" title="SMU on YouTube" href="http://www.youtube.com/smutubesg"><i class="fa-brands fa-youtube-square"></i><span class="visually-hidden">YouTube</span></a></li>
+                        <li><a target="_blank" href="https://soundcloud.com/sgsmu"><i class="fa-brands fa-soundcloud"></i><span class="visually-hidden">SoundCloud</span></a></li>
+                        <li><a target="_blank" href="https://www.tiktok.com/@sgsmu"><i class="fa-brands fa-tiktok"></i><span class="visually-hidden">TikTok</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-12">
+                    <small class="d-block">&copy; 2026 <span class="text-nowrap">Singapore Management University.</span> <span class="text-nowrap">All Rights Reserved.</span></small>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="foot-col">
-        <h4>Sitemap</h4>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#explore">Explore</a>
-        <a href="#partners">Partners</a>
-        <a href="#faq">FAQ</a>
-        <a href="#events">Events</a>
-      </div>
-      <div class="foot-col">
-        <h4>Legal</h4>
-        <a href="#">Terms of Use</a>
-        <a href="#">PDPA / Privacy</a>
-        <a href="#">Code of Conduct</a>
-        <a href="#">Accessibility</a>
-        <a href="#">Press kit</a>
-      </div>
-      <div class="foot-col foot-form">
-        <h4>Got feedback?</h4>
-        <input type="email" placeholder="your.email@smu.edu.sg">
-        <textarea rows="3" placeholder="Drop us a thought…"></textarea>
-        <button>Send →</button>
-      </div>
+
+        <svg class="mw-600 pe-5" viewBox="0 0 630 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.15" d="M340.777 0.833984L380.71 67.5383H0V0.833984H340.777Z" fill="white"/>
+            <path opacity="0.4" d="M541 67.5387L588.587 13.1084L629.664 67.5387H541Z" fill="white"/>
+            <path opacity="0.2" d="M541.319 67.668H483.388L438.127 0.746638L492.37 0.667969L541.319 67.668Z" fill="white"/>
+            <path opacity="0.3" d="M415.412 33.0643H360L382.536 0.667969H437.948L415.412 33.0643Z" fill="white"/>
+        </svg>
+
     </div>
-    <div class="foot-legal">
-      <span>© 2026 SMU Students' Association · Vivace Organising Committee</span>
-      <span>Built with ♥ for the basket-bound</span>
-    </div>
-  </div>
 </footer>
 
 <!-- Floating Ask Us CTA -->
@@ -60,7 +136,12 @@
   <span class="pulse"></span>
 </a>
 
+<!-- Door-close overlay for page transitions -->
+<div id="page-transition" aria-hidden="true">
+  <div class="pt-door pt-door-l"></div>
+  <div class="pt-door pt-door-r"></div>
+</div>
+
 <script src="/js/nav.js"></script>
-<script src="/js/explore.js"></script>
-<script src="/js/hero.js"></script>
 <script src="/js/click-spark.js"></script>
+<script src="/js/cursor.js"></script>

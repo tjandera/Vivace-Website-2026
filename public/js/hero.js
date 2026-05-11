@@ -1,7 +1,6 @@
 // ── Hero wordmark colour-pop interaction ──────────────────────────────────────
 const wordmark = document.querySelector('.hero-wordmark');
 if (wordmark) {
-  // Each entry: text colour, coloured drop shadow, year accent colour
   const palette = [
     { text: 'var(--green)',  shadow: 'rgba(73,173,119,.28)',  year: 'var(--red)'    },
     { text: 'var(--red)',    shadow: 'rgba(226,58,41,.28)',   year: 'var(--green)'  },
@@ -21,14 +20,11 @@ if (wordmark) {
   function pop() {
     idx = (idx + 1) % palette.length;
     const c = palette[idx];
-
     wordmark.style.color      = c.text;
     wordmark.style.textShadow = `3px 3px 0 #fff, 7px 7px 0 ${c.shadow}`;
     if (yearEl) yearEl.style.color = c.year;
-
-    // Restart the pop animation cleanly
     wordmark.classList.remove('is-popping');
-    void wordmark.offsetWidth;           // force reflow so animation re-fires
+    void wordmark.offsetWidth;
     wordmark.classList.add('is-popping');
   }
 
@@ -40,3 +36,22 @@ if (wordmark) {
     wordmark.classList.remove('is-popping');
   });
 }
+
+// ── Page-transition helper ────────────────────────────────────────────────────
+function navigateWithDoors(url) {
+  const pt = document.getElementById('page-transition');
+  if (pt) {
+    pt.classList.add('is-closing');
+    setTimeout(() => { window.location.href = url; }, 580);
+  } else {
+    window.location.href = url;
+  }
+}
+
+// ── School fruit buttons → door-close then route to /explore/:school ─────────
+document.querySelectorAll('.school-fruit').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const school = btn.dataset.cat;
+    if (school) navigateWithDoors(`/explore/${school}`);
+  });
+});
