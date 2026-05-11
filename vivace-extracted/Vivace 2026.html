@@ -1,0 +1,2775 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SMU Vivace 2026 — The CCA Fair</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Balsamiq+Sans:wght@400;700&family=Caveat:wght@500;600;700&family=Fredoka:wght@500;600;700&family=Kalam:wght@300;400;700&family=Lilita+One&family=Space+Mono:wght@400;700&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'DoubleBass';
+    src: url('assets/DoubleBass-Bold-trial.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  /* ---------- Tokens ---------- */
+  :root{
+    --red:#E23A29;
+    --green:#49AD77;
+    --orange:#FF7828;
+    --blue:#3C73D6;
+    --yellow:#F1AD2B;
+    --pink:#EA5A89;
+    --ink:#1A1A1A;
+    --cream:#FFF6E7;
+    --cream-2:#FFFDF5;
+    --paper:#FFFFFF;
+    --tile-1:#FFF6E7;
+    --tile-2:#F1AD2B;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{margin:0; padding:0; color:var(--ink); font-family:'Fredoka', system-ui, sans-serif; font-weight:500; background:var(--cream);}
+  body{
+    overflow-x:hidden;
+    background:
+      conic-gradient(from 90deg at 1px 1px, transparent 90deg, rgba(26,26,26,0.04) 0) 0 0/40px 40px,
+      var(--cream);
+  }
+  img{display:block; max-width:100%}
+  button{font:inherit; cursor:pointer; border:none; background:none; color:inherit}
+  a{color:inherit; text-decoration:none}
+
+  /* ---------- Type ---------- */
+  .display{font-family:'Bagel Fat One', 'Fredoka', sans-serif; font-weight:400; letter-spacing:0; line-height:.92}
+  .chunky{font-family:'Fredoka', sans-serif; font-weight:700; letter-spacing:.01em; line-height:1}
+  .label{font-family:'Fredoka', sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.06em}
+  .mono{font-family:'Space Mono', monospace}
+  h1,h2,h3,h4{margin:0}
+
+  /* ---------- Reusable patterns ---------- */
+  .checker{
+    background-image:
+      linear-gradient(45deg, var(--ink) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--ink) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--ink) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--ink) 75%);
+    background-size:18px 18px;
+    background-position:0 0, 0 9px, 9px -9px, -9px 0;
+    background-color:var(--yellow);
+  }
+  .checker-sm{
+    background-image:
+      linear-gradient(45deg, var(--ink) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--ink) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--ink) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--ink) 75%);
+    background-size:10px 10px;
+    background-position:0 0, 0 5px, 5px -5px, -5px 0;
+  }
+  .stripe{
+    background-image: repeating-linear-gradient(45deg, var(--red) 0 14px, var(--cream) 14px 28px);
+  }
+  .dots{
+    background-image: radial-gradient(var(--ink) 1.6px, transparent 1.8px);
+    background-size:14px 14px;
+  }
+
+  .outline{ border:3px solid var(--ink) }
+  .outline-4{ border:4px solid var(--ink) }
+  .pill{ border-radius:999px }
+  .blob{ border-radius:36% 64% 50% 50% / 50% 50% 36% 64% }
+
+  /* drop blocks for click feel — chunky shadow */
+  .pop{ box-shadow: 6px 6px 0 0 var(--ink); transition: transform .14s ease, box-shadow .14s ease; }
+  .pop:hover{ transform: translate(-2px,-2px); box-shadow: 8px 8px 0 0 var(--ink) }
+  .pop:active{ transform: translate(2px,2px); box-shadow: 2px 2px 0 0 var(--ink) }
+
+  /* ============================ NAV ============================ */
+  .top-pennant{
+    background:var(--ink);
+    position:relative;
+    overflow:hidden;
+  }
+  .top-pennant .strip{
+    display:flex; align-items:center; gap:32px;
+    padding:8px 0;
+    color:var(--cream-2);
+    font-family:'Fredoka', sans-serif; font-weight:600; font-size:13px; letter-spacing:.18em; text-transform:uppercase;
+    white-space:nowrap;
+    animation: marquee 40s linear infinite;
+  }
+  .top-pennant .strip span{display:inline-flex; align-items:center; gap:32px}
+  .top-pennant .strip span::after{content:"★"; color:var(--yellow); font-size:14px; margin-left:32px}
+  @keyframes marquee {
+    from{ transform: translateX(0) }
+    to  { transform: translateX(-50%) }
+  }
+
+  nav.main{
+    position:sticky; top:0; z-index:50;
+    background:var(--cream);
+    border-bottom:4px solid var(--ink);
+  }
+  nav.main .row{
+    max-width:1280px; margin:0 auto;
+    display:flex; align-items:center; gap:18px;
+    padding:14px 22px;
+  }
+  .logo{
+    display:inline-flex; align-items:center;
+    font-family:'DoubleBass', sans-serif;
+    font-weight:bold;
+    font-size:34px; line-height:1; letter-spacing:.01em;
+    color:var(--green);
+    text-shadow:
+      1.5px 1.5px 0 #fff,
+      3px 3px 0 rgba(26,26,26,.18);
+    transform:rotate(-1deg);
+  }
+  .logo .dot{ display:none }
+  .logo-year{
+    font-family:'Bagel Fat One', sans-serif;
+    font-size:.45em; font-weight:400;
+    color:var(--red);
+    align-self:flex-start;
+    margin-top:.18em;
+    margin-left:3px;
+  }
+  .nav-links{
+    display:flex; gap:6px; margin-left:auto; align-items:center;
+  }
+  .nav-links a{
+    padding:8px 14px; border-radius:999px;
+    font-family:'Fredoka', sans-serif; font-weight:700; font-size:14px;
+    border:3px solid transparent;
+    text-transform:uppercase; letter-spacing:.04em;
+  }
+  .nav-links a:hover{ border-color:var(--ink); background:#fff }
+  .nav-links a.here{ background:var(--ink); color:var(--cream); border-color:var(--ink) }
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--red); color:#fff;
+    border:3px solid var(--ink); border-radius:999px;
+    padding:9px 18px;
+    font-family:'Fredoka', sans-serif; font-weight:700; font-size:16px; letter-spacing:.01em;
+    box-shadow:4px 4px 0 var(--ink);
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+  .nav-cta:hover{ transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink) }
+
+  .hamb{
+    display:none; width:42px; height:42px; border:3px solid var(--ink); border-radius:12px;
+    background:#fff; box-shadow:3px 3px 0 var(--ink);
+    align-items:center; justify-content:center;
+  }
+  .hamb i{width:18px; height:2.5px; background:var(--ink); display:block; position:relative}
+  .hamb i::before,.hamb i::after{content:""; position:absolute; left:0; right:0; height:2.5px; background:var(--ink)}
+  .hamb i::before{top:-6px}
+  .hamb i::after{top:6px}
+
+  /* mobile nav drawer */
+  .mob-drawer{
+    display:none; position:fixed; inset:64px 0 0 0; z-index:40;
+    background:var(--cream); padding:24px;
+    border-top:4px solid var(--ink);
+  }
+  .mob-drawer.open{display:block}
+  .mob-drawer a{
+    display:block; padding:14px 16px; border:3px solid var(--ink);
+    border-radius:14px; background:#fff; margin-bottom:10px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
+  }
+
+  /* ============================ HERO ============================ */
+  .hero{
+    position:relative;
+    padding:48px 22px 80px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    max-width:1280px; margin:0 auto;
+    display:grid; grid-template-columns: 1.05fr 1fr;
+    gap:40px; align-items:center;
+  }
+  .hero-copy{ position:relative; z-index:2 }
+  .badge-row{
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .stamp{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:8px 16px; border-radius:999px;
+    background:var(--green); color:#fff; border:3px solid var(--ink);
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px; letter-spacing:.03em;
+    text-transform:uppercase;
+    box-shadow: 3px 3px 0 var(--ink);
+    transform:rotate(-2deg);
+  }
+  .stamp.pink{ background:var(--pink) }
+  .stamp.blue{ background:var(--blue) }
+  .stamp.yellow{ background:var(--yellow); color:var(--ink) }
+
+  .hero h1{
+    font-family:'Bagel Fat One', sans-serif;
+    font-size: clamp(64px, 9vw, 128px);
+    line-height:.86; letter-spacing:-.01em;
+    color:var(--ink);
+  }
+  .hero h1 .word-1{ color:var(--red) }
+  .hero h1 .word-2{
+    display:inline-block;
+    color:#fff;
+    background:var(--blue);
+    border:4px solid var(--ink);
+    padding:0 16px 8px;
+    border-radius:18px;
+    transform:rotate(-2deg);
+    box-shadow:6px 6px 0 var(--ink);
+    margin-top:8px;
+  }
+  .hero h1 .yr{
+    display:inline-block;
+    background:var(--yellow);
+    color:var(--ink);
+    border:4px solid var(--ink);
+    border-radius:18px;
+    padding:0 18px 6px;
+    margin-left:12px;
+    transform:rotate(3deg);
+    box-shadow:6px 6px 0 var(--ink);
+    font-size:.78em;
+  }
+
+  .hero p.lede{
+    margin-top:22px; font-size:19px; line-height:1.45; max-width:50ch;
+    font-family:'Fredoka', sans-serif;
+  }
+
+  .date-block{
+    margin-top:24px;
+    display:inline-flex; flex-wrap:wrap; align-items:stretch;
+    background:#fff; border:4px solid var(--ink); border-radius:20px;
+    box-shadow:6px 6px 0 var(--ink);
+    overflow:hidden;
+  }
+  .date-block .pill-tag{
+    background:var(--red); color:#fff;
+    padding:10px 16px; font-family:'Fredoka',sans-serif; font-weight:700; font-size:15px;
+    letter-spacing:.06em; text-transform:uppercase;
+    display:flex; align-items:center; gap:8px;
+    border-right:4px solid var(--ink);
+  }
+  .date-block .when{
+    padding:10px 18px;
+    display:flex; align-items:center; gap:14px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
+  }
+  .date-block .when .sep{
+    width:8px; height:8px; background:var(--ink); border-radius:50%; display:inline-block;
+  }
+  .date-block .when .place{ font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px; color:#555 }
+
+  .hero-ctas{
+    margin-top:28px; display:flex; gap:14px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 24px; border:4px solid var(--ink);
+    border-radius:999px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
+    box-shadow:6px 6px 0 var(--ink);
+    transition: transform .14s ease, box-shadow .14s ease;
+  }
+  .btn:hover{ transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--ink) }
+  .btn:active{ transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink) }
+  .btn.primary{ background:var(--red); color:#fff }
+  .btn.ghost{ background:#fff; color:var(--ink) }
+  .btn .arrow{ display:inline-block; transform: translateY(-1px) }
+
+  /* hero scene */
+  .hero-scene{
+    position:relative; aspect-ratio: 1/1.1; min-height:520px;
+  }
+
+  /* checker floor backdrop */
+  .floor-disc{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-46%);
+    width:108%; aspect-ratio:1; border-radius:50%;
+    background:
+      linear-gradient(45deg, var(--tile-2) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--tile-2) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--tile-2) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--tile-2) 75%);
+    background-size:42px 42px;
+    background-position:0 0, 0 21px, 21px -21px, -21px 0;
+    background-color:var(--cream-2);
+    border:4px solid var(--ink);
+    box-shadow: 12px 12px 0 var(--ink);
+  }
+  .floor-disc::after{
+    content:""; position:absolute; inset:14px;
+    border:3px dashed var(--ink); border-radius:50%; opacity:.25;
+  }
+
+  /* basket SVG container */
+  .basket-art{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-30%);
+    width:74%; aspect-ratio: 280/280;
+    z-index:2;
+  }
+  .basket-art svg{ width:100%; height:100% }
+
+  /* products inside basket */
+  .product{
+    position:absolute; z-index:3;
+    width:22%; aspect-ratio:1; cursor:pointer;
+    transition: transform .18s cubic-bezier(.5,1.6,.5,1);
+    filter: drop-shadow(3px 3px 0 var(--ink));
+  }
+  .product:hover{ transform: translateY(-8px) rotate(var(--tilt, 0deg)) scale(1.05) }
+  .product .plu{
+    position:absolute; left:-12px; top:-10px;
+    width:48%; aspect-ratio:1;
+    z-index:4;
+    transition: transform .18s ease;
+  }
+  .product:hover .plu{ transform: rotate(-12deg) scale(1.06) }
+  .product .ribbon{
+    position:absolute; bottom:-4%; left:50%; transform:translateX(-50%) rotate(-3deg);
+    background:#fff; border:3px solid var(--ink); border-radius:8px;
+    padding:3px 9px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:13px;
+    white-space:nowrap;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .product img.fruit{
+    width:100%; height:100%; object-fit:contain;
+  }
+
+  /* hero floating decor */
+  .float-decor{ position:absolute; pointer-events:none; z-index:1; }
+  .float-decor img{ display:block; filter: drop-shadow(3px 3px 0 var(--ink)); }
+  .spin-slow{ animation: spinSlow 22s linear infinite }
+  @keyframes spinSlow { to{ transform: rotate(360deg) } }
+  .bob{ animation: bob 3.4s ease-in-out infinite }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  .bob-2{ animation: bob 4.6s ease-in-out infinite }
+  .tilt{ animation: tilt 5s ease-in-out infinite }
+  @keyframes tilt { 0%,100%{transform:rotate(-3deg)} 50%{transform:rotate(3deg)} }
+
+  /* basket pricetag annotation */
+  .here-tag{
+    position:absolute; left:-18%; top:-2%;
+    width:32%; transform:rotate(-12deg);
+    z-index:5;
+    filter: drop-shadow(3px 3px 0 var(--ink));
+  }
+
+  /* top-down basket hero */
+  .hero.flatlay-hero{
+    min-height:calc(100vh - 110px);
+    padding:40px 22px 72px;
+    background:
+      linear-gradient(rgba(26,26,26,.052) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,26,26,.052) 1px, transparent 1px),
+      var(--paper);
+    background-size:28px 28px;
+    border-bottom:4px solid var(--ink);
+  }
+  .flatlay-wrap{
+    max-width:1280px;
+    margin:0 auto;
+    min-height:720px;
+    position:relative;
+  }
+  .flatlay-copy{
+    position:relative;
+    z-index:4;
+    max-width:920px;
+    padding-top:8px;
+  }
+  .wire-stamp{
+    display:inline-block;
+    border:3px solid var(--red);
+    color:var(--red);
+    background:#fff;
+    padding:4px 14px 2px;
+    font-family:'Special Elite', monospace;
+    font-size:16px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    transform:rotate(-3deg);
+    box-shadow:2px 2px 0 rgba(26,26,26,.12);
+  }
+  .hero.flatlay-hero h1{
+    margin-top:14px;
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:clamp(86px, 9vw, 136px);
+    line-height:.78;
+    letter-spacing:0;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+  .flatlay-title-year{
+    display:inline-block;
+    margin-left:16px;
+    padding:0 .18em .04em;
+    border:4px solid var(--ink);
+    background:var(--paper-2);
+    font-family:'Caveat', cursive;
+    transform:rotate(-2deg);
+  }
+  .flatlay-meta{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:18px;
+    font-family:'Special Elite', monospace;
+    font-size:20px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .flatlay-meta strong{
+    display:inline-block;
+    padding:5px 12px 3px;
+    background:#fff;
+    border:2px solid var(--ink);
+    font-weight:400;
+  }
+  .flatlay-note{
+    margin:22px 0 0;
+    max-width:520px;
+    font-family:'Kalam', cursive;
+    font-size:22px;
+    line-height:1.45;
+    color:#333;
+  }
+  .flatlay-quote{
+    position:absolute;
+    right:0;
+    top:250px;
+    max-width:340px;
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:30px;
+    line-height:1.1;
+    text-align:right;
+    transform:rotate(-1deg);
+  }
+  .basket-stage{
+    position:absolute;
+    left:50%;
+    top:250px;
+    width:min(560px, 48vw);
+    min-width:430px;
+    transform:translateX(-18%);
+    z-index:2;
+  }
+  .basket-shell{
+    position:relative;
+    width:100%;
+    padding:70px 36px 42px;
+  }
+  .basket-shell::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:0;
+    width:210px;
+    height:82px;
+    transform:translateX(-50%);
+    border:5px solid var(--ink);
+    border-bottom:0;
+    border-radius:110px 110px 0 0;
+    background:transparent;
+    z-index:0;
+  }
+  .basket-shell::after{
+    content:"SHOPPING BASKET (top-down)";
+    position:absolute;
+    left:50%;
+    bottom:6px;
+    transform:translateX(-50%);
+    padding:0 8px;
+    background:var(--paper);
+    color:#777;
+    font-family:'Special Elite', monospace;
+    font-size:13px;
+    letter-spacing:.16em;
+    white-space:nowrap;
+    z-index:4;
+  }
+  .basket-inner{
+    position:relative;
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:14px;
+    padding:22px;
+    border:5px solid var(--ink);
+    border-radius:18px;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 18px, rgba(26,26,26,.08) 18px 20px),
+      repeating-linear-gradient(90deg, transparent 0 18px, rgba(26,26,26,.08) 18px 20px),
+      #fff;
+    box-shadow:9px 9px 0 var(--ink);
+    z-index:2;
+  }
+  .basket-inner::before,
+  .basket-inner::after{
+    content:"";
+    position:absolute;
+    top:18px;
+    bottom:18px;
+    width:16px;
+    border-left:4px solid var(--ink);
+    border-right:4px solid var(--ink);
+    opacity:.8;
+  }
+  .basket-inner::before{ left:-28px; }
+  .basket-inner::after{ right:-28px; }
+  .basket-product.product{
+    position:relative;
+    z-index:auto;
+    width:auto;
+    aspect-ratio:1.42 / 1;
+    cursor:pointer;
+    filter:none;
+    background:#fff;
+    border:3px solid var(--ink);
+    padding:12px 14px 10px;
+    display:grid;
+    grid-template-rows:auto 1fr auto;
+    align-items:center;
+    justify-items:center;
+    gap:8px;
+    transition:transform .14s ease, box-shadow .14s ease, background .14s ease;
+  }
+  .basket-product.product:hover{
+    transform:translate(-3px,-3px) rotate(var(--tilt, 0deg));
+    box-shadow:6px 6px 0 var(--ink);
+    background:var(--paper);
+  }
+  .basket-product .barcode{
+    position:absolute;
+    top:9px;
+    right:9px;
+    width:48px;
+    height:18px;
+    background:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 8px);
+  }
+  .basket-product .school-icon{
+    width:70px;
+    height:70px;
+    border:2px solid var(--ink);
+    background:
+      repeating-linear-gradient(135deg, transparent 0 8px, rgba(26,26,26,.1) 8px 10px),
+      #fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    font-family:'Special Elite', monospace;
+    color:#777;
+    font-size:12px;
+    line-height:1.1;
+  }
+  .basket-product .school-name{
+    display:block;
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:38px;
+    line-height:.9;
+    text-align:center;
+  }
+  .basket-product .school-full{
+    display:block;
+    margin-top:5px;
+    font-family:'Kalam', cursive;
+    font-size:14px;
+    line-height:1.05;
+    color:#666;
+    text-align:center;
+  }
+  .basket-product .price{
+    position:absolute;
+    right:10px;
+    bottom:7px;
+    font-family:'Special Elite', monospace;
+    font-size:12px;
+    color:#555;
+  }
+  .basket-product.span2{
+    grid-column:1 / -1;
+    aspect-ratio:3.1 / 1;
+  }
+  .basket-product.span2 .school-icon{
+    width:78px;
+    height:78px;
+  }
+  .flatlay-floor{
+    position:absolute;
+    left:-26px;
+    right:-26px;
+    bottom:-28px;
+    height:112px;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 24px, rgba(26,26,26,.12) 24px 26px),
+      repeating-linear-gradient(90deg, transparent 0 24px, rgba(26,26,26,.1) 24px 26px),
+      var(--paper-2);
+    border-top:3px dashed var(--ink);
+    z-index:1;
+  }
+  .scroll-cue{
+    position:absolute;
+    right:16px;
+    bottom:-36px;
+    color:var(--red);
+    font-family:'Caveat', cursive;
+    font-size:24px;
+    font-weight:700;
+    transform:rotate(-2deg);
+    z-index:5;
+  }
+  .flatlay-cta-row{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:30px;
+  }
+
+  /* centered grocery basket hero */
+  .hero.basket-hero{
+    min-height:calc(100vh - 110px);
+    padding:34px 22px 72px;
+    overflow:hidden;
+    border-bottom:4px solid var(--ink);
+    background:var(--cream-2);
+    isolation:isolate;
+  }
+  .hero.basket-hero::before,
+  .hero.basket-hero::after{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:50%;
+    z-index:-2;
+  }
+  .hero.basket-hero::before{
+    left:0;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 44px, rgba(73,173,119,.38) 44px 52px, transparent 52px 100px),
+      repeating-linear-gradient(90deg, transparent 0 44px, rgba(73,173,119,.38) 44px 52px, transparent 52px 100px),
+      linear-gradient(90deg, rgba(73,173,119,.26) 0 31px, rgba(255,255,255,.5) 31px 70px, rgba(73,173,119,.18) 70px 100px);
+    background-position:0 0, 0 0, 0 0;
+    animation:storeWalkPlaid 7.5s linear infinite;
+  }
+  .hero.basket-hero::after{
+    right:0;
+    background:
+      linear-gradient(45deg, rgba(234,90,137,.5) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(234,90,137,.5) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(234,90,137,.5) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(234,90,137,.5) 75%),
+      var(--cream-2);
+    background-size:96px 96px;
+    background-position:0 0, 0 48px, 48px -48px, -48px 0;
+    animation:storeWalkChecker 6.4s linear infinite;
+  }
+  @keyframes storeWalkPlaid{
+    from{ background-position:0 0, 0 0, 0 0 }
+    to{ background-position:0 200px, 0 200px, 0 100px }
+  }
+  @keyframes storeWalkChecker{
+    from{ background-position:0 0, 0 48px, 48px -48px, -48px 0 }
+    to{ background-position:0 192px, 0 240px, 48px 144px, -48px 192px }
+  }
+  .basket-hero .hero-glow{
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 50% 42%, rgba(255,255,255,.88) 0 270px, rgba(255,255,255,.34) 520px, transparent 760px);
+    z-index:-1;
+  }
+  .basket-hero-wrap{
+    position:relative;
+    max-width:1280px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:760px;
+  }
+  .basket-hero-copy{
+    position:relative;
+    z-index:5;
+    width:min(920px, 100%);
+    text-align:center;
+  }
+  .basket-hero .stamp{
+    background:var(--yellow);
+    color:var(--ink);
+  }
+  .hero-wordmark{
+    display:inline-flex;
+    align-items:flex-start;
+    justify-content:center;
+    margin-top:12px;
+    font-family:'DoubleBass', sans-serif;
+    font-weight:bold;
+    font-size:clamp(74px, 9vw, 132px);
+    line-height:.9;
+    letter-spacing:.01em;
+    color:var(--green);
+    text-shadow:
+      4px 4px 0 #fff,
+      7px 7px 0 var(--ink);
+    transform:rotate(-2deg);
+  }
+  .hero-wordmark .title-year{
+    display:inline-block;
+    margin-left:6px;
+    margin-top:.02em;
+    font-family:'Bagel Fat One', sans-serif;
+    font-size:.35em;
+    font-weight:400;
+    line-height:1;
+    color:var(--red);
+    text-shadow:
+      2px 2px 0 #fff,
+      4px 4px 0 var(--ink);
+    transform:rotate(7deg);
+  }
+  .basket-hero .hero-meta{
+    margin-top:18px;
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .basket-hero .hero-meta span{
+    display:inline-flex;
+    align-items:center;
+    min-height:38px;
+    padding:7px 14px;
+    border:3px solid var(--ink);
+    border-radius:999px;
+    background:#fff;
+    box-shadow:4px 4px 0 var(--ink);
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+  .basket-hero .hero-meta span:nth-child(2){ background:var(--green); color:#fff }
+  .basket-hero .hero-meta span:nth-child(3){ background:var(--red); color:#fff }
+  .basket-hero .hero-copyline{
+    margin:16px auto 0;
+    max-width:620px;
+    font-size:19px;
+    font-weight:600;
+    line-height:1.45;
+    background:rgba(255,255,255,.72);
+    border:3px solid var(--ink);
+    border-radius:18px;
+    padding:10px 16px;
+    box-shadow:5px 5px 0 var(--ink);
+  }
+  .basket-showcase{
+    position:relative;
+    width:min(720px, 94vw);
+    aspect-ratio:924 / 1550;
+    margin-top:24px;
+    animation:basketCruise 4.6s ease-in-out infinite;
+  }
+  @keyframes basketCruise{
+    0%,100%{ transform:translateY(0) rotate(0deg) }
+    50%{ transform:translateY(5px) rotate(-.35deg) }
+  }
+  .market-basket{
+    position:absolute;
+    inset:0;
+    filter:drop-shadow(16px 18px 0 rgba(26,26,26,.92));
+  }
+  .basket-image{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+  }
+  .basket-decor{
+    position:absolute;
+    z-index:5;
+    left:var(--x);
+    top:var(--y);
+    width:var(--w);
+    pointer-events:none;
+    transform:translate(-50%, -50%) rotate(var(--r, 0deg));
+    transform-origin:center;
+    filter:
+      drop-shadow(0 3px 0 rgba(255,255,255,.9))
+      drop-shadow(7px 10px 6px rgba(0,0,0,.26));
+    animation:decorFloat 4.8s ease-in-out infinite;
+  }
+  .basket-decor img{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .basket-decor.is-back{ z-index:3; opacity:.9 }
+  .basket-decor.is-front{ z-index:8 }
+  .basket-decor.price-tag{ --x:92%; --y:10%; --w:25%; --r:8deg; animation-delay:-.8s }
+  .basket-decor.sun-tag{ --x:9%; --y:10%; --w:18%; --r:-16deg; animation-delay:-1.5s }
+  .basket-decor.juice-tag{ --x:-6%; --y:34%; --w:15%; --r:-9deg; animation-delay:-2.2s }
+  .basket-decor.label-tag{ --x:106%; --y:34%; --w:18%; --r:16deg; animation-delay:-.3s }
+  .basket-decor.button-tag{ --x:-4%; --y:72%; --w:15%; --r:12deg; animation-delay:-1s }
+  .basket-decor.clip-tag{ --x:105%; --y:91%; --w:30%; --r:-6deg; animation-delay:-1.9s }
+  .basket-decor.croissant-tag{ --x:5%; --y:94%; --w:40%; --r:11deg; animation-delay:-2.8s }
+  @keyframes decorFloat{
+    0%,100%{ translate:0 0 }
+    50%{ translate:0 -7px }
+  }
+  .scan-beam{
+    position:absolute;
+    z-index:13;
+    left:12%;
+    right:12%;
+    top:10%;
+    height:16%;
+    pointer-events:none;
+    opacity:0;
+    mix-blend-mode:screen;
+    background:
+      linear-gradient(180deg, transparent 0, rgba(255,255,255,.72) 42%, rgba(241,173,43,.9) 50%, rgba(255,255,255,.65) 58%, transparent 100%);
+    filter:blur(.3px) drop-shadow(0 0 14px rgba(241,173,43,.85));
+    transform:translateY(-28%);
+  }
+  .basket-showcase.is-scanning .scan-beam{
+    animation:scanBasket .72s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes scanBasket{
+    0%{ opacity:0; transform:translateY(-28%) }
+    18%{ opacity:1 }
+    82%{ opacity:1 }
+    100%{ opacity:0; transform:translateY(480%) }
+  }
+  .basket-rim{
+    position:absolute;
+    inset:4% 6% 0;
+    border-radius:58px 58px 36px 36px;
+    background:linear-gradient(135deg, #38d267, #23a84e);
+    border:8px solid #31b85b;
+    box-shadow:
+      inset 0 0 0 14px rgba(255,255,255,.12),
+      inset 0 0 38px rgba(0,0,0,.16);
+  }
+  .basket-well{
+    position:absolute;
+    inset:14% 13% 7%;
+    border-radius:34px 34px 24px 24px;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 34px, rgba(255,255,255,.78) 34px 46px, transparent 46px 66px),
+      repeating-linear-gradient(90deg, transparent 0 54px, rgba(255,255,255,.56) 54px 68px, transparent 68px 96px),
+      linear-gradient(135deg, #26b957, #49d36f);
+    box-shadow:
+      inset 0 0 0 8px rgba(25,110,54,.52),
+      inset 0 22px 34px rgba(0,0,0,.22),
+      inset 0 -28px 36px rgba(255,255,255,.2);
+    overflow:hidden;
+  }
+  .basket-well::before,
+  .basket-well::after{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    width:19%;
+    background:linear-gradient(90deg, rgba(7,120,48,.34), transparent);
+  }
+  .basket-well::before{ left:0 }
+  .basket-well::after{
+    right:0;
+    transform:scaleX(-1);
+  }
+  .basket-handle{
+    position:absolute;
+    left:13%;
+    right:13%;
+    top:9%;
+    height:54%;
+    border:16px solid #252629;
+    border-bottom:0;
+    border-radius:54px 54px 0 0;
+    z-index:4;
+    box-shadow:
+      inset 0 4px 0 rgba(255,255,255,.18),
+      0 6px 10px rgba(0,0,0,.25);
+    pointer-events:none;
+  }
+  .school-fruit.product{
+    position:absolute;
+    z-index:6;
+    isolation:isolate;
+    width:20%;
+    aspect-ratio:1;
+    border:0;
+    background:transparent;
+    padding:0;
+    cursor:pointer;
+    filter:drop-shadow(8px 12px 9px rgba(0,0,0,.26));
+    transform:rotate(var(--r, 0deg));
+    transition:transform .24s cubic-bezier(.2,1.35,.32,1), filter .24s ease;
+    will-change:transform, filter;
+  }
+  .school-fruit.product::before,
+  .school-fruit.product::after{
+    content:"";
+    position:absolute;
+    pointer-events:none;
+    transition:transform .24s cubic-bezier(.2,1.35,.32,1), opacity .2s ease, box-shadow .24s ease;
+  }
+  .school-fruit.product::before{
+    z-index:0;
+    inset:7%;
+    border:3px solid rgba(26,26,26,.9);
+    border-radius:46% 54% 50% 47%;
+    background:rgba(255,255,255,.96);
+    box-shadow:
+      4px 5px 0 rgba(26,26,26,.9),
+      0 0 0 0 rgba(241,173,43,0);
+    opacity:.78;
+    transform:scale(.9) rotate(calc(var(--r, 0deg) * -1));
+  }
+  .school-fruit.product::after{
+    z-index:-1;
+    inset:-20%;
+    border-radius:50%;
+    background:
+      radial-gradient(circle, rgba(241,173,43,.65) 0 35%, rgba(255,120,40,.28) 48%, rgba(234,90,137,0) 72%);
+    opacity:0;
+    transform:scale(.72);
+  }
+  .school-fruit.product:hover,
+  .school-fruit.product:focus-visible{
+    z-index:14;
+    transform:translateY(-24px) scale(1.2) rotate(var(--r, 0deg));
+    filter:drop-shadow(14px 22px 13px rgba(0,0,0,.36));
+    outline:0;
+  }
+  .school-fruit.product:hover::before,
+  .school-fruit.product:focus-visible::before{
+    opacity:1;
+    transform:scale(1.06) rotate(calc(var(--r, 0deg) * -1));
+    box-shadow:
+      7px 9px 0 rgba(26,26,26,.95),
+      0 0 0 8px rgba(241,173,43,.95),
+      0 0 0 13px rgba(255,255,255,.92);
+  }
+  .school-fruit.product.is-selected::before{
+    opacity:1;
+    box-shadow:
+      5px 7px 0 rgba(26,26,26,.95),
+      0 0 0 7px rgba(73,173,119,.95),
+      0 0 0 12px rgba(255,255,255,.92);
+  }
+  .school-fruit.product:hover::after,
+  .school-fruit.product:focus-visible::after{
+    opacity:1;
+    transform:scale(1);
+  }
+  .school-fruit img{
+    position:relative;
+    z-index:2;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    filter:drop-shadow(0 2px 0 rgba(255,255,255,.8));
+    transition:filter .24s ease;
+  }
+  .school-fruit.product:hover img,
+  .school-fruit.product:focus-visible img{
+    filter:
+      drop-shadow(0 0 0 #fff)
+      drop-shadow(0 3px 0 #fff)
+      drop-shadow(0 8px 8px rgba(0,0,0,.12));
+  }
+  .school-fruit.smux-can img{
+    transform:scale(1.1);
+  }
+  .school-fruit.icon-good img{
+    transform:scale(1.08);
+  }
+  .school-fruit.ssu-good img{
+    transform:scale(1.42);
+  }
+  .school-fruit.acad-good img{
+    transform:scale(1.18);
+  }
+  .school-fruit .fruit-label{
+    position:absolute;
+    z-index:3;
+    left:50%;
+    bottom:-8px;
+    transform:translateX(-50%) rotate(calc(var(--r, 0deg) * -1));
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:999px;
+    padding:4px 11px;
+    box-shadow:3px 3px 0 var(--ink);
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    line-height:1;
+    white-space:nowrap;
+    transition:background .2s ease, color .2s ease, transform .24s cubic-bezier(.2,1.35,.32,1), box-shadow .24s ease;
+  }
+  .school-fruit.product:hover .fruit-label,
+  .school-fruit.product:focus-visible .fruit-label{
+    background:var(--yellow);
+    color:var(--ink);
+    transform:translateX(-50%) translateY(-3px) rotate(calc(var(--r, 0deg) * -1));
+    box-shadow:5px 6px 0 var(--ink);
+  }
+  .school-fruit .aisle-tag{
+    position:absolute;
+    z-index:4;
+    left:50%;
+    top:-22px;
+    transform:translate(-50%, 8px) rotate(calc(var(--r, 0deg) * -1));
+    min-width:max-content;
+    max-width:180px;
+    padding:6px 10px;
+    border:3px solid var(--ink);
+    border-radius:10px;
+    background:var(--blue);
+    color:#fff;
+    box-shadow:4px 4px 0 var(--ink);
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    line-height:1.1;
+    text-transform:uppercase;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .18s ease, transform .22s cubic-bezier(.2,1.35,.32,1);
+  }
+  .school-fruit .aisle-tag::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-8px;
+    width:12px;
+    height:12px;
+    background:inherit;
+    border-right:3px solid var(--ink);
+    border-bottom:3px solid var(--ink);
+    transform:translateX(-50%) rotate(45deg);
+  }
+  .school-fruit.product:hover .aisle-tag,
+  .school-fruit.product:focus-visible .aisle-tag{
+    opacity:1;
+    transform:translate(-50%, -8px) rotate(calc(var(--r, 0deg) * -1));
+  }
+  .school-fruit.is-picked{
+    pointer-events:none;
+    animation:fruitPress .42s cubic-bezier(.2,1.2,.32,1) both;
+  }
+  @keyframes fruitPress{
+    0%{ transform:rotate(var(--r, 0deg)) scale(1) }
+    45%{ transform:translateY(12px) rotate(var(--r, 0deg)) scale(.94) }
+    100%{ transform:rotate(var(--r, 0deg)) scale(1.02) }
+  }
+  .fruit-flight{
+    position:fixed;
+    z-index:100;
+    pointer-events:none;
+    transform-origin:center;
+    filter:drop-shadow(12px 18px 12px rgba(0,0,0,.28));
+    animation:fruitFlight .9s cubic-bezier(.52,0,.18,1) forwards;
+  }
+  .fruit-flight img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+  .fruit-flight .fruit-label{ display:none }
+  @keyframes fruitFlight{
+    0%{ transform:translate3d(0,0,0) scale(1) rotate(0deg); opacity:1 }
+    45%{ transform:translate3d(0,34vh,0) scale(.9) rotate(12deg); opacity:1 }
+    100%{ transform:translate3d(0,92vh,0) scale(.58) rotate(24deg); opacity:0 }
+  }
+  .basket-hero-actions{
+    position:relative;
+    z-index:7;
+    display:flex;
+    justify-content:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:-20px;
+  }
+  .basket-summary{
+    position:fixed;
+    left:22px;
+    bottom:22px;
+    z-index:58;
+    width:min(330px, calc(100vw - 44px));
+    border:4px solid var(--ink);
+    border-radius:20px;
+    background:#fff;
+    box-shadow:8px 8px 0 var(--ink);
+    padding:14px;
+    transform:translateY(calc(100% + 40px)) rotate(-1deg);
+    opacity:0;
+    pointer-events:none;
+    transition:transform .26s cubic-bezier(.2,1.25,.32,1), opacity .2s ease;
+  }
+  .basket-summary.is-active{
+    transform:translateY(0) rotate(-1deg);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .basket-summary .summary-top{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    align-items:center;
+    padding-bottom:10px;
+    border-bottom:3px dashed var(--ink);
+  }
+  .basket-summary .summary-kicker{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#555;
+  }
+  .basket-summary .summary-name{
+    display:block;
+    margin-top:2px;
+    font-family:'Bagel Fat One', sans-serif;
+    font-size:28px;
+    line-height:1;
+    color:var(--red);
+  }
+  .basket-summary .summary-count{
+    flex:0 0 auto;
+    border:3px solid var(--ink);
+    border-radius:999px;
+    background:var(--yellow);
+    padding:7px 10px;
+    box-shadow:3px 3px 0 var(--ink);
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:13px;
+  }
+  .basket-summary .summary-line{
+    margin:10px 0 0;
+    font-size:14px;
+    line-height:1.35;
+    font-weight:600;
+  }
+  .basket-summary .summary-actions{
+    display:flex;
+    gap:8px;
+    margin-top:12px;
+  }
+  .basket-summary .summary-actions a,
+  .basket-summary .summary-actions button{
+    border:3px solid var(--ink);
+    border-radius:999px;
+    background:var(--green);
+    color:#fff;
+    padding:8px 11px;
+    box-shadow:3px 3px 0 var(--ink);
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    text-decoration:none;
+    cursor:pointer;
+  }
+  .basket-summary .summary-actions button{
+    background:#fff;
+    color:var(--ink);
+  }
+
+  /* receipt strip below hero */
+  .receipt-strip{
+    margin-top:48px;
+    border-top:4px solid var(--ink);
+    border-bottom:4px solid var(--ink);
+    background:#fff;
+    overflow:hidden; position:relative;
+  }
+  .receipt-live{
+    position:absolute;
+    z-index:2;
+    right:18px;
+    top:50%;
+    transform:translateY(-50%) rotate(1deg);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:3px solid var(--ink);
+    border-radius:999px;
+    background:var(--yellow);
+    color:var(--ink);
+    padding:7px 13px;
+    box-shadow:4px 4px 0 var(--ink);
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .receipt-live::before{
+    content:"";
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--red);
+    border:2px solid var(--ink);
+    animation:pulseAnim 1.6s ease-out infinite;
+  }
+  .receipt-strip::before,.receipt-strip::after{
+    content:""; position:absolute; left:0; right:0; height:14px;
+    background-image: linear-gradient(135deg, transparent 50%, var(--ink) 50%), linear-gradient(45deg, var(--ink) 50%, transparent 50%);
+    background-size:14px 14px;
+  }
+  .receipt-marquee{
+    display:flex; gap:48px; padding:14px 0;
+    font-family:'Fredoka', sans-serif; font-weight:700; font-size:22px;
+    white-space:nowrap;
+    animation: marquee 38s linear infinite;
+  }
+  .receipt-marquee span{ display:inline-flex; align-items:center; gap:48px }
+  .receipt-marquee span::after{
+    content:"♥"; color:var(--red); font-size:24px;
+  }
+  .receipt-marquee i{ font-style:normal; color:var(--blue) }
+  .receipt-marquee em{ font-style:normal; color:var(--orange) }
+
+  /* ============================ SECTIONS ============================ */
+  section{ position:relative; padding:90px 22px 100px }
+  .container{ max-width:1280px; margin:0 auto; position:relative }
+
+  .section-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 14px; border-radius:999px;
+    background:var(--ink); color:var(--cream);
+    font-family:'Fredoka', sans-serif; font-weight:700; font-size:14px; letter-spacing:.05em;
+    text-transform:uppercase; margin-bottom:16px;
+  }
+  .section-h2{
+    font-family:'Bagel Fat One', sans-serif;
+    font-size: clamp(40px, 6vw, 76px);
+    line-height:1.12;
+    margin-bottom:18px;
+  }
+  .section-h2 .hi{ margin-top:.18em }
+  .section-h2 .hi{
+    background:var(--yellow); color:var(--ink);
+    border:4px solid var(--ink); padding:0 12px 4px; border-radius:14px;
+    display:inline-block; transform:rotate(-2deg);
+    box-shadow:5px 5px 0 var(--ink);
+  }
+
+  /* ABOUT */
+  .about{
+    background:var(--cream-2);
+    border-top:4px solid var(--ink);
+    border-bottom:4px solid var(--ink);
+  }
+  .about-grid{
+    display:grid; grid-template-columns: 1.1fr 1fr; gap:48px; align-items:center;
+  }
+  .about-card{
+    background:#fff; border:4px solid var(--ink); border-radius:24px;
+    padding:32px; box-shadow:8px 8px 0 var(--ink); position:relative;
+  }
+  .about-card p{
+    font-size:18px; line-height:1.55; margin:0 0 14px;
+  }
+  .about-stats{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:14px;
+    margin-top:24px;
+  }
+  .stat{
+    background:var(--cream); border:3px solid var(--ink); border-radius:18px;
+    padding:14px 12px; text-align:center;
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .stat .n{ font-family:'Bagel Fat One',sans-serif; font-size:46px; line-height:1; color:var(--red) }
+  .stat .l{ font-family:'Fredoka',sans-serif; font-weight:700; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink) }
+  .stat:nth-child(2) .n{ color:var(--blue) }
+  .stat:nth-child(3) .n{ color:var(--green) }
+
+  .about-art{
+    position:relative; min-height:480px;
+  }
+
+  /* EXPLORE */
+  .explore .container{ position:relative }
+  .filter-bar{
+    background:#fff; border:4px solid var(--ink); border-radius:28px;
+    padding:18px; box-shadow:8px 8px 0 var(--ink);
+    display:flex; gap:14px; align-items:stretch; flex-wrap:wrap;
+    margin-bottom:32px;
+    position:relative;
+  }
+  .search-box{
+    flex:1; min-width:240px;
+    display:flex; align-items:center; gap:10px;
+    border:3px solid var(--ink); border-radius:999px;
+    padding:0 16px; background:var(--cream-2);
+  }
+  .search-box input{
+    flex:1; border:0; background:none; padding:12px 0;
+    font:inherit; font-size:15px; outline:none;
+    font-family:'Fredoka',sans-serif;
+  }
+  .search-box .icon{
+    width:22px; height:22px; border-radius:50%; border:3px solid var(--ink);
+    position:relative;
+  }
+  .search-box .icon::after{
+    content:""; position:absolute; right:-8px; bottom:-3px;
+    width:9px; height:3px; background:var(--ink);
+    transform: rotate(45deg);
+  }
+  .sort{
+    display:inline-flex; align-items:center; gap:8px;
+    border:3px solid var(--ink); border-radius:999px; padding:8px 16px;
+    background:var(--yellow); font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px;
+  }
+  .store-status{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin:-14px 0 24px;
+    border:4px solid var(--ink);
+    border-radius:18px;
+    background:var(--cream-2);
+    box-shadow:6px 6px 0 var(--ink);
+    padding:13px 16px;
+  }
+  .store-status .status-copy{
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:16px;
+  }
+  .store-status .status-copy strong{
+    color:var(--red);
+  }
+  .store-status .status-ticket{
+    flex:0 0 auto;
+    border:3px dashed var(--ink);
+    background:#fff;
+    padding:7px 11px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+  }
+
+  .chips{
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    margin-bottom:32px;
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    padding-bottom:6px;
+  }
+  .chip{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 16px; border:3px solid var(--ink); border-radius:999px;
+    background:#fff;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform .12s ease, box-shadow .12s ease;
+    cursor:pointer; white-space:nowrap;
+  }
+  .chip::before{
+    content:attr(data-aisle);
+    font-family:'Space Mono', monospace;
+    font-size:10px;
+    line-height:1;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#555;
+    background:var(--cream);
+    border:2px solid var(--ink);
+    border-radius:999px;
+    padding:3px 6px;
+  }
+  .chip:hover{ transform: translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink) }
+  .chip.active{ background:var(--ink); color:var(--cream) }
+  .chip.active::before{ color:var(--ink); background:var(--yellow) }
+  .chip .dotc{
+    width:14px; height:14px; border-radius:50%;
+    border:2px solid var(--ink);
+  }
+  .chip .count{
+    font-family:'Space Mono',monospace; font-size:11px;
+    background:rgba(0,0,0,.08); padding:2px 6px; border-radius:6px;
+  }
+  .chip.active .count{ background:rgba(255,255,255,.18) }
+
+  .cca-grid{
+    display:grid; grid-template-columns: repeat(4, 1fr);
+    gap:18px;
+  }
+  .cca-card{
+    background:#fff; border:4px solid var(--ink); border-radius:22px;
+    padding:0; overflow:hidden;
+    display:flex; flex-direction:column;
+    box-shadow:6px 6px 0 var(--ink);
+    transition: transform .14s ease, box-shadow .14s ease;
+    position:relative;
+  }
+  .cca-card:hover{ transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--ink) }
+  .cca-card .top{
+    padding:14px 16px;
+    border-bottom:3px solid var(--ink);
+    display:flex; gap:12px; align-items:center;
+    position:relative;
+  }
+  .cca-card .top.tone-acf{ background:var(--red); color:#fff }
+  .cca-card .top.tone-sics{ background:var(--green); color:#fff }
+  .cca-card .top.tone-icon{ background:var(--orange); color:#fff }
+  .cca-card .top.tone-smux{ background:var(--blue); color:#fff }
+  .cca-card .top.tone-ssu{ background:var(--yellow); color:var(--ink) }
+  .cca-card .top.tone-gri{ background:var(--pink); color:#fff }
+  .cca-card .top.tone-acad{ background:var(--ink); color:var(--cream) }
+
+  .cca-card .logo-circle{
+    width:48px; height:48px; flex:0 0 auto;
+    background:#fff; border:3px solid var(--ink); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px; color:var(--ink);
+  }
+  .cca-card .top h3{ font-family:'Fredoka',sans-serif; font-weight:700; font-size:19px; line-height:1.15; margin-bottom:3px }
+  .cca-card .top .meta{ font-family:'Space Mono',monospace; font-size:11px; opacity:.85; margin-top:2px }
+
+  .cca-card .body{ padding:14px 16px; flex:1; display:flex; flex-direction:column; gap:10px }
+  .cca-card .body p{ margin:0; font-size:14px; line-height:1.45; color:#333 }
+  .cca-card .foot{
+    padding:12px 16px; border-top:3px dashed var(--ink);
+    display:flex; justify-content:space-between; align-items:center;
+    background:var(--cream);
+  }
+  .cca-card .foot .badge{
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:11px;
+    border:2px solid var(--ink); border-radius:999px;
+    padding:3px 9px; background:#fff;
+  }
+  .cca-card .foot .badge.hot{ background:var(--red); color:#fff }
+  .cca-card .foot .badge.new{ background:var(--blue); color:#fff }
+  .cca-card .foot .more{
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px;
+    display:inline-flex; align-items:center; gap:4px;
+  }
+  .cca-card .price-tag{
+    position:absolute; top:-12px; right:-8px;
+    width:62px; height:74px;
+    background:var(--yellow); border:3px solid var(--ink);
+    transform:rotate(8deg);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:'Fredoka',sans-serif; font-weight:700;
+    font-size:11px; line-height:1;
+    z-index:2;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 70% 100%, 30% 100%, 0 80%);
+  }
+  .cca-card .price-tag::before{
+    content:""; width:8px; height:8px; border-radius:50%;
+    background:var(--cream); border:2px solid var(--ink);
+    position:absolute; top:8px; left:50%; transform:translateX(-50%);
+  }
+  .cca-card .price-tag .big{ font-size:14px; margin-top:8px; color:var(--red) }
+
+  .more-row{
+    display:flex; justify-content:center; margin-top:36px;
+  }
+
+  /* PARTNERS */
+  .partners{
+    background:var(--blue); color:#fff;
+    border-top:4px solid var(--ink);
+    border-bottom:4px solid var(--ink);
+    position:relative;
+  }
+  .partners .section-h2{ color:#fff }
+  .partners .section-h2 .hi{ background:var(--yellow); color:var(--ink) }
+  .partners-row{
+    display:grid; grid-template-columns: repeat(6, 1fr); gap:14px; margin-bottom:36px;
+  }
+  .partner-tile{
+    background:#fff; border:4px solid var(--ink); border-radius:18px;
+    aspect-ratio: 3/2;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink); font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
+    box-shadow:4px 4px 0 var(--ink);
+    text-align:center; padding:8px;
+  }
+  .partner-tile.t1{ background:var(--cream-2) }
+  .partner-tile.t2{ background:var(--pink); color:#fff }
+  .partner-tile.t3{ background:var(--green); color:#fff }
+  .partner-tile.t4{ background:var(--yellow); color:var(--ink) }
+  .partner-tile.t5{ background:#fff; color:var(--ink) }
+  .partner-tile.t6{ background:var(--orange); color:#fff }
+
+  .deals-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
+  }
+  .deal{
+    background:#fff; color:var(--ink);
+    border:4px solid var(--ink); border-radius:22px;
+    padding:0;
+    box-shadow:6px 6px 0 var(--ink);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .deal .head{
+    padding:14px 18px; border-bottom:3px solid var(--ink);
+    display:flex; align-items:center; gap:14px;
+    background:var(--yellow);
+  }
+  .deal .head .perc{
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:38px; line-height:.9; color:var(--red);
+  }
+  .deal .head h4{ font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px; line-height:1.1 }
+  .deal .head .who{ font-family:'Space Mono',monospace; font-size:11px; color:#444 }
+  .deal .body{
+    padding:16px 18px; flex:1;
+    font-size:14px; line-height:1.5;
+  }
+  .deal .foot{
+    padding:12px 18px; background:var(--cream);
+    border-top:3px dashed var(--ink);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:13px;
+  }
+  .deal .foot .go{
+    background:var(--ink); color:var(--cream);
+    padding:6px 12px; border-radius:999px;
+  }
+
+  /* FAQ */
+  .faq-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:24px;
+  }
+  .faq-side{
+    position:relative;
+  }
+  .faq-list{ display:flex; flex-direction:column; gap:14px }
+  .faq-item{
+    background:#fff; border:4px solid var(--ink); border-radius:18px;
+    box-shadow:5px 5px 0 var(--ink);
+    overflow:hidden;
+  }
+  .faq-item summary{
+    padding:18px 20px; list-style:none; cursor:pointer;
+    display:flex; align-items:center; gap:14px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
+  }
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item .toggle{
+    margin-left:auto;
+    width:34px; height:34px; border-radius:50%;
+    background:var(--yellow); border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bagel Fat One',sans-serif; font-size:24px; line-height:1;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .faq-item[open] .toggle{ background:var(--red); color:#fff; transform: rotate(45deg) }
+  .faq-item .ans{
+    padding:0 20px 18px;
+    font-size:15px; line-height:1.6; color:#333;
+    border-top:3px dashed var(--ink); padding-top:14px;
+  }
+  .faq-num{
+    font-family:'Bagel Fat One',sans-serif; font-size:18px; color:var(--red);
+    background:var(--cream); border:3px solid var(--ink); border-radius:50%;
+    width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center;
+    flex:0 0 auto;
+  }
+
+  /* EVENTS */
+  .events{
+    background:var(--green); color:#fff;
+    border-top:4px solid var(--ink);
+    border-bottom:4px solid var(--ink);
+  }
+  .events .section-h2{ color:#fff }
+  .events .section-h2 .hi{ background:var(--cream); color:var(--ink) }
+  .events .section-eyebrow{ background:var(--cream); color:var(--ink) }
+  .events-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:18px;
+  }
+  .event-card{
+    background:#fff; color:var(--ink);
+    border:4px solid var(--ink); border-radius:22px;
+    overflow:hidden;
+    box-shadow:6px 6px 0 var(--ink);
+    display:flex; flex-direction:column;
+    position:relative;
+  }
+  .event-card .pic{
+    aspect-ratio: 16/9;
+    border-bottom:3px solid var(--ink);
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .event-card .pic.p1{ background: linear-gradient(135deg, var(--orange), var(--yellow)); }
+  .event-card .pic.p2{ background: linear-gradient(135deg, var(--pink), var(--red)); }
+  .event-card .pic.p3{ background: linear-gradient(135deg, var(--blue), var(--pink)); }
+  .event-card .date-pill{
+    position:absolute; top:14px; left:14px;
+    background:var(--ink); color:var(--cream);
+    border:3px solid var(--ink); border-radius:14px;
+    padding:6px 12px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:13px;
+    display:flex; flex-direction:column; line-height:1;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+  .event-card .date-pill .d{ font-size:24px }
+  .event-card .body{ padding:18px; flex:1; display:flex; flex-direction:column; gap:10px }
+  .event-card .body h3{ font-family:'Fredoka',sans-serif; font-weight:700; font-size:24px; line-height:1.05 }
+  .event-card .body .meta{
+    font-family:'Space Mono',monospace; font-size:12px; color:#666;
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .event-card .body p{ margin:0; font-size:14px; line-height:1.5; color:#333 }
+  .event-card .foot{
+    padding:12px 18px; border-top:3px dashed var(--ink); background:var(--cream);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px;
+  }
+  .event-card .foot .rsvp{
+    background:var(--red); color:#fff; border:3px solid var(--ink);
+    padding:6px 14px; border-radius:999px;
+    box-shadow:3px 3px 0 var(--ink);
+  }
+
+  /* FOOTER */
+  footer.site{
+    background:var(--ink); color:var(--cream);
+    padding:80px 22px 40px;
+    border-top:4px solid var(--ink);
+    position:relative;
+    overflow:hidden;
+  }
+  footer.site .container{ position:relative; z-index:2 }
+  .foot-grid{
+    display:grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr; gap:36px;
+    margin-bottom:46px;
+  }
+  .foot-col h4{
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px; margin-bottom:16px;
+    color:var(--yellow); letter-spacing:.04em; text-transform:uppercase;
+  }
+  .foot-col a, .foot-col p{
+    display:block; padding:5px 0;
+    font-size:14px; color:rgba(255,232,200,.8);
+    border-bottom:1px dashed rgba(255,232,200,.18);
+  }
+  .foot-col a:hover{ color:var(--cream) }
+  .foot-brand .logo{ color:var(--green); font-size:42px }
+  .foot-brand p{ border:none; font-size:14px; line-height:1.6; opacity:.85; padding:8px 0 12px }
+  .foot-socials{ display:flex; gap:10px; margin-top:8px }
+  .foot-socials a{
+    width:42px; height:42px; border-radius:50%;
+    border:3px solid var(--cream); display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px;
+    background:transparent; padding:0;
+  }
+  .foot-socials a:hover{ background:var(--red); border-color:var(--red) }
+
+  .foot-form input, .foot-form textarea{
+    width:100%; background:transparent;
+    border:3px solid var(--cream); color:var(--cream);
+    border-radius:14px; padding:10px 14px;
+    font:inherit; font-family:'Fredoka',sans-serif;
+    margin-bottom:10px;
+  }
+  .foot-form input::placeholder, .foot-form textarea::placeholder{ color:rgba(255,232,200,.5) }
+  .foot-form button{
+    background:var(--red); color:#fff; border:3px solid var(--cream);
+    padding:10px 18px; border-radius:999px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px;
+    box-shadow:4px 4px 0 var(--cream);
+  }
+
+  .foot-legal{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:14px;
+    padding-top:24px; border-top:2px dashed rgba(255,232,200,.3);
+    font-family:'Space Mono',monospace; font-size:11px; color:rgba(255,232,200,.6);
+    letter-spacing:.04em;
+  }
+
+  /* ============ Floating IG Ask Us CTA ============ */
+  .ig-cta{
+    position:fixed; right:24px; bottom:24px; z-index:60;
+    background:var(--pink); color:#fff;
+    border:4px solid var(--ink); border-radius:999px;
+    padding:14px 20px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
+    display:flex; align-items:center; gap:12px;
+    box-shadow:6px 6px 0 var(--ink);
+    transition: transform .14s ease, box-shadow .14s ease;
+    cursor:pointer;
+  }
+  .ig-cta:hover{ transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--ink) }
+  .ig-cta .ig-icon{
+    width:36px; height:36px; border-radius:10px;
+    background:var(--cream); color:var(--ink);
+    border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Bagel Fat One',sans-serif; font-size:14px;
+  }
+  .ig-cta .pulse{
+    position:absolute; top:-6px; right:-6px;
+    width:22px; height:22px; border-radius:50%;
+    background:var(--yellow); border:3px solid var(--ink);
+    animation: pulseAnim 1.6s ease-out infinite;
+  }
+  @keyframes pulseAnim {
+    0%   { transform: scale(1) }
+    50%  { transform: scale(1.15) }
+    100% { transform: scale(1) }
+  }
+
+  /* ============ Decor sprinkles ============ */
+  .sprinkle{ position:absolute; pointer-events:none; z-index:0 }
+  .sprinkle img{ filter: drop-shadow(2px 2px 0 var(--ink)) }
+
+  /* ============================ RESPONSIVE ============================ */
+  @media (max-width: 1100px){
+    .hero-grid{ grid-template-columns: 1fr; gap:30px }
+    .hero-scene{ min-height:560px; max-width:560px; margin:0 auto; width:100% }
+    .basket-hero-wrap{ min-height:720px }
+    .basket-showcase{ width:min(680px, 92vw) }
+    .flatlay-wrap{ min-height:1040px }
+    .hero.flatlay-hero h1{ white-space:normal }
+    .basket-stage{
+      top:420px;
+      left:50%;
+      width:min(580px, 88vw);
+      min-width:0;
+      transform:translateX(-50%);
+    }
+    .flatlay-quote{
+      right:10px;
+      top:330px;
+      font-size:28px;
+    }
+    .partners-row{ grid-template-columns: repeat(3, 1fr) }
+    .cca-grid{ grid-template-columns: repeat(3, 1fr) }
+    .deals-grid{ grid-template-columns: 1fr 1fr }
+    .events-grid{ grid-template-columns: 1fr 1fr }
+    .about-grid{ grid-template-columns: 1fr }
+    .foot-grid{ grid-template-columns: 1fr 1fr; gap:28px }
+    .faq-grid{ grid-template-columns: 1fr }
+  }
+  @media (max-width: 720px){
+    section{ padding:54px 16px 64px }
+    .nav-links{ display:none }
+    .hamb{ display:flex }
+    .nav-cta{ display:none }
+    .hero{ padding:30px 16px 50px }
+    .hero h1{ font-size: clamp(56px, 14vw, 84px) }
+    .hero.basket-hero{ padding:28px 14px 58px }
+    .basket-hero-wrap{ min-height:680px }
+    .hero-wordmark{ font-size:clamp(58px, 18vw, 82px); text-shadow:3px 3px 0 #fff, 5px 5px 0 var(--ink) }
+    .hero-wordmark .title-year{ text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink) }
+    .basket-hero .hero-meta{ gap:8px; margin-top:14px }
+    .basket-hero .hero-meta span{
+      min-height:32px;
+      padding:5px 10px;
+      border-width:2px;
+      box-shadow:3px 3px 0 var(--ink);
+      font-size:12px;
+    }
+    .basket-hero .hero-copyline{
+      font-size:15px;
+      padding:8px 12px;
+      border-width:2px;
+      box-shadow:3px 3px 0 var(--ink);
+    }
+    .basket-showcase{
+      width:min(450px, 106vw);
+      margin-top:18px;
+      transform:none;
+    }
+    .basket-decor.price-tag{ --x:91%; --y:10%; --w:24% }
+    .basket-decor.sun-tag{ --x:10%; --y:10%; --w:17% }
+    .basket-decor.juice-tag{ --x:-2%; --y:33%; --w:14% }
+    .basket-decor.label-tag{ --x:101%; --y:34%; --w:16% }
+    .basket-decor.button-tag{ --x:0%; --y:72%; --w:13% }
+    .basket-decor.clip-tag{ --x:101%; --y:91%; --w:26% }
+    .basket-decor.croissant-tag{ --x:7%; --y:94%; --w:35% }
+    .school-fruit .fruit-label{
+      border-width:2px;
+      box-shadow:2px 2px 0 var(--ink);
+      font-size:11px;
+      padding:3px 7px;
+    }
+    .school-fruit .aisle-tag{
+      top:-18px;
+      padding:4px 7px;
+      border-width:2px;
+      box-shadow:2px 2px 0 var(--ink);
+      font-size:9px;
+    }
+    .basket-hero-actions{ margin-top:-8px }
+    .hero.flatlay-hero{ padding:26px 14px 54px }
+    .flatlay-wrap{ min-height:940px }
+    .hero.flatlay-hero h1{ font-size:clamp(58px, 16vw, 88px) }
+    .flatlay-title-year{
+      display:block;
+      width:max-content;
+      margin:10px 0 0;
+    }
+    .flatlay-meta{ font-size:14px; gap:8px }
+    .flatlay-note{ font-size:18px; max-width:100% }
+    .flatlay-quote{
+      position:relative;
+      top:auto;
+      right:auto;
+      margin:18px 0 0 auto;
+      font-size:24px;
+    }
+    .basket-stage{
+      position:relative;
+      top:auto;
+      left:auto;
+      width:100%;
+      margin:34px auto 0;
+      transform:none;
+    }
+    .basket-shell{ padding:58px 28px 42px }
+    .basket-shell::before{ width:160px; height:62px }
+    .basket-inner{ gap:9px; padding:14px }
+    .basket-product.product{ padding:10px 8px 9px; gap:5px }
+    .basket-product .barcode{ width:34px; height:14px }
+    .basket-product .school-icon{ width:50px; height:50px; font-size:10px }
+    .basket-product .school-name{ font-size:25px }
+    .basket-product .school-full{ font-size:11px }
+    .basket-product .price{ font-size:10px }
+    .basket-product.span2{ aspect-ratio:2.35 / 1 }
+    .date-block{ width:100% }
+    .date-block .when{ font-size:15px; padding:10px 14px; flex-wrap:wrap; gap:8px }
+    .cca-grid{ grid-template-columns: 1fr 1fr; gap:14px }
+    .cca-card{ box-shadow:4px 4px 0 var(--ink) }
+    .deals-grid{ grid-template-columns: 1fr }
+    .events-grid{ grid-template-columns: 1fr }
+    .partners-row{ grid-template-columns: repeat(2, 1fr) }
+    .foot-grid{ grid-template-columns: 1fr }
+    .ig-cta{ right:12px; bottom:12px; padding:7px; border-radius:16px; box-shadow:4px 4px 0 var(--ink) }
+    .ig-cta .ig-icon{ width:30px; height:30px }
+    .ig-cta > span:nth-child(2){ display:none !important }
+    .stat .n{ font-size:34px }
+    .filter-bar{ padding:14px }
+    .store-status{
+      align-items:flex-start;
+      flex-direction:column;
+      gap:8px;
+      padding:12px;
+    }
+    .store-status .status-ticket{ width:100%; text-align:center }
+    .receipt-marquee{ font-size:16px }
+    .receipt-live{
+      position:relative;
+      right:auto;
+      top:auto;
+      transform:none;
+      margin:12px 14px;
+      width:calc(100% - 28px);
+      justify-content:center;
+      font-size:10px;
+    }
+    .basket-summary{
+      left:12px;
+      bottom:12px;
+      width:min(300px, calc(100vw - 90px));
+      border-radius:16px;
+      padding:11px;
+      box-shadow:5px 5px 0 var(--ink);
+    }
+    .basket-summary .summary-name{ font-size:22px }
+    .basket-summary .summary-count{ font-size:11px; padding:6px 8px }
+    .basket-summary .summary-line{ font-size:12px }
+    .basket-summary .summary-actions a,
+    .basket-summary .summary-actions button{ font-size:12px; padding:7px 9px }
+    .hero-ctas .btn{ width:100%; justify-content:center }
+    .hero-scene{ min-height:480px }
+    .floor-disc{ width:120% }
+  }
+  @media (max-width: 420px){
+    .cca-grid{ grid-template-columns: 1fr }
+    .hero h1{ font-size:50px }
+    .hero-wordmark{ font-size:54px }
+    .basket-hero-wrap{ min-height:650px }
+    .basket-showcase{ width:108vw }
+    .basket-decor.price-tag{ --w:22% }
+    .basket-decor.clip-tag{ --w:24% }
+    .basket-decor.croissant-tag{ --w:32% }
+    .school-fruit .fruit-label{ font-size:10px }
+    .school-fruit .aisle-tag{ display:none }
+    .hero.flatlay-hero h1{ font-size:52px }
+    .flatlay-wrap{ min-height:900px }
+    .wire-stamp{ font-size:12px }
+    .basket-shell{ padding-left:20px; padding-right:20px }
+    .basket-inner{ grid-template-columns:1fr 1fr; gap:8px; padding:10px }
+    .basket-product .school-name{ font-size:21px }
+    .basket-product .school-full{ display:none }
+    .basket-shell::after{ font-size:9px }
+    .section-h2{ font-size:34px }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero.basket-hero::before,
+    .hero.basket-hero::after,
+    .basket-showcase,
+    .basket-decor,
+    .scan-beam,
+    .receipt-live::before{
+      animation:none;
+    }
+  }
+
+  /* ============ utility ============ */
+  .row{ display:flex; gap:10px; align-items:center }
+  .visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0) }
+  .price-rib{
+    display:inline-block; transform:rotate(-2deg);
+    background:var(--red); color:#fff; border:3px solid var(--ink);
+    padding:2px 10px; border-radius:8px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:13px;
+    box-shadow:2px 2px 0 var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Pennant marquee ===== -->
+<div class="top-pennant">
+  <div class="strip" aria-hidden="true">
+    <span>Doors open 11 Aug · 10am — 18:00</span>
+    <span>120+ CCAs · 7 schools · 1 basket</span>
+    <span>Pick what fills your basket</span>
+    <span>SMU concourse · Free entry</span>
+    <span>Doors open 11 Aug · 10am — 18:00</span>
+    <span>120+ CCAs · 7 schools · 1 basket</span>
+    <span>Pick what fills your basket</span>
+    <span>SMU concourse · Free entry</span>
+  </div>
+</div>
+
+<!-- ===== Nav ===== -->
+<nav class="main">
+  <div class="row">
+    <a class="logo" href="#home">VIVACE<span class="logo-year">'26</span></a>
+    <div class="nav-links">
+      <a class="here" href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#explore">Explore</a>
+      <a href="#partners">Partners</a>
+      <a href="#faq">FAQ</a>
+      <a href="#events">Events</a>
+    </div>
+    <a class="nav-cta" href="#explore">
+      <span>Start shopping</span>
+      <span style="font-size:18px">+</span>
+    </a>
+    <button class="hamb" id="hamb" aria-label="Menu"><i></i></button>
+  </div>
+</nav>
+
+<!-- mobile drawer -->
+<div class="mob-drawer" id="drawer">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#explore">Explore</a>
+  <a href="#partners">Partners</a>
+  <a href="#faq">FAQ</a>
+  <a href="#events">Events</a>
+  <a class="nav-cta" style="display:flex; justify-content:center" href="#explore">Start shopping</a>
+</div>
+
+<!-- =================== HERO =================== -->
+<section class="hero basket-hero" id="home">
+  <div class="hero-glow"></div>
+  <div class="basket-hero-wrap">
+    <div class="basket-hero-copy">
+      <div class="badge-row" style="justify-content:center; margin-bottom:0">
+        <span class="stamp">Annual CCA Fair</span>
+        <span class="stamp pink">Pick what fills your basket</span>
+      </div>
+      <h1 class="hero-wordmark">VIVACE<span class="title-year">'26</span></h1>
+      <div class="hero-meta">
+        <span>11 - 13 August 2026</span>
+        <span>SMU Concourse</span>
+        <span>10:00 - 18:00</span>
+      </div>
+      <p class="hero-copyline">
+        Choose a school umbrella from the basket, then browse the CCAs stocked under that aisle.
+      </p>
+    </div>
+
+    <div class="basket-showcase" id="scene" aria-label="Top-down grocery basket with school selectors">
+      <div class="market-basket" aria-hidden="true">
+        <img class="basket-image" src="assets/basket2-vertical.png" alt="">
+      </div>
+      <div class="basket-decor sun-tag is-back" aria-hidden="true">
+        <img src="assets/resources-design/sun-smile.png" alt="">
+      </div>
+      <div class="basket-decor price-tag is-front" aria-hidden="true">
+        <img src="assets/resources-design/price-burst.png" alt="">
+      </div>
+      <div class="basket-decor juice-tag is-back" aria-hidden="true">
+        <img src="assets/resources-design/orange-juice.png" alt="">
+      </div>
+      <div class="basket-decor label-tag is-back" aria-hidden="true">
+        <img src="assets/resources-design/produce-label.png" alt="">
+      </div>
+      <div class="basket-decor button-tag is-back" aria-hidden="true">
+        <img src="assets/resources-design/red-button.png" alt="">
+      </div>
+      <div class="basket-decor clip-tag is-front" aria-hidden="true">
+        <img src="assets/resources-design/cream-clip.png" alt="">
+      </div>
+      <div class="basket-decor croissant-tag is-back" aria-hidden="true">
+        <img src="assets/resources-design/croissant.png" alt="">
+      </div>
+      <div class="scan-beam" aria-hidden="true"></div>
+
+      <button class="product school-fruit" data-cat="acf" data-title="ACF" data-count="18" data-aisle="Aisle 01 · Arts shelf" style="left:14%; top:18%; --r:-8deg; width:22%" aria-label="Filter by ACF">
+        <img src="assets/fruit-strawberry.svg" alt="">
+        <span class="fruit-label">ACF</span>
+        <span class="aisle-tag">Aisle 01 · Arts shelf</span>
+      </button>
+      <button class="product school-fruit" data-cat="sics" data-title="SICS" data-count="24" data-aisle="Aisle 02 · Comm shelf" style="left:62%; top:18%; --r:7deg; width:22%" aria-label="Filter by SICS">
+        <img src="assets/fruit-apple.svg" alt="">
+        <span class="fruit-label">SICS</span>
+        <span class="aisle-tag">Aisle 02 · Comm shelf</span>
+      </button>
+      <button class="product school-fruit icon-good" data-cat="icon" data-title="ICON" data-count="9" data-aisle="Aisle 03 · Global shelf" style="left:38%; top:32%; --r:-10deg; width:23%" aria-label="Filter by ICON">
+        <img src="assets/basket-goods/icon-chips.png" alt="">
+        <span class="fruit-label">ICON</span>
+        <span class="aisle-tag">Aisle 03 · Global shelf</span>
+      </button>
+      <button class="product school-fruit smux-can" data-cat="smux" data-title="SMUX" data-count="26" data-aisle="Aisle 04 · Sports shelf" style="left:9%; top:47%; --r:14deg; width:30%" aria-label="Filter by SMUX">
+        <img src="assets/basket-goods/smux-can.png" alt="">
+        <span class="fruit-label">SMUX</span>
+        <span class="aisle-tag">Aisle 04 · Sports shelf</span>
+      </button>
+      <button class="product school-fruit ssu-good" data-cat="ssu" data-title="SSU" data-count="12" data-aisle="Aisle 05 · Service shelf" style="left:60%; top:45%; --r:8deg; width:27%" aria-label="Filter by SSU">
+        <img src="assets/basket-goods/ssu-bar.png" alt="">
+        <span class="fruit-label">SSU</span>
+        <span class="aisle-tag">Aisle 05 · Service shelf</span>
+      </button>
+      <button class="product school-fruit" data-cat="gri" data-title="GRI" data-count="14" data-aisle="Aisle 06 · Growth shelf" style="left:23%; top:63%; --r:-12deg; width:28%" aria-label="Filter by GRI">
+        <img src="assets/fruit-grapes.svg" alt="">
+        <span class="fruit-label">GRI</span>
+        <span class="aisle-tag">Aisle 06 · Growth shelf</span>
+      </button>
+      <button class="product school-fruit acad-good" data-cat="acad" data-title="Academic" data-count="17" data-aisle="Aisle 07 · Academic shelf" style="left:58%; top:71%; --r:3deg; width:28%" aria-label="Filter by Academic">
+        <img src="assets/basket-goods/academic-noodles.png" alt="">
+        <span class="fruit-label">Academic</span>
+        <span class="aisle-tag">Aisle 07 · Academic shelf</span>
+      </button>
+    </div>
+
+    <div class="basket-hero-actions">
+      <a class="btn primary" href="#explore"><span>Explore schools</span><span class="arrow">-></span></a>
+      <a class="btn ghost" href="#about"><span>About Vivace</span></a>
+    </div>
+  </div>
+</section>
+
+<aside class="basket-summary" id="basket-summary" aria-live="polite" aria-label="Selected basket item">
+  <div class="summary-top">
+    <div>
+      <span class="summary-kicker">Basket receipt</span>
+      <span class="summary-name" id="summary-name">Empty basket</span>
+    </div>
+    <span class="summary-count" id="summary-count">0 in view</span>
+  </div>
+  <p class="summary-line" id="summary-line">Pick a product to stock the Explore aisle.</p>
+  <div class="summary-actions">
+    <a href="#explore">View aisle</a>
+    <button type="button" id="summary-clear">Clear</button>
+  </div>
+</aside>
+
+<!-- ===== Receipt marquee ===== -->
+<div class="receipt-strip">
+  <div class="receipt-live" id="receipt-live">Receipt open · browsing all aisles</div>
+  <div class="receipt-marquee" aria-hidden="true">
+    <span>★ <i>Vivace</i> Mart est. 2026 ★ <em>Aisle 7</em> · ACF · <i>SICS</i> · ICON · <em>SMUX</em> · SSU · <i>GRI</i> · Academic ★ Free entry ★</span>
+    <span>★ <i>Vivace</i> Mart est. 2026 ★ <em>Aisle 7</em> · ACF · <i>SICS</i> · ICON · <em>SMUX</em> · SSU · <i>GRI</i> · Academic ★ Free entry ★</span>
+  </div>
+</div>
+
+<!-- =================== ABOUT =================== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <span class="section-eyebrow">★ Aisle 1 · About</span>
+        <h2 class="section-h2">What's <span class="hi">in the basket?</span></h2>
+        <div class="about-card">
+          <p><b>Vivace</b> is SMU's annual CCA fair — three days of taste-testing every club, society, sport and service the campus has to offer.</p>
+          <p>This year, we've stocked the shelves with <b>120+ CCAs</b> across <b>7 school umbrellas</b>. Walk in empty-handed; walk out with a community.</p>
+          <div class="about-stats">
+            <div class="stat"><div class="n">120<span style="font-size:.55em">+</span></div><div class="l">CCAs</div></div>
+            <div class="stat"><div class="n">7</div><div class="l">Schools</div></div>
+            <div class="stat"><div class="n">3</div><div class="l">Days</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- about art collage -->
+      <div class="about-art">
+        <div style="position:absolute; left:0; top:0; width:55%; transform:rotate(-4deg); filter: drop-shadow(6px 6px 0 var(--ink))">
+          <img src="assets/object-paper-bag.svg" alt="">
+        </div>
+        <div style="position:absolute; right:0; top:8%; width:48%; transform:rotate(6deg); filter: drop-shadow(6px 6px 0 var(--ink))">
+          <img src="assets/object-jam-jar.svg" alt="">
+        </div>
+        <div style="position:absolute; left:18%; bottom:0; width:50%; transform:rotate(-2deg); filter: drop-shadow(6px 6px 0 var(--ink))">
+          <img src="assets/object-cereal-box.svg" alt="">
+        </div>
+        <div style="position:absolute; right:6%; bottom:6%; width:40%; transform:rotate(8deg); filter: drop-shadow(4px 4px 0 var(--ink))">
+          <img src="assets/object-loyalty-card.svg" alt="">
+        </div>
+        <div style="position:absolute; left:-4%; top:34%; width:24%;" class="bob">
+          <img src="assets/sticker-new-arrival.svg" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== EXPLORE =================== -->
+<section class="explore" id="explore">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:18px">
+      <div>
+        <span class="section-eyebrow">★ Aisle 2 · Explore</span>
+        <h2 class="section-h2">Aisle by <span class="hi">aisle.</span></h2>
+        <p style="font-size:18px; max-width:52ch">Filter by school, search by name, fill your basket. Click a fruit above to jump-filter.</p>
+      </div>
+      <div class="price-rib" style="font-size:16px; padding:6px 14px;">FRESH · 120+ CCAs in stock!</div>
+    </div>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <span class="icon"></span>
+        <input type="text" placeholder="Search a CCA…" id="search-input">
+      </div>
+      <div class="sort">Sort: A–Z ▾</div>
+    </div>
+    <div class="store-status" id="store-status" aria-live="polite">
+      <div class="status-copy">Currently browsing <strong>all stocked aisles</strong>.</div>
+      <div class="status-ticket">120 CCAs · receipt #VVC26</div>
+    </div>
+
+    <!-- Chips -->
+    <div class="chips" id="chips">
+      <button class="chip active" data-cat="all" data-title="All aisles" data-count="120" data-aisle="Mart"><span class="dotc" style="background:var(--ink)"></span> All <span class="count">120</span></button>
+      <button class="chip" data-cat="acf" data-title="ACF" data-count="18" data-aisle="Aisle 01"><span class="dotc" style="background:var(--red)"></span> ACF <span class="count">18</span></button>
+      <button class="chip" data-cat="sics" data-title="SICS" data-count="24" data-aisle="Aisle 02"><span class="dotc" style="background:var(--green)"></span> SICS <span class="count">24</span></button>
+      <button class="chip" data-cat="icon" data-title="ICON" data-count="9" data-aisle="Aisle 03"><span class="dotc" style="background:var(--orange)"></span> ICON <span class="count">9</span></button>
+      <button class="chip" data-cat="smux" data-title="SMUX" data-count="26" data-aisle="Aisle 04"><span class="dotc" style="background:var(--blue)"></span> SMUX <span class="count">26</span></button>
+      <button class="chip" data-cat="ssu" data-title="SSU" data-count="12" data-aisle="Aisle 05"><span class="dotc" style="background:var(--yellow)"></span> SSU <span class="count">12</span></button>
+      <button class="chip" data-cat="gri" data-title="GRI" data-count="14" data-aisle="Aisle 06"><span class="dotc" style="background:var(--pink)"></span> GRI <span class="count">14</span></button>
+      <button class="chip" data-cat="acad" data-title="Academic" data-count="17" data-aisle="Aisle 07"><span class="dotc" style="background:var(--ink); border-color:var(--ink)"></span> Academic <span class="count">17</span></button>
+    </div>
+
+    <div class="cca-grid" id="cca-grid">
+      <!-- ACF -->
+      <article class="cca-card" data-cat="acf">
+        <div class="top tone-acf">
+          <div class="logo-circle">🎭</div>
+          <div>
+            <h3>SMU Eurhythmix</h3>
+            <div class="meta">ACF · DANCE · A CAPPELLA</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Audition-based dance crew bringing K-pop, hip-hop and contemporary to every campus stage worth standing on.</p>
+        </div>
+        <div class="foot">
+          <span class="badge hot">★ Auditioning</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <article class="cca-card" data-cat="acf">
+        <div class="top tone-acf">
+          <div class="logo-circle">🎼</div>
+          <div>
+            <h3>Voix Concordia</h3>
+            <div class="meta">ACF · CHOIR</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>SMU's 60-strong mixed choir. Annual concert at Esplanade. Sight-reading helps but isn't required.</p>
+        </div>
+        <div class="foot">
+          <span class="badge">Open</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <!-- SICS -->
+      <article class="cca-card" data-cat="sics">
+        <div class="top tone-sics">
+          <div class="logo-circle">🌍</div>
+          <div>
+            <h3>SMU Eco</h3>
+            <div class="meta">SICS · ENVIRONMENT</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Sustainability club running campus audits, beach cleans and the Vivace zero-waste pop-up market.</p>
+        </div>
+        <div class="foot">
+          <span class="badge new">★ New</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <article class="cca-card" data-cat="sics">
+        <div class="top tone-sics">
+          <div class="logo-circle">🐶</div>
+          <div>
+            <h3>Project Pawprint</h3>
+            <div class="meta">SICS · COMMUNITY SERVICE</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Volunteers with shelters across Singapore. Weekly walks, monthly adoption drives, regular merch sales.</p>
+        </div>
+        <div class="foot">
+          <span class="badge">Open</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <!-- ICON -->
+      <article class="cca-card" data-cat="icon">
+        <div class="top tone-icon">
+          <div class="logo-circle">🌏</div>
+          <div>
+            <h3>SMU ASEAN</h3>
+            <div class="meta">ICON · INTERNATIONAL</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Cross-cultural exchange across SE Asia. Hosts the annual SMU-ASEAN Forum and overseas study trips.</p>
+        </div>
+        <div class="foot">
+          <span class="badge">Open</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <!-- SMUX -->
+      <article class="cca-card" data-cat="smux">
+        <div class="top tone-smux">
+          <div class="logo-circle">🏀</div>
+          <div>
+            <h3>SMU Basketball</h3>
+            <div class="meta">SMUX · SPORTS</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Men's and women's varsity teams. IVP champions 3 years running. Try-outs Aug 14, no walk-ins.</p>
+        </div>
+        <div class="foot">
+          <span class="badge hot">★ Try-outs</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <article class="cca-card" data-cat="smux">
+        <div class="top tone-smux">
+          <div class="logo-circle">🏓</div>
+          <div>
+            <h3>SMU Table Tennis</h3>
+            <div class="meta">SMUX · SPORTS</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>From total beginners to ex-national paddlers. Weekly socials + competitive squad.</p>
+        </div>
+        <div class="foot">
+          <span class="badge">Open</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <!-- SSU -->
+      <article class="cca-card" data-cat="ssu">
+        <div class="top tone-ssu">
+          <div class="logo-circle">🎤</div>
+          <div>
+            <h3>Patron's Voice</h3>
+            <div class="meta">SSU · STUDENT VOICE</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Student feedback channel — runs town halls, surveys, and the Vivace 2026 organising committee itself.</p>
+        </div>
+        <div class="foot">
+          <span class="badge">Open</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <!-- GRI -->
+      <article class="cca-card" data-cat="gri">
+        <div class="top tone-gri">
+          <div class="logo-circle">📈</div>
+          <div>
+            <h3>SMU Investment Society</h3>
+            <div class="meta">GRI · FINANCE</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Equity research, stock pitches, alumni mentorship. Application-based with two recruitment rounds per semester.</p>
+        </div>
+        <div class="foot">
+          <span class="badge hot">★ Recruiting</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <article class="cca-card" data-cat="gri">
+        <div class="top tone-gri">
+          <div class="logo-circle">💼</div>
+          <div>
+            <h3>Consult & Co.</h3>
+            <div class="meta">GRI · STRATEGY</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Pro-bono consulting club for non-profits and SMEs. Casing weekly, real engagements every term.</p>
+        </div>
+        <div class="foot">
+          <span class="badge">Open</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <!-- ACADEMIC -->
+      <article class="cca-card" data-cat="acad">
+        <div class="top tone-acad">
+          <div class="logo-circle">📚</div>
+          <div>
+            <h3>SMU Lex Society</h3>
+            <div class="meta">ACADEMIC · LAW</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Law student body — moots, mock trials, big-firm career nights, the works.</p>
+        </div>
+        <div class="foot">
+          <span class="badge">Open</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+
+      <article class="cca-card" data-cat="acad">
+        <div class="top tone-acad">
+          <div class="logo-circle">💻</div>
+          <div>
+            <h3>SCIS.club</h3>
+            <div class="meta">ACADEMIC · COMP. SCI.</div>
+          </div>
+        </div>
+        <div class="body">
+          <p>Hackathons, tech-talk fridays, alumni Q&As. Open to all majors who want to write code without judgement.</p>
+        </div>
+        <div class="foot">
+          <span class="badge new">★ New</span>
+          <span class="more">View →</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="more-row">
+      <button class="btn ghost"><span>Load 12 more</span><span>↓</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PARTNERS =================== -->
+<section class="partners" id="partners">
+  <div class="container">
+    <span class="section-eyebrow" style="background:var(--yellow); color:var(--ink)">★ Aisle 3 · Partners</span>
+    <h2 class="section-h2">Stock up <span class="hi">on perks.</span></h2>
+    <p style="font-size:18px; max-width:54ch; margin-bottom:36px">Six brands rolling out exclusive student deals across the three days. Flash your matric card to redeem.</p>
+
+    <div class="partners-row">
+      <div class="partner-tile t1">7-Eleven</div>
+      <div class="partner-tile t2">FairPrice</div>
+      <div class="partner-tile t3">Koi Thé</div>
+      <div class="partner-tile t4">PUMA</div>
+      <div class="partner-tile t5">Grab</div>
+      <div class="partner-tile t6">Ya Kun</div>
+    </div>
+
+    <div class="deals-grid">
+      <div class="deal">
+        <div class="head">
+          <div class="perc">15%</div>
+          <div>
+            <h4>OFF YOUR FIRST RUN</h4>
+            <div class="who">Grab Food · Vivace Code: VIVACE15</div>
+          </div>
+        </div>
+        <div class="body">First-time SMU students get 15% off any Grab Food order over $10. Valid through August.</div>
+        <div class="foot">
+          <span>Valid 11 — 31 Aug 2026</span>
+          <span class="go">Redeem →</span>
+        </div>
+      </div>
+
+      <div class="deal">
+        <div class="head" style="background:var(--pink); color:#fff">
+          <div class="perc" style="color:#fff">1+1</div>
+          <div>
+            <h4>BUY ONE GET ONE</h4>
+            <div class="who" style="color:rgba(255,255,255,.85)">Koi Thé · Bras Basah outlet</div>
+          </div>
+        </div>
+        <div class="body">Bring a friend. Buy any signature milk tea, get the second one on the house.</div>
+        <div class="foot">
+          <span>Valid event days only</span>
+          <span class="go">Redeem →</span>
+        </div>
+      </div>
+
+      <div class="deal">
+        <div class="head" style="background:var(--green); color:#fff">
+          <div class="perc" style="color:#fff">FREE</div>
+          <div>
+            <h4>VIVACE TOTE BAG</h4>
+            <div class="who" style="color:rgba(255,255,255,.85)">FairPrice · while stock lasts</div>
+          </div>
+        </div>
+        <div class="body">First 500 attendees take home a limited-edition Vivace x FairPrice canvas tote.</div>
+        <div class="foot">
+          <span>While stock lasts</span>
+          <span class="go">Claim →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FAQ =================== -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="faq-side">
+        <span class="section-eyebrow">★ Aisle 4 · FAQ</span>
+        <h2 class="section-h2">Questions <span class="hi">at the checkout.</span></h2>
+        <p style="font-size:17px; max-width:42ch; margin-bottom:24px">Can't find your answer? DM us on Instagram or grab the floating Ask Us button.</p>
+        <div style="position:relative; max-width:380px">
+          <img src="assets/object-receipt-detailed.svg" alt="" style="width:240px; transform:rotate(-6deg); filter: drop-shadow(8px 8px 0 var(--ink))">
+          <div style="position:absolute; right:-10px; top:30px; width:120px; transform:rotate(10deg); filter: drop-shadow(4px 4px 0 var(--ink))">
+            <img src="assets/sign-special-offer.svg" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary><span class="faq-num">01</span> When and where is Vivace 2026? <span class="toggle">+</span></summary>
+          <div class="ans">11 — 13 August 2026, 10:00 to 18:00 daily, at the SMU Concourse (Connexion, level 1). Closing performance on the 13th moves to SMUC Hall.</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-num">02</span> Do I need to register beforehand? <span class="toggle">+</span></summary>
+          <div class="ans">Walk-ins are welcome — but registering with your matric ID gets you the loyalty card and pre-booked try-out slots for over-subscribed CCAs.</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-num">03</span> How do I sign up for a CCA? <span class="toggle">+</span></summary>
+          <div class="ans">Tap any CCA card → go to the booth → scan the QR. Audition / try-out CCAs will email you a slot within 48 hours.</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-num">04</span> Can I join more than one CCA? <span class="toggle">+</span></summary>
+          <div class="ans">Yes — and we encourage it. A typical SMU student fills their basket with two or three. Schedules are coordinated by SSU.</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-num">05</span> Are non-SMU friends allowed? <span class="toggle">+</span></summary>
+          <div class="ans">The fair is open to the public. CCA membership itself is SMU-only with a few exceptions — check each booth.</div>
+        </details>
+        <details class="faq-item">
+          <summary><span class="faq-num">06</span> Where do I redeem partner deals? <span class="toggle">+</span></summary>
+          <div class="ans">At the partner outlets directly during the event window. Flash matric card + the deal screen from this site.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== EVENTS =================== -->
+<section class="events" id="events">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:36px">
+      <div>
+        <span class="section-eyebrow">★ Aisle 5 · Calendar</span>
+        <h2 class="section-h2">On the <span class="hi">shelves</span> this month.</h2>
+      </div>
+      <a class="btn ghost" style="background:var(--cream); color:var(--ink)" href="#">Full schedule →</a>
+    </div>
+
+    <div class="events-grid">
+      <div class="event-card">
+        <div class="pic p1">
+          <span class="date-pill"><span class="d">11</span><span>AUG · MON</span></span>
+          <div style="font-family:'Bagel Fat One',sans-serif; color:#fff; font-size:42px; -webkit-text-stroke:3px var(--ink); text-stroke:3px var(--ink)">OPENING</div>
+        </div>
+        <div class="body">
+          <h3>Opening Day Showcase</h3>
+          <div class="meta"><span>10:00 — 14:00</span><span>·</span><span>SMU Concourse, L1</span></div>
+          <p>Ribbon-cutting, school umbrella parade, free Vivace tote for first 500 attendees.</p>
+        </div>
+        <div class="foot">
+          <span>Free entry</span>
+          <span class="rsvp">RSVP →</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="pic p2">
+          <span class="date-pill"><span class="d">12</span><span>AUG · TUE</span></span>
+          <div style="font-family:'Bagel Fat One',sans-serif; color:#fff; font-size:42px; -webkit-text-stroke:3px var(--ink); text-stroke:3px var(--ink)">TRY-OUTS</div>
+        </div>
+        <div class="body">
+          <h3>CCA Try-out Night</h3>
+          <div class="meta"><span>17:00 — 21:00</span><span>·</span><span>SOA Gym + Studios</span></div>
+          <p>Six sports, four dance crews, one shot at making the team. Pre-booking recommended via the Explore page.</p>
+        </div>
+        <div class="foot">
+          <span>Pre-book</span>
+          <span class="rsvp">RSVP →</span>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="pic p3">
+          <span class="date-pill"><span class="d">13</span><span>AUG · WED</span></span>
+          <div style="font-family:'Bagel Fat One',sans-serif; color:#fff; font-size:42px; -webkit-text-stroke:3px var(--ink); text-stroke:3px var(--ink)">FINALE</div>
+        </div>
+        <div class="body">
+          <h3>Closing Performance</h3>
+          <div class="meta"><span>18:30 — 21:00</span><span>·</span><span>SMUC Hall</span></div>
+          <p>The night every CCA shows off what they've been rehearsing all year. Ticketed, doors at 18:00.</p>
+        </div>
+        <div class="foot">
+          <span>Ticketed</span>
+          <span class="rsvp">RSVP →</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== FOOTER =================== -->
+<footer class="site">
+  <!-- decor -->
+  <div class="sprinkle" style="left:4%; top:36px; width:90px; opacity:.5; transform:rotate(-12deg)"><img src="assets/sticker-bogo.svg" alt=""></div>
+  <div class="sprinkle" style="right:6%; top:54px; width:80px; opacity:.5; transform:rotate(16deg)"><img src="assets/sticker-new-arrival.svg" alt=""></div>
+
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col foot-brand">
+        <a class="logo" style="color:var(--green)" href="#">VIVACE<span class="logo-year">'26</span></a>
+        <p>Singapore Management University's annual CCA fair.<br>Three days. Seven schools. One basket.</p>
+        <p style="opacity:1; padding:0">vivace@smu.edu.sg</p>
+        <div class="foot-socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="#" aria-label="TikTok">TT</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Sitemap</h4>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#explore">Explore</a>
+        <a href="#partners">Partners</a>
+        <a href="#faq">FAQ</a>
+        <a href="#events">Events</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="#">Terms of Use</a>
+        <a href="#">PDPA / Privacy</a>
+        <a href="#">Code of Conduct</a>
+        <a href="#">Accessibility</a>
+        <a href="#">Press kit</a>
+      </div>
+      <div class="foot-col foot-form">
+        <h4>Got feedback?</h4>
+        <input type="email" placeholder="your.email@smu.edu.sg">
+        <textarea rows="3" placeholder="Drop us a thought…"></textarea>
+        <button>Send →</button>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2026 SMU Students' Association · Vivace Organising Committee</span>
+      <span>Built with ♥ for the basket-bound</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Floating Ask Us CTA ===== -->
+<a class="ig-cta" href="https://instagram.com/smuvivace" target="_blank" rel="noopener">
+  <span class="ig-icon">IG</span>
+  <span>
+    <span style="display:block; line-height:1">Ask Us!</span>
+    <span style="display:block; font-family:'Space Mono',monospace; font-size:11px; opacity:.85; margin-top:2px">@smuvivace</span>
+  </span>
+  <span class="pulse"></span>
+</a>
+
+<script>
+  // Mobile drawer
+  const hamb = document.getElementById('hamb');
+  const drawer = document.getElementById('drawer');
+  if (hamb) hamb.addEventListener('click', () => drawer.classList.toggle('open'));
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => drawer.classList.remove('open')));
+
+  // Filter: chips + product fruits
+  const chips = document.querySelectorAll('#chips .chip');
+  const products = document.querySelectorAll('.product');
+  const cards = document.querySelectorAll('#cca-grid .cca-card');
+  const basketSummary = document.getElementById('basket-summary');
+  const summaryName = document.getElementById('summary-name');
+  const summaryCount = document.getElementById('summary-count');
+  const summaryLine = document.getElementById('summary-line');
+  const summaryClear = document.getElementById('summary-clear');
+  const receiptLive = document.getElementById('receipt-live');
+  const storeStatus = document.getElementById('store-status');
+  const basketScene = document.getElementById('scene');
+
+  function getFilterData(cat, sourceEl){
+    const source = sourceEl || document.querySelector(`[data-cat="${cat}"]`);
+    const chip = document.querySelector(`#chips .chip[data-cat="${cat}"]`);
+    const title = source?.dataset.title || chip?.dataset.title || (cat === 'all' ? 'All aisles' : cat.toUpperCase());
+    const count = source?.dataset.count || chip?.dataset.count || '120';
+    const aisle = source?.dataset.aisle || chip?.dataset.aisle || 'Vivace Mart';
+    return { title, count, aisle };
+  }
+
+  function updateShoppingUI(cat, sourceEl){
+    const data = getFilterData(cat, sourceEl);
+    products.forEach(p => p.classList.toggle('is-selected', cat !== 'all' && p.dataset.cat === cat));
+
+    if (cat === 'all') {
+      if (basketSummary) basketSummary.classList.remove('is-active');
+      if (receiptLive) receiptLive.textContent = 'Receipt open · browsing all aisles';
+      if (storeStatus) {
+        storeStatus.querySelector('.status-copy').innerHTML = 'Currently browsing <strong>all stocked aisles</strong>.';
+        storeStatus.querySelector('.status-ticket').textContent = '120 CCAs · receipt #VVC26';
+      }
+      return;
+    }
+
+    if (basketSummary) basketSummary.classList.add('is-active');
+    if (summaryName) summaryName.textContent = data.title;
+    if (summaryCount) summaryCount.textContent = `${data.count} in view`;
+    if (summaryLine) summaryLine.textContent = `${data.aisle} added to your basket. Explore the CCAs stocked under this school.`;
+    if (receiptLive) receiptLive.textContent = `Added ${data.title} · ${data.count} CCAs · ${data.aisle}`;
+    if (storeStatus) {
+      storeStatus.querySelector('.status-copy').innerHTML = `Currently browsing <strong>${data.title}</strong>.`;
+      storeStatus.querySelector('.status-ticket').textContent = `${data.count} CCAs · ${data.aisle}`;
+    }
+  }
+
+  function applyFilter(cat, sourceEl){
+    chips.forEach(c => c.classList.toggle('active', c.dataset.cat === cat));
+    cards.forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? '' : 'none';
+    });
+    updateShoppingUI(cat, sourceEl);
+  }
+  chips.forEach(c => c.addEventListener('click', () => applyFilter(c.dataset.cat, c)));
+  if (summaryClear) summaryClear.addEventListener('click', () => applyFilter('all'));
+
+  function animateProductToExplore(product){
+    if (!product.classList.contains('school-fruit')) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
+
+    const rect = product.getBoundingClientRect();
+    const flight = product.cloneNode(true);
+    flight.classList.add('fruit-flight');
+    flight.style.left = rect.left + 'px';
+    flight.style.top = rect.top + 'px';
+    flight.style.width = rect.width + 'px';
+    flight.style.height = rect.height + 'px';
+    flight.style.setProperty('--r', product.style.getPropertyValue('--r') || '0deg');
+    document.body.appendChild(flight);
+    flight.addEventListener('animationend', () => flight.remove(), { once:true });
+
+    if (basketScene) {
+      basketScene.classList.remove('is-scanning');
+      void basketScene.offsetWidth;
+      basketScene.classList.add('is-scanning');
+      window.setTimeout(() => basketScene.classList.remove('is-scanning'), 780);
+    }
+
+    product.classList.add('is-picked');
+    window.setTimeout(() => product.classList.remove('is-picked'), 520);
+  }
+
+  products.forEach(p => p.addEventListener('click', () => {
+    const cat = p.dataset.cat;
+    applyFilter(cat, p);
+    animateProductToExplore(p);
+    window.setTimeout(() => {
+      document.getElementById('explore').scrollIntoView({behavior:'smooth', block:'start'});
+    }, p.classList.contains('school-fruit') ? 260 : 0);
+  }));
+
+  // Search
+  const search = document.getElementById('search-input');
+  if (search) {
+    search.addEventListener('input', e => {
+      const q = e.target.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? '' : 'none';
+      });
+    });
+  }
+
+  // Smooth-scroll: nav links highlight
+  const sections = ['home','about','explore','partners','faq','events'];
+  const navLinks = document.querySelectorAll('.nav-links a');
+  function syncNav(){
+    let current = 'home';
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      if (r.top < 200) current = id;
+    }
+    navLinks.forEach(a => a.classList.toggle('here', a.getAttribute('href') === '#' + current));
+  }
+  window.addEventListener('scroll', syncNav, { passive:true });
+</script>
+
+</body>
+</html>

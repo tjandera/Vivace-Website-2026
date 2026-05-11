@@ -1,0 +1,59 @@
+<!-- Pennant marquee -->
+<div class="top-pennant">
+  <div class="strip" aria-hidden="true">
+    <span>Doors open 11 Aug · 10am — 18:00</span>
+    <span>120+ CCAs · 7 schools · 1 basket</span>
+    <span>Pick what fills your basket</span>
+    <span>SMU concourse · Free entry</span>
+    <span>Doors open 11 Aug · 10am — 18:00</span>
+    <span>120+ CCAs · 7 schools · 1 basket</span>
+    <span>Pick what fills your basket</span>
+    <span>SMU concourse · Free entry</span>
+  </div>
+</div>
+
+<!-- SVG filter for gooey blob effect -->
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+  <defs>
+    <filter id="nav-goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- Main nav -->
+<nav class="main">
+  <div class="row">
+    <a class="logo" href="#home">VIVACE<span class="logo-year">'26</span></a>
+    <div class="nav-links" id="nav-links">
+      <!-- Blob layer — filtered separately so text stays crisp -->
+      <div class="nav-blob-layer" aria-hidden="true">
+        <div class="nav-blob-trail" id="nav-blob-trail"></div>
+        <div class="nav-blob" id="nav-blob"></div>
+      </div>
+      <a class="here" href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#explore">Explore</a>
+      <a href="#partners">Partners</a>
+      <a href="#faq">FAQ</a>
+      <a href="#events">Events</a>
+    </div>
+    <a class="nav-cta" href="#explore">
+      <span>Start shopping</span>
+      <span style="font-size:18px">+</span>
+    </a>
+    <button class="hamb" id="hamb" aria-label="Menu"><i></i></button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mob-drawer" id="drawer">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#explore">Explore</a>
+  <a href="#partners">Partners</a>
+  <a href="#faq">FAQ</a>
+  <a href="#events">Events</a>
+  <a class="nav-cta" style="display:flex; justify-content:center" href="#explore">Start shopping</a>
+</div>

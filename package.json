@@ -1,0 +1,15 @@
+{
+  "name": "vivace-2026",
+  "version": "1.0.0",
+  "description": "SMU Vivace 2026 — The CCA Fair",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}

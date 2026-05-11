@@ -1,0 +1,22 @@
+  @font-face {
+    font-family: 'DoubleBass';
+    src: url('/assets/DoubleBass-Bold-trial.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  /* ---------- Tokens ---------- */
+  :root{
+    --red:#E23A29;
+    --green:#49AD77;
+    --orange:#FF7828;
+    --blue:#3C73D6;
+    --yellow:#F1AD2B;
+    --pink:#EA5A89;
+    --ink:#1A1A1A;
+    --cream:#FFF6E7;
+    --cream-2:#FFFDF5;
+    --paper:#FFFFFF;
+    --tile-1:#FFF6E7;
+    --tile-2:#F1AD2B;
+  }

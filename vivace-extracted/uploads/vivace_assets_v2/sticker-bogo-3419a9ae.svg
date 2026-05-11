@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <polygon points="100,2 118,60 178,38 156,96 214,100 156,104 178,162 118,140 100,198 82,140 22,162 44,104 -14,100 44,96 22,38 82,60" fill="#E23A29" stroke="#1A1A1A" stroke-width="4" transform="translate(0,-2)"></polygon>
+  <text font-family="sans-serif" font-weight="900" font-size="14" fill="white" text-anchor="middle" x="100" y="88">BUY 1</text>
+  <text font-family="sans-serif" font-weight="900" font-size="14" fill="#F1AD2B" text-anchor="middle" x="100" y="108">GET 1</text>
+  <text font-family="sans-serif" font-weight="900" font-size="14" fill="white" text-anchor="middle" x="100" y="128">FREE!</text>
+</svg>

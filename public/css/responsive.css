@@ -1,0 +1,233 @@
+  /* ============================ RESPONSIVE ============================ */
+  @media (max-width: 1100px){
+    .hero-grid{ grid-template-columns: 1fr; gap:30px }
+    .hero-scene{ min-height:560px; max-width:560px; margin:0 auto; width:100% }
+    .basket-hero-wrap{ min-height:720px }
+    .basket-showcase{ width:min(680px, 92vw) }
+    .flatlay-wrap{ min-height:1040px }
+    .hero.flatlay-hero h1{ white-space:normal }
+    .basket-stage{
+      top:420px;
+      left:50%;
+      width:min(580px, 88vw);
+      min-width:0;
+      transform:translateX(-50%);
+    }
+    .flatlay-quote{
+      right:10px;
+      top:330px;
+      font-size:28px;
+    }
+    .partners-row{ grid-template-columns: repeat(3, 1fr) }
+    .cca-grid{ grid-template-columns: repeat(3, 1fr) }
+    .deals-grid{ grid-template-columns: 1fr 1fr }
+    .events-grid{ grid-template-columns: 1fr 1fr }
+    .about-grid{ grid-template-columns: 1fr }
+    .foot-grid{ grid-template-columns: 1fr 1fr; gap:28px }
+    .faq-grid{ grid-template-columns: 1fr }
+  }
+  @media (max-width: 720px){
+    section{ padding:54px 16px 64px }
+    .nav-links{ display:none }
+    .hamb{ display:flex }
+    .nav-cta{ display:none }
+    .hero{ padding:30px 16px 50px }
+    .hero h1{ font-size: clamp(56px, 14vw, 84px) }
+    .hero.basket-hero{ padding:28px 14px 58px }
+    .basket-hero-wrap{ min-height:680px }
+    .hero-wordmark{ font-size:clamp(58px, 18vw, 82px); text-shadow:3px 3px 0 #fff, 5px 5px 0 var(--ink) }
+    .hero-wordmark .title-year{ text-shadow:2px 2px 0 #fff, 3px 3px 0 var(--ink) }
+    .basket-hero .hero-meta{ gap:8px; margin-top:14px }
+    .basket-hero .hero-meta span{
+      min-height:32px;
+      padding:5px 10px;
+      border-width:2px;
+      box-shadow:3px 3px 0 var(--ink);
+      font-size:12px;
+    }
+    .basket-hero .hero-copyline{
+      font-size:15px;
+      padding:8px 12px;
+      border-width:2px;
+      box-shadow:3px 3px 0 var(--ink);
+    }
+    .basket-showcase{
+      width:min(450px, 106vw);
+      margin-top:18px;
+      transform:none;
+    }
+    .basket-decor.price-tag{ --x:91%; --y:10%; --w:24% }
+    .basket-decor.sun-tag{ --x:10%; --y:10%; --w:17% }
+    .basket-decor.juice-tag{ --x:-2%; --y:33%; --w:14% }
+    .basket-decor.label-tag{ --x:101%; --y:34%; --w:16% }
+    .basket-decor.button-tag{ --x:0%; --y:72%; --w:13% }
+    .basket-decor.clip-tag{ --x:101%; --y:91%; --w:26% }
+    .basket-decor.croissant-tag{ --x:7%; --y:94%; --w:35% }
+    .school-fruit .fruit-label{
+      border-width:2px;
+      box-shadow:2px 2px 0 var(--ink);
+      font-size:11px;
+      padding:3px 7px;
+    }
+    .school-fruit .aisle-tag{
+      top:-18px;
+      padding:4px 7px;
+      border-width:2px;
+      box-shadow:2px 2px 0 var(--ink);
+      font-size:9px;
+    }
+    .basket-hero-actions{ margin-top:-8px }
+    .hero.flatlay-hero{ padding:26px 14px 54px }
+    .flatlay-wrap{ min-height:940px }
+    .hero.flatlay-hero h1{ font-size:clamp(58px, 16vw, 88px) }
+    .flatlay-title-year{
+      display:block;
+      width:max-content;
+      margin:10px 0 0;
+    }
+    .flatlay-meta{ font-size:14px; gap:8px }
+    .flatlay-note{ font-size:18px; max-width:100% }
+    .flatlay-quote{
+      position:relative;
+      top:auto;
+      right:auto;
+      margin:18px 0 0 auto;
+      font-size:24px;
+    }
+    .basket-stage{
+      position:relative;
+      top:auto;
+      left:auto;
+      width:100%;
+      margin:34px auto 0;
+      transform:none;
+    }
+    .basket-shell{ padding:58px 28px 42px }
+    .basket-shell::before{ width:160px; height:62px }
+    .basket-inner{ gap:9px; padding:14px }
+    .basket-product.product{ padding:10px 8px 9px; gap:5px }
+    .basket-product .barcode{ width:34px; height:14px }
+    .basket-product .school-icon{ width:50px; height:50px; font-size:10px }
+    .basket-product .school-name{ font-size:25px }
+    .basket-product .school-full{ font-size:11px }
+    .basket-product .price{ font-size:10px }
+    .basket-product.span2{ aspect-ratio:2.35 / 1 }
+    .date-block{ width:100% }
+    .date-block .when{ font-size:15px; padding:10px 14px; flex-wrap:wrap; gap:8px }
+    .cca-grid{ grid-template-columns: 1fr 1fr; gap:14px }
+    .cca-card{ box-shadow:4px 4px 0 var(--ink) }
+    .deals-grid{ grid-template-columns: 1fr }
+    .events-grid{ grid-template-columns: 1fr }
+    .partners-row{ grid-template-columns: repeat(2, 1fr) }
+    .foot-grid{ grid-template-columns: 1fr }
+    .ig-cta{ right:12px; bottom:12px; padding:7px; border-radius:16px; box-shadow:4px 4px 0 var(--ink) }
+    .ig-cta .ig-icon{ width:30px; height:30px }
+    .ig-cta > span:nth-child(2){ display:none !important }
+    .stat .n{ font-size:38px }
+    .filter-bar{ padding:14px }
+    .store-status{
+      align-items:flex-start;
+      flex-direction:column;
+      gap:8px;
+      padding:12px;
+    }
+    .store-status .status-ticket{ width:100%; text-align:center }
+    .receipt-marquee{ font-size:16px }
+    .receipt-live{
+      position:relative;
+      right:auto;
+      top:auto;
+      transform:none;
+      margin:12px 14px;
+      width:calc(100% - 28px);
+      justify-content:center;
+      font-size:10px;
+    }
+    .basket-summary{
+      left:12px;
+      bottom:12px;
+      width:min(300px, calc(100vw - 90px));
+      border-radius:16px;
+      padding:11px;
+      box-shadow:5px 5px 0 var(--ink);
+    }
+    .basket-summary .summary-name{ font-size:22px }
+    .basket-summary .summary-count{ font-size:11px; padding:6px 8px }
+    .basket-summary .summary-line{ font-size:12px }
+    .basket-summary .summary-actions a,
+    .basket-summary .summary-actions button{ font-size:12px; padding:7px 9px }
+    .hero-ctas .btn{ width:100%; justify-content:center }
+    .hero-scene{ min-height:480px }
+    .floor-disc{ width:120% }
+  }
+  @media (max-width: 420px){
+    .cca-grid{ grid-template-columns: 1fr }
+    .hero h1{ font-size:50px }
+    .hero-wordmark{ font-size:54px }
+    .basket-hero-wrap{ min-height:650px }
+    .basket-showcase{ width:108vw }
+    .basket-decor.price-tag{ --w:22% }
+    .basket-decor.clip-tag{ --w:24% }
+    .basket-decor.croissant-tag{ --w:32% }
+    .school-fruit .fruit-label{ font-size:10px }
+    .school-fruit .aisle-tag{ display:none }
+    .hero.flatlay-hero h1{ font-size:52px }
+    .flatlay-wrap{ min-height:900px }
+    .wire-stamp{ font-size:12px }
+    .basket-shell{ padding-left:20px; padding-right:20px }
+    .basket-inner{ grid-template-columns:1fr 1fr; gap:8px; padding:10px }
+    .basket-product .school-name{ font-size:21px }
+    .basket-product .school-full{ display:none }
+    .basket-shell::after{ font-size:9px }
+    .section-h2{ font-size:34px }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .hero.basket-hero::before,
+    .hero.basket-hero::after,
+    .basket-showcase,
+    .basket-decor,
+    .scan-beam,
+    .receipt-live::before{
+      animation:none;
+    }
+  }
+
+  /* ============ utility ============ */
+  .row{ display:flex; gap:10px; align-items:center }
+  .visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0) }
+  .price-rib{
+    display:inline-block; transform:rotate(-2deg);
+    background:var(--red); color:#fff; border:3px solid var(--ink);
+    padding:2px 10px; border-radius:8px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:13px;
+    box-shadow:2px 2px 0 var(--ink);
+  }
+
+  html,
+  body{
+    cursor:var(--cursor-default);
+  }
+
+  button,
+  a,
+  summary,
+  label,
+  [role="button"],
+  .product,
+  .chip,
+  .btn,
+  .cca-card,
+  .ig-cta,
+  .school-fruit,
+  .basket-product,
+  .hero-basket-object,
+  .tab-btn,
+  .filter-pill,
+  .faq-item summary{
+    cursor:var(--cursor-pointer) !important;
+  }
+
+  input,
+  textarea{
+    cursor:text !important;
+  }

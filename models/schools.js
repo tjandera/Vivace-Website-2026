@@ -1,0 +1,86 @@
+module.exports = [
+  {
+    id: 'acf',
+    name: 'ACF',
+    color: '--red',
+    count: 18,
+    aisle: 'Aisle 01 · Arts shelf',
+    basket: {
+      img: 'assets/basket-goods/ACF.png',
+      modifierClass: '',
+      style: 'left:14%; top:18%; --r:-8deg; width:22%',
+    },
+  },
+  {
+    id: 'sics',
+    name: 'SICS',
+    color: '--green',
+    count: 24,
+    aisle: 'Aisle 02 · Comm shelf',
+    basket: {
+      img: 'assets/basket-goods/SICS.png',
+      modifierClass: '',
+      style: 'left:62%; top:18%; --r:7deg; width:22%',
+    },
+  },
+  {
+    id: 'icon',
+    name: 'ICON',
+    color: '--orange',
+    count: 9,
+    aisle: 'Aisle 03 · Global shelf',
+    basket: {
+      img: 'assets/basket-goods/icon-chips.png',
+      modifierClass: 'icon-good',
+      style: 'left:38%; top:32%; --r:-10deg; width:23%',
+    },
+  },
+  {
+    id: 'smux',
+    name: 'SMUX',
+    color: '--blue',
+    count: 26,
+    aisle: 'Aisle 04 · Sports shelf',
+    basket: {
+      img: 'assets/basket-goods/smux.png',
+      modifierClass: 'smux-can',
+      style: 'left:6%; top:44%; --r:14deg; width:36%',
+    },
+  },
+  {
+    id: 'ssu',
+    name: 'SSU',
+    color: '--yellow',
+    count: 12,
+    aisle: 'Aisle 05 · Service shelf',
+    basket: {
+      img: 'assets/basket-goods/ssu-bar.png',
+      modifierClass: 'ssu-good',
+      style: 'left:60%; top:45%; --r:8deg; width:27%',
+    },
+  },
+  {
+    id: 'gri',
+    name: 'GRI',
+    color: '--pink',
+    count: 14,
+    aisle: 'Aisle 06 · Growth shelf',
+    basket: {
+      img: 'assets/basket-goods/SMUSA.png',
+      modifierClass: '',
+      style: 'left:23%; top:63%; --r:-12deg; width:28%',
+    },
+  },
+  {
+    id: 'acad',
+    name: 'Academic',
+    color: '--ink',
+    count: 17,
+    aisle: 'Aisle 07 · Academic shelf',
+    basket: {
+      img: 'assets/basket-goods/academic-noodles.png',
+      modifierClass: 'acad-good',
+      style: 'left:58%; top:71%; --r:3deg; width:28%',
+    },
+  },
+];

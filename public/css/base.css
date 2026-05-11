@@ -1,0 +1,190 @@
+:root{
+  --cursor-default: url('/assets/cursor_glove_cursor.png') 33 16, auto;
+  --cursor-pointer: url('/assets/cursor_glove_cursor.png') 33 16, pointer;
+}
+
+/* ---------- Global Reset ---------- */
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+html,
+body{
+  margin:0;
+  padding:0;
+  color:var(--ink);
+  font-family:'Fredoka', system-ui, sans-serif;
+  font-weight:500;
+  background:var(--cream);
+
+  /* Main cursor */
+  cursor:var(--cursor-default);
+}
+
+/* ---------- Accessibility ---------- */
+:focus-visible{
+  outline:3px solid var(--blue);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+/* ---------- Background ---------- */
+body{
+  overflow-x:hidden;
+
+  background:
+    conic-gradient(
+      from 90deg at 1px 1px,
+      transparent 90deg,
+      rgba(26,26,26,0.04) 0
+    ) 0 0/40px 40px,
+    var(--cream);
+}
+
+/* ---------- Media ---------- */
+img{
+  display:block;
+  max-width:100%;
+}
+
+/* ---------- Default Interactive Elements ---------- */
+button,
+a,
+summary,
+label,
+[role="button"],
+.product,
+.chip,
+.btn,
+.cca-card,
+.ig-cta{
+  cursor:var(--cursor-pointer);
+}
+
+/* ---------- Inputs ---------- */
+input,
+textarea{
+  cursor:text;
+}
+
+/* ---------- Buttons ---------- */
+button{
+  font:inherit;
+  border:none;
+  background:none;
+  color:inherit;
+}
+
+/* ---------- Links ---------- */
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* ---------- Typography ---------- */
+.display{
+  font-family:'Bagel Fat One', 'Fredoka', sans-serif;
+  font-weight:400;
+  letter-spacing:0;
+  line-height:.92;
+}
+
+.chunky{
+  font-family:'Fredoka', sans-serif;
+  font-weight:700;
+  letter-spacing:.01em;
+  line-height:1;
+}
+
+.label{
+  font-family:'Fredoka', sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.mono{
+  font-family:'Space Mono', monospace;
+}
+
+h1,h2,h3,h4{
+  margin:0;
+}
+
+/* ---------- Reusable Patterns ---------- */
+.checker{
+  background-image:
+    linear-gradient(45deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--ink) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--ink) 75%);
+  background-size:18px 18px;
+  background-position:0 0, 0 9px, 9px -9px, -9px 0;
+  background-color:var(--yellow);
+}
+
+.checker-sm{
+  background-image:
+    linear-gradient(45deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--ink) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--ink) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--ink) 75%);
+  background-size:10px 10px;
+  background-position:0 0, 0 5px, 5px -5px, -5px 0;
+}
+
+.stripe{
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      var(--red) 0 14px,
+      var(--cream) 14px 28px
+    );
+}
+
+.dots{
+  background-image:
+    radial-gradient(var(--ink) 1.6px, transparent 1.8px);
+  background-size:14px 14px;
+}
+
+/* ---------- Shapes ---------- */
+.outline{
+  border:3px solid var(--ink);
+}
+
+.outline-4{
+  border:4px solid var(--ink);
+}
+
+.pill{
+  border-radius:999px;
+}
+
+.blob{
+  border-radius:36% 64% 50% 50% / 50% 50% 36% 64%;
+}
+
+/* ---------- Retro Click Effect ---------- */
+.pop{
+  box-shadow:6px 6px 0 0 var(--ink);
+
+  transition:
+    transform .14s ease,
+    box-shadow .14s ease;
+}
+
+.pop:hover{
+  transform:translate(-2px,-2px);
+  box-shadow:8px 8px 0 0 var(--ink);
+}
+
+.pop:active{
+  transform:translate(2px,2px);
+  box-shadow:2px 2px 0 0 var(--ink);
+}

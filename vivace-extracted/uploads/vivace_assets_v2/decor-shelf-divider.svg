@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 40" width="800" height="40">
+  
+  <rect x="0" y="0" width="800" height="40" fill="#1A1A1A"></rect>
+  
+  <rect x="0" y="0" width="800" height="8" fill="#F1AD2B"></rect>
+  <rect x="0" y="32" width="800" height="8" fill="#F1AD2B"></rect>
+  
+  <rect x="10" y="10" width="80" height="20" rx="4" fill="#E23A29"></rect>
+  <rect x="110" y="10" width="80" height="20" rx="4" fill="#49AD77"></rect>
+  <rect x="210" y="10" width="80" height="20" rx="4" fill="#FF7828"></rect>
+  <rect x="310" y="10" width="80" height="20" rx="4" fill="#3C73D6"></rect>
+  <rect x="410" y="10" width="80" height="20" rx="4" fill="#F1AD2B"></rect>
+  <rect x="510" y="10" width="80" height="20" rx="4" fill="#EA5A89"></rect>
+  <rect x="610" y="10" width="80" height="20" rx="4" fill="#888888"></rect>
+  <text font-family="sans-serif" font-weight="bold" font-size="10" fill="white" text-anchor="middle" x="50" y="24">ACF</text>
+  <text font-family="sans-serif" font-weight="bold" font-size="10" fill="white" text-anchor="middle" x="150" y="24">SICS</text>
+  <text font-family="sans-serif" font-weight="bold" font-size="10" fill="white" text-anchor="middle" x="250" y="24">ICON</text>
+  <text font-family="sans-serif" font-weight="bold" font-size="10" fill="white" text-anchor="middle" x="350" y="24">SMUX</text>
+  <text font-family="sans-serif" font-weight="bold" font-size="10" fill="white" text-anchor="middle" x="450" y="24">SSU</text>
+  <text font-family="sans-serif" font-weight="bold" font-size="10" fill="white" text-anchor="middle" x="550" y="24">GRI</text>
+  <text font-family="sans-serif" font-weight="bold" font-size="10" fill="white" text-anchor="middle" x="650" y="24">Academic</text>
+</svg>
