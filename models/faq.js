@@ -2,7 +2,7 @@ module.exports = [
   {
     num: '01',
     question: 'When and where is Vivace 2026?',
-    answer: '11 — 13 August 2026, 10:00 to 18:00 daily, at the SMU Concourse (Connexion, level 1). Closing performance on the 13th moves to SMUC Hall.',
+    answer: '13 — 14 August 2026, 10:00 to 18:00 daily, at the SMU Concourse (Connexion, level 1). Closing performance on the 14th moves to SMUC Hall.',
     open: true,
   },
   {

@@ -49,7 +49,7 @@ module.exports = {
       who: 'Grab Food · Vivace Code: VIVACE15',
       whoStyle: '',
       body: 'First-time SMU students get 15% off any Grab Food order over $10. Valid through August.',
-      validity: 'Valid 11 — 31 Aug 2026',
+      validity: 'Valid 13 — 31 Aug 2026',
       cta: 'Redeem →',
     },
     {
