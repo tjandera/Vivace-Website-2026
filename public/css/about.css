@@ -200,19 +200,22 @@
 .rl.red    { color: var(--red); }
 .rl.green  { color: var(--green); }
 .rk {
-  display: inline-block;
   font-weight: 700;
   min-width: 10ch;
   margin-right: 1ch;
   text-align: right;
-}
-.rl.detail-row {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-}
-.rl.detail-row .rk {
   flex-shrink: 0;
+}
+/* Centre the detail block as one unit; rows stretch to widest row width */
+.receipt-details-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: left;
+}
+.detail-row {
+  display: flex;
+  align-items: baseline;
+  margin: 0;
 }
 .team-break {
   margin: 0 -46px;
