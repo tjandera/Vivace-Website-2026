@@ -60,3 +60,25 @@ document.querySelectorAll('.overlay-toggle').forEach(btn => {
     btn.setAttribute('aria-expanded', String(!isOpen));
   });
 });
+
+// ── Door-close page transition ────────────────────────────────────────────────
+(function () {
+  const ptOverlay = document.getElementById('page-transition');
+  if (!ptOverlay) return;
+
+  function goTo(url) {
+    closeMenu();
+    document.body.style.overflow = 'hidden';
+    ptOverlay.classList.add('is-closing');
+    setTimeout(function () { window.location.href = url; }, 580);
+  }
+
+  document.querySelectorAll('.overlay-link, .overlay-sub-link, a.logo').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      const href = link.getAttribute('href');
+      if (!href || href.indexOf('://') !== -1 || href.charAt(0) === '#') return;
+      e.preventDefault();
+      goTo(href);
+    });
+  });
+}());

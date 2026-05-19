@@ -3,82 +3,64 @@
 
 <%- include('partials/nav') %>
 
-<!-- Glass fridge door opening animation -->
-<div class="glass-overlay" id="glass-overlay" aria-hidden="true">
-  <div class="glass-door glass-door--left">
-    <div class="door-label">❄ FROZEN<br>AISLE ❄</div>
-    <span class="door-flake" style="top:18%; left:22%; animation-delay:-.8s">❄</span>
-    <span class="door-flake" style="top:62%; left:55%; animation-delay:-2s; font-size:14px">❄</span>
-    <span class="door-flake" style="top:38%; left:12%; animation-delay:-1.2s; font-size:16px">❄</span>
-  </div>
-  <div class="glass-door glass-door--right">
-    <span class="door-flake" style="top:24%; right:28%; animation-delay:-.4s">❄</span>
-    <span class="door-flake" style="top:70%; right:18%; animation-delay:-1.8s; font-size:14px">❄</span>
-    <span class="door-flake" style="top:48%; right:52%; animation-delay:-2.4s; font-size:16px">❄</span>
-  </div>
-</div>
-<div class="door-fog" id="door-fog" aria-hidden="true"></div>
+<%- include('partials/intro') %>
 
 <main class="sponsors-main">
 
-  <!-- Fridge top light bar -->
-  <div class="fridge-light" aria-hidden="true"></div>
-
-  <section class="sponsors-hero" aria-labelledby="sponsors-title">
-
-    <div class="sponsors-shell">
-
-      <div class="sponsors-header">
-        <span class="section-eyebrow">★ Chiller Aisle · Special Thanks</span>
-        <h1 id="sponsors-title" class="section-h2">Our <span class="hi">Sponsors.</span></h1>
-        <p class="sponsors-intro">The brands keeping Vivace 2026 stocked and chilled.</p>
-      </div>
-
-      <div class="sponsor-shelf-grid">
-        <% partners.tiers.forEach((tier, index) => { %>
-          <section class="sponsor-shelf <%= tier.className %>" aria-labelledby="tier-<%= index %>" style="--tier-color: <%= tier.color %>">
-            <div class="shelf-label">
-              <h2 id="tier-<%= index %>" class="tier-badge"><%= tier.name %></h2>
-            </div>
-            <div class="sponsor-logos">
-              <% tier.sponsors.forEach((sponsor) => { %>
-                <article class="sponsor-logo-card">
-                  <img src="<%= sponsor.logo %>" alt="<%= sponsor.name %>" loading="lazy">
-                </article>
-              <% }) %>
-            </div>
-            <!-- Glass shelf edge -->
-            <div class="shelf-edge" aria-hidden="true"></div>
-          </section>
-        <% }) %>
-      </div>
-
-    </div>
+  <!-- ── Hero image ── -->
+  <section class="sponsors-hero" aria-label="Thank you to our sponsors">
+    <img class="sponsors-hero-img"
+         src="/assets/resources-design/thank_you_sponsors.png"
+         alt="Thank You To Our Sponsors">
   </section>
+
+  <!-- ── Shelf grid ── -->
+  <div class="sponsors-shell">
+    <div class="sponsor-shelf-grid">
+      <% partners.tiers.forEach((tier, index) => { %>
+        <section class="sponsor-shelf <%= tier.className %>"
+                 aria-labelledby="tier-<%= index %>"
+                 style="--tier-color: <%= tier.color %>">
+
+          <div class="shelf-surface">
+            <div class="sponsor-logos">
+              <% if (tier.sponsors.length === 0) { %>
+                <div class="sponsor-tba"><span>Coming Soon</span></div>
+              <% } else { %>
+                <% tier.sponsors.forEach(sponsor => { %>
+                  <article class="sponsor-logo-card">
+                    <% if (sponsor.logo) { %>
+                      <img src="<%= sponsor.logo %>" alt="<%= sponsor.name %>" loading="lazy">
+                    <% } else { %>
+                      <span><%= sponsor.name %></span>
+                    <% } %>
+                  </article>
+                <% }) %>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- Shelf plank — badge sits on the left of the plank face -->
+          <div class="shelf-plank">
+            <h2 id="tier-<%= index %>" class="tier-badge"><%= tier.name %></h2>
+          </div>
+
+          <!-- Vivace 2026 marquee strip -->
+          <div class="shelf-strip" aria-hidden="true">
+            <div class="shelf-strip-track">
+              <span><%- 'VIVACE 2026   ✦   '.repeat(22) %></span>
+              <span><%- 'VIVACE 2026   ✦   '.repeat(22) %></span>
+            </div>
+          </div>
+
+        </section>
+      <% }) %>
+    </div>
+  </div>
+
 </main>
 
 <%- include('partials/footer') %>
-
-<script>
-  (function () {
-    var overlay = document.getElementById('glass-overlay');
-    var fog     = document.getElementById('door-fog');
-    // Open doors after short pause so user notices the effect
-    setTimeout(function () {
-      overlay.classList.add('is-open');
-      fog.classList.add('is-visible');
-    }, 420);
-    // Cold fog fades away
-    setTimeout(function () {
-      fog.classList.add('is-gone');
-    }, 1600);
-    // Remove overlay from DOM so it can't block clicks
-    setTimeout(function () {
-      overlay.remove();
-      fog.remove();
-    }, 2400);
-  })();
-</script>
 
 </body>
 </html>

@@ -3,32 +3,7 @@
 
 <%- include('partials/nav') %>
 
-<!-- ══════════════════════════════════════════════════════
-     SLIDING GLASS DOORS — same as index page
-══════════════════════════════════════════════════════════ -->
-<div id="store-intro" aria-hidden="true">
-
-  <div class="si-door si-door-l">
-    <div class="si-glass">
-      <span class="si-door-title">VIVACE<em>'26</em></span>
-      <span class="si-door-sub">SMU&nbsp;CCA&nbsp;FAIR</span>
-    </div>
-    <div class="si-glare"></div>
-    <div class="si-bar"></div>
-    <span class="si-push">&#9664; PUSH</span>
-  </div>
-
-  <div class="si-door si-door-r">
-    <div class="si-glass">
-      <span class="si-open-text">NOW<br>OPEN</span>
-      <span class="si-door-sub">11–13&nbsp;AUG&nbsp;2026</span>
-    </div>
-    <div class="si-glare"></div>
-    <div class="si-bar"></div>
-    <span class="si-push">PUSH &#9654;</span>
-  </div>
-
-</div>
+<%- include('partials/intro') %>
 
 
 <!-- ══════════════════════════════════════════════════════
@@ -104,12 +79,9 @@
         <p class="rl muted">- - - - - - - - - - - - - - - - - -</p>
         <p class="rl">&nbsp;</p>
 
-        <!-- ── Vivace '26 logo wordmark ── -->
+        <!-- ── Vivace '26 logo image ── -->
         <div class="rl receipt-logo-wrap">
-          <div class="receipt-logo">
-            <span class="receipt-logo-word">VIVACE</span>
-            <span class="receipt-logo-year">'26</span>
-          </div>
+          <img class="receipt-logo-img" src="/assets/resources-design/about_page_vvc_logo.png" alt="Vivace '26">
           <p class="receipt-logo-sub">SMU &middot; CCA FAIR &middot; AUG 2026</p>
         </div>
 
@@ -139,7 +111,7 @@
         <!-- ── Vivace team slider ── -->
         <section class="rl receipt-team" aria-label="The Vivace Team showcase">
           <div class="receipt-team-heading" aria-label="Vivace '26">
-            <span class="receipt-logo-word">VIVACE</span><span class="receipt-logo-year">'26</span>
+            <span class="receipt-team-title-word">VIVACE</span><span class="receipt-team-title-year">'26</span>
           </div>
 
           <div class="team-slider" id="team-slider">
@@ -172,6 +144,50 @@
         </section>
 
         <div class="rl team-break" aria-hidden="true"></div>
+
+        <p class="rl">&nbsp;</p>
+
+        <!-- ── E-Voucher ── -->
+        <div class="rl receipt-evoucher">
+
+          <div class="evoucher-top">
+            <span class="evoucher-eyebrow">★ &nbsp; Vivace 2026 Exclusive &nbsp; ★</span>
+            <div class="evoucher-value">Welcome Gift Voucher</div>
+            <div class="evoucher-desc">Show this at any CCA booth on fair day to redeem</div>
+          </div>
+
+          <div class="evoucher-tear">
+            <div class="evoucher-notch evoucher-notch--l"></div>
+            <span class="evoucher-tear-label">✂ &nbsp; tear here &nbsp; ✂</span>
+            <div class="evoucher-notch evoucher-notch--r"></div>
+          </div>
+
+          <div class="evoucher-bottom">
+            <div class="evoucher-gift-row">
+              <div class="evoucher-gift">
+                <img class="evoucher-gift-icon" src="/assets/object-paper-bag.svg" alt="">
+                <span class="evoucher-gift-label">Free<br>Welcome Kit</span>
+              </div>
+              <div class="evoucher-gift">
+                <img class="evoucher-gift-icon" src="/assets/object-milk-carton.svg" alt="">
+                <span class="evoucher-gift-label">Free<br>Drink</span>
+              </div>
+              <div class="evoucher-gift">
+                <img class="evoucher-gift-icon" src="/assets/object-loyalty-card.svg" alt="">
+                <span class="evoucher-gift-label">Goodie<br>Bag</span>
+              </div>
+            </div>
+
+            <div class="evoucher-code-wrap">
+              <div class="evoucher-code-label">Redemption Code</div>
+              <div class="evoucher-code">VIVACE26-GIFT</div>
+            </div>
+
+            <div class="evoucher-validity">Valid: 13 – 14 Aug 2026 only &nbsp;·&nbsp; SMU Concourse</div>
+            <p class="evoucher-disclaimer">One redemption per person. Subject to availability.<br>Not transferable. Organised by SMUSA.</p>
+          </div>
+
+        </div>
 
         <p class="rl">&nbsp;</p>
         <p class="rl center bold">&#9733; THANK YOU FOR VISITING &#9733;</p>

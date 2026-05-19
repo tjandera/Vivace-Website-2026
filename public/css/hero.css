@@ -631,6 +631,22 @@
     height:auto;
     display:block;
   }
+  .find-cca-arrow{
+    display:flex;
+    justify-content:center;
+    margin:4px auto 8px;
+  }
+  .find-cca-arrow svg{
+    width:56px;
+    height:64px;
+    color:#151515;
+    filter:drop-shadow(0 3px 0 rgba(0,0,0,.3));
+    animation:arrowBounce 1.2s ease-in-out infinite;
+  }
+  @keyframes arrowBounce{
+    0%,100%{ transform:translateY(0) }
+    50%{ transform:translateY(12px) }
+  }
   @keyframes basketCruise{
     0%,100%{ transform:translateY(0) rotate(0deg) }
     50%{ transform:translateY(5px) rotate(-.35deg) }
@@ -667,16 +683,16 @@
   }
   .basket-decor.is-back{ z-index:3; opacity:.9 }
   .basket-decor.is-front{ z-index:8 }
-  .basket-decor.price-tag{ --x:94%; --y:9%; --w:16%; --r:8deg; animation-delay:-.8s }
-  .basket-decor.sun-tag{ --x:9%; --y:10%; --w:18%; --r:-16deg; animation-delay:-1.5s }
-  .basket-decor.juice-tag{ --x:-6%; --y:34%; --w:15%; --r:-9deg; animation-delay:-2.2s }
-  .basket-decor.label-tag{ --x:106%; --y:34%; --w:18%; --r:16deg; animation-delay:-.3s }
-  .basket-decor.button-tag{ --x:-4%; --y:72%; --w:15%; --r:12deg; animation-delay:-1s }
-  .basket-decor.clip-tag{ --x:105%; --y:91%; --w:30%; --r:-6deg; animation-delay:-1.9s }
-  .basket-decor.croissant-tag{ --x:8%; --y:96%; --w:24%; --r:11deg; animation-delay:-2.8s }
-  .basket-decor.green-price-tag{ --x:-8%; --y:15%; --w:14%; --r:-12deg; animation-delay:-.5s }
-  .basket-decor.red-price-tag{ --x:112%; --y:57%; --w:15%; --r:9deg; animation-delay:-2.5s }
-  .basket-decor.delmonte-tag{ --x:-8%; --y:55%; --w:12%; --r:-14deg; animation-delay:-1.3s }
+  .basket-decor.price-tag{ --x:90%; --y:6%; --w:58%; --r:8deg; animation-delay:-.8s }
+  .basket-decor.sun-tag{ --x:9%; --y:10%; --w:24%; --r:-16deg; animation-delay:-1.5s }
+  .basket-decor.juice-tag{ --x:-6%; --y:34%; --w:20%; --r:-9deg; animation-delay:-2.2s }
+  .basket-decor.label-tag{ --x:100%; --y:30%; --w:62%; --r:16deg; animation-delay:-.3s }
+  .basket-decor.button-tag{ --x:-4%; --y:72%; --w:20%; --r:12deg; animation-delay:-1s }
+  .basket-decor.clip-tag{ --x:105%; --y:91%; --w:36%; --r:-6deg; animation-delay:-1.9s }
+  .basket-decor.croissant-tag{ --x:8%; --y:96%; --w:30%; --r:11deg; animation-delay:-2.8s }
+  .basket-decor.green-price-tag{ --x:-12%; --y:12%; --w:55%; --r:-12deg; animation-delay:-.5s }
+  .basket-decor.red-price-tag{ --x:108%; --y:54%; --w:56%; --r:9deg; animation-delay:-2.5s }
+  .basket-decor.delmonte-tag{ --x:-12%; --y:52%; --w:52%; --r:-14deg; animation-delay:-1.3s }
   @keyframes decorFloat{
     0%,100%{ translate:0 0 }
     50%{ translate:0 -7px }
