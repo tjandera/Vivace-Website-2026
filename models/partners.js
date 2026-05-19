@@ -1,9 +1,15 @@
 module.exports = {
   tiers: [
     {
+      name: 'Emerald',
+      className: 'tier-emerald',
+      color: '#059669',
+      sponsors: [],
+    },
+    {
       name: 'Diamond',
       className: 'tier-diamond',
-      color: '#c9c9c9',
+      color: '#1e40af',
       sponsors: [
         { name: 'Dyson', logo: '/assets/sponsors/Dyson-logotype_K_Full Clear Space.png' },
       ],
@@ -11,7 +17,7 @@ module.exports = {
     {
       name: 'Platinum',
       className: 'tier-platinum',
-      color: '#c9c9c9',
+      color: '#7c3aed',
       sponsors: [
         { name: '100 Plus',    logo: '/assets/sponsors/100PLUS LOGO with White (1).png' },
         { name: 'Jolt',        logo: '/assets/sponsors/TRANSPARENT_JOLT_FullLogo_Red.png' },
@@ -21,7 +27,7 @@ module.exports = {
     {
       name: 'Gold',
       className: 'tier-gold',
-      color: '#c9c9c9',
+      color: '#b45309',
       sponsors: [
         { name: 'Automobile Association of Singapore', logo: '/assets/sponsors/AA Crest logo_4C_Colour.png' },
         { name: 'The Face Place',                      logo: '/assets/sponsors/THE-FACE-PLACE-LOGO-NEW-TRANSPARENT.png' },
@@ -32,7 +38,7 @@ module.exports = {
     {
       name: 'Silver',
       className: 'tier-silver',
-      color: '#c9c9c9',
+      color: '#374151',
       sponsors: [
         { name: 'Good Totes',           logo: '/assets/sponsors/goodtotes_logo_green.png' },
         { name: 'Pottery Please',       logo: '/assets/sponsors/Logo.png' },

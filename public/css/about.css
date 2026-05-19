@@ -11,7 +11,7 @@
   flex-direction: column;
   align-items: center;
   background-color: var(--cream-2);
-  background-image: url('/assets/resources-design/bg.png');
+  background-image: url('/assets/resources-design/bg.jpg');
   background-position: top center;
   background-repeat: repeat-y;
   background-size: 100% auto;
@@ -208,18 +208,27 @@
 }
 /* Centre the detail block as one unit; rows stretch to widest row width */
 .receipt-details-wrap {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
-  text-align: left;
+  width: fit-content;
+  margin: 0 auto;
 }
 .detail-row {
   display: flex;
   align-items: baseline;
+  gap: 16px;
   margin: 0;
+}
+.detail-row .rk {
+  min-width: 12ch;
+  text-align: right;
+}
+.detail-row span:last-child {
+  text-align: left;
 }
 .team-break {
   margin: 0 -46px;
-  height: 36px;
+  height: 128px;
   background: #0d1b4b;
   border-radius: 10px;
 }
@@ -235,37 +244,36 @@
   text-align: center;
 }
 
-.receipt-logo {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-  line-height: 1;
-}
-
-.receipt-logo-word {
-  font-family: 'Fredoka', sans-serif;
-  font-size: clamp(52px, 14vw, 96px);
-  font-weight: 700;
-  letter-spacing: .04em;
-  color: var(--ink);
-  line-height: 1;
-}
-
-.receipt-logo-year {
-  font-family: 'Fredoka', sans-serif;
-  font-size: clamp(32px, 8vw, 58px);
-  font-weight: 600;
-  color: var(--red);
-  line-height: 1;
+.receipt-logo-img {
+  display: block;
+  margin: 0 auto;
+  max-width: min(480px, 90%);
+  height: auto;
+  filter: drop-shadow(2px 4px 0 rgba(26,26,26,.12));
 }
 
 .receipt-logo-sub {
-  margin: 8px 0 0;
+  margin: 12px 0 0;
   font-family: 'Space Mono', monospace;
   font-size: 10px;
   letter-spacing: .22em;
   text-transform: uppercase;
   color: rgba(21,21,21,.4);
+}
+
+/* Team section heading — bouncy Bagel Fat One */
+.receipt-team-title-word {
+  font-family: 'Bagel Fat One', sans-serif;
+  font-size: clamp(48px, 12vw, 88px);
+  color: var(--ink);
+  line-height: 1;
+}
+
+.receipt-team-title-year {
+  font-family: 'Bagel Fat One', sans-serif;
+  font-size: clamp(30px, 7vw, 54px);
+  color: var(--red);
+  line-height: 1;
 }
 
 .receipt-team-heading {
@@ -384,6 +392,169 @@
   transform: none;
 }
 
+/* ══════════════════════════════════════════════════
+   E-VOUCHER
+   ══════════════════════════════════════════════════ */
+.receipt-evoucher {
+  width: min(100%, 620px);
+  margin: 32px auto 8px;
+  border: 3px solid var(--ink);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(26,26,26,.15);
+}
+
+/* Top half — red branding strip */
+.evoucher-top {
+  background: #7c1717;
+  color: #fff;
+  padding: 20px 28px 18px;
+  text-align: center;
+}
+
+.evoucher-eyebrow {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin-bottom: 10px;
+}
+
+.evoucher-value {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(26px, 5vw, 40px);
+  font-weight: 700;
+  letter-spacing: .04em;
+  line-height: 1.1;
+}
+
+.evoucher-desc {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 15px;
+  opacity: .85;
+  margin-top: 6px;
+}
+
+/* Perforated tear line */
+.evoucher-tear {
+  display: flex;
+  align-items: center;
+  background: #f5f0e8;
+  border-top: 2px dashed rgba(26,26,26,.25);
+  border-bottom: 2px dashed rgba(26,26,26,.25);
+  padding: 6px 0;
+  position: relative;
+}
+
+.evoucher-notch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  flex-shrink: 0;
+}
+.evoucher-notch--l { margin-left: -12px; }
+.evoucher-notch--r { margin-right: -12px; }
+
+.evoucher-tear-label {
+  flex: 1;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: rgba(26,26,26,.4);
+  text-align: center;
+}
+
+/* Bottom half — claim details */
+.evoucher-bottom {
+  padding: 18px 28px 20px;
+  background: #fffdf8;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.evoucher-gift-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.evoucher-gift {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: #fff;
+  min-width: 100px;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.evoucher-gift-icon {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  display: block;
+}
+
+.evoucher-gift-label {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.evoucher-code-wrap {
+  margin-top: 4px;
+}
+
+.evoucher-code-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(26,26,26,.4);
+}
+
+.evoucher-code {
+  font-family: 'Space Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  color: #7c1717;
+  margin-top: 2px;
+}
+
+.evoucher-validity {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 13px;
+  color: rgba(26,26,26,.5);
+}
+
+.evoucher-disclaimer {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: rgba(26,26,26,.35);
+  letter-spacing: .06em;
+  line-height: 1.6;
+  max-width: 34ch;
+  margin: 0 auto;
+}
+
 @media (max-width: 700px) {
   .about-main {
     background-size: auto 760px;
@@ -396,8 +567,24 @@
 
   .team-break {
     margin: 0 -22px;
-    height: 30px;
+    height: 72px;
     border-radius: 8px;
+  }
+
+  .detail-row {
+    width: 100%;
+    column-gap: 10px;
+  }
+
+  .receipt-evoucher {
+    width: 100%;
+    margin-top: 26px;
+  }
+
+  .evoucher-top,
+  .evoucher-bottom {
+    padding-left: 16px;
+    padding-right: 16px;
   }
 
   .team-slide-window {
