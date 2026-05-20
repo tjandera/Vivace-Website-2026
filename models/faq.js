@@ -1,3 +1,13 @@
+'use strict';
+
+/*
+ * models/faq.js
+ *
+ * Q&A pairs rendered as an accordion on the /faq page.
+ * Set open: true on a question to have it expanded by default —
+ * handy for the most common question so it's visible immediately.
+ */
+
 module.exports = [
   {
     num: '01',

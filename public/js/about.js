@@ -1,5 +1,24 @@
 'use strict';
 
+/*
+ * public/js/about.js
+ *
+ * Two things run on the About page:
+ *
+ *   Receipt print animation — a staged sequence that opens the store doors,
+ *     feeds paper out of a thermal-printer slot, and reveals each line of
+ *     the receipt from the bottom up (mirroring how real thermal printers
+ *     work). Timing constants are at the top of the IIFE so they're easy
+ *     to tweak without hunting through the code.
+ *
+ *   Team slider — a simple prev/next/dot carousel for the team photos. Lives
+ *     inside the same IIFE so it shares the early-return guard at the top.
+ *
+ * The whole thing is wrapped in an IIFE to keep these variables off window.
+ * If the user prefers reduced motion, the animation is skipped and all lines
+ * are shown immediately.
+ */
+
 (function () {
   const door    = document.getElementById('store-intro');
   const lines   = Array.from(document.querySelectorAll('.rl'));

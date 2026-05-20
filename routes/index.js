@@ -1,66 +1,37 @@
 'use strict';
 
+/*
+ * routes/index.js
+ *
+ * Defines every URL the app responds to and maps each one to the
+ * right controller method. No business logic lives here — just the
+ * routing table. If you need to add a new page, register it here
+ * and write its logic in the appropriate controller.
+ */
+
 const express = require('express');
 const router  = express.Router();
 
-const schools    = require('../models/schools');
-const catalogue  = require('../models/cca-catalogue');
-const partners   = require('../models/partners');
-const faq        = require('../models/faq');
-const events     = require('../models/events');
+const homeController    = require('../controllers/homeController');
+const exploreController = require('../controllers/exploreController');
+const pageController    = require('../controllers/pageController');
 
-// Home page — intro, hero, market-map, about only
-router.get('/', (req, res) => {
-  res.render('index', { schools });
-});
+// ── Home ──────────────────────────────────────────────────────────────────────
+router.get('/', homeController.index);
 
-// Explore page — standalone, optional pre-filter by school
-router.get('/explore', (req, res) => {
-  res.render('explore-page', { schools, ccas: catalogue, activeSchool: null });
-});
+// ── CCA Explorer ──────────────────────────────────────────────────────────────
+router.get('/explore',          exploreController.all);
+router.get('/explore/:school',  exploreController.bySchool);   // e.g. /explore/acf
 
-router.get('/explore/:school', (req, res) => {
-  const school = req.params.school.toLowerCase();
-  const valid  = schools.map(s => s.id);
-  const activeSchool = valid.includes(school) ? school : null;
-  res.render('explore-page', { schools, ccas: catalogue, activeSchool });
-});
+// ── Static-ish pages ──────────────────────────────────────────────────────────
+router.get('/about',       pageController.about);
+router.get('/faq',         pageController.faq);
+router.get('/partners',    pageController.partners);
+router.get('/events',      pageController.events);
+router.get('/map',         pageController.map);
+router.get('/programmes',  pageController.programmes);
 
-// About page
-router.get('/about', (req, res) => {
-  res.render('about-page', { page: 'about' });
-});
-
-// FAQ page
-router.get('/faq', (req, res) => {
-  res.render('faq-page', { faq, page: 'faq' });
-});
-
-// Partners & Deals page
-router.get('/partners', (req, res) => {
-  res.render('partners-page', { partners, page: 'partners' });
-});
-
-// Events / Calendar page
-router.get('/events', (req, res) => {
-  res.render('events-page', { events });
-});
-
-// Venue map page
-router.get('/map', (req, res) => {
-  res.render('map-page');
-});
-
-// Programmes / schedule page
-router.get('/programmes', (req, res) => {
-  res.render('programmes-page');
-});
-
-// CCA detail page
-router.get('/cca/:id', (req, res) => {
-  const cca = catalogue.find(c => c.id === req.params.id);
-  if (!cca) return res.status(404).send('CCA not found');
-  res.render('cca', { cca });
-});
+// ── CCA detail ────────────────────────────────────────────────────────────────
+router.get('/cca/:id',     pageController.ccaDetail);
 
 module.exports = router;

@@ -1,3 +1,14 @@
+/*
+ * public/js/hero.js
+ *
+ * Three things happen here:
+ *   1. Clicking the hero wordmark cycles through a colour palette (the "pop").
+ *   2. navigateWithDoors() triggers the page-transition animation before any
+ *      internal navigation — keeps the door close/open effect consistent.
+ *   3. The school fruit buttons in the basket hero route to /explore/:school
+ *      through that same door transition.
+ */
+
 // ── Hero wordmark colour-pop interaction ──────────────────────────────────────
 const wordmark = document.querySelector('.hero-wordmark');
 if (wordmark) {

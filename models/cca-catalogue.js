@@ -1,5 +1,26 @@
 'use strict';
 
+/*
+ * models/cca-catalogue.js
+ *
+ * Generates the full list of CCA objects that powers the Explore page,
+ * search, and individual CCA detail pages.
+ *
+ * Rather than maintaining ~120 CCA entries by hand, the catalogue is built
+ * from three smaller lookup tables:
+ *
+ *   categories          — metadata shared by every CCA in a school umbrella
+ *   commitmentByCluster — how often each activity type typically meets
+ *   groups              — the actual CCA names, linked to a category + cluster
+ *
+ * The flatMap at the bottom joins them into individual CCA objects, each with
+ * a URL slug, booth number, and all the display fields the templates need.
+ *
+ * To add a new CCA: find the matching group entry and add the name to its
+ * names array. Everything else (booth number, slug, colour, etc.) is derived
+ * automatically.
+ */
+
 const categories = {
   acf: {
     short: 'ACF',
@@ -135,6 +156,9 @@ const groups = [
   { category: 'gri',  cluster: 'Institutes',                      names: ['Asia Private Equity Club (APECS)', 'Artificial Intelligence Club', 'Blockchain Club', 'Business Intelligence & Analytics (BIA)', 'Civil Defence Lionhearter Chapter', 'Eagles Inc.', 'FinLIT Programme', 'FinTech Club', 'SMU Purple', 'Mentorship Committee', 'Smart City Society', 'Social Impact Catalyst (SIC)', 'Sustainable Investment Club'] },
 ];
 
+// Turns a CCA name into a URL-safe slug. The `used` map deduplicates slugs
+// when two CCAs would otherwise produce the same string (e.g. two clubs
+// both called "Law Society" in different umbrella groups).
 function slugify(name, used) {
   const base = name
     .toLowerCase()
