@@ -24,15 +24,17 @@
    HERO IMAGE
    ════════════════════════════════════════════ */
 .sponsors-hero {
-  padding: 56px 20px 14px;
+  padding: 16px 20px 0;
   display: flex;
   justify-content: center;
 }
 
 .sponsors-hero-img {
   display: block;
-  width: min(820px, 92vw);
-  height: auto;
+  width: min(860px, 94vw);
+  max-height: 50vh;
+  object-fit: contain;
+  object-position: center top;
 }
 
 /* ════════════════════════════════════════════

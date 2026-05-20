@@ -272,7 +272,7 @@
 .receipt-team-title-year {
   font-family: 'Bagel Fat One', sans-serif;
   font-size: clamp(30px, 7vw, 54px);
-  color: var(--red);
+  color: #7c1717;
   line-height: 1;
 }
 
@@ -317,7 +317,7 @@
     linear-gradient(135deg, rgba(124,23,23,.10) 0 1px, transparent 1px 18px),
     linear-gradient(45deg, rgba(124,23,23,.08) 0 1px, transparent 1px 18px),
     #d9d2bf;
-  color: rgba(124,23,23,.72);
+  color: #7c1717;
   font-family: Georgia, 'Times New Roman', serif;
   font-size: clamp(30px, 6vw, 58px);
   font-weight: 700;

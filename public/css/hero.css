@@ -548,6 +548,22 @@
     line-height:1;
     color:var(--red);
   }
+  .hero-logo-link{
+    display:block;
+    margin:8px auto 0;
+    width:min(66vw, 900px);
+    transition:transform .22s cubic-bezier(.2,1.35,.32,1), filter .2s ease;
+  }
+  .hero-logo-link:hover{
+    transform:scale(1.04) rotate(-.5deg);
+    filter:drop-shadow(0 12px 28px rgba(0,0,0,.22));
+  }
+  .hero-logo-img{
+    display:block;
+    width:100%;
+    height:auto;
+    filter:drop-shadow(4px 6px 0 rgba(26,26,26,.18));
+  }
   .basket-hero .hero-meta{
     margin-top:18px;
     display:flex;
@@ -970,10 +986,13 @@
   }
 
   /* Larger meta pills */
+  .basket-hero .hero-meta{
+    margin-top:6px;
+  }
   .basket-hero .hero-meta span{
-    font-size:18px !important;
-    padding:10px 20px !important;
-    min-height:46px !important;
+    font-size:22px !important;
+    padding:12px 26px !important;
+    min-height:52px !important;
   }
 
   /* ── Basket zone ── */
