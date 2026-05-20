@@ -74,7 +74,7 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/SMUSA.png',
       modifierClass: '',
-      style: 'left:23%; top:58%; --r:-12deg; width:28%',
+      style: 'left:23%; top:66%; --r:-12deg; width:28%',
     },
   },
   {
