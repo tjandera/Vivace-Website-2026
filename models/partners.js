@@ -1,3 +1,18 @@
+'use strict';
+
+/*
+ * models/partners.js
+ *
+ * Two things live here: the sponsor shelf and the deals board.
+ *
+ * tiers — sponsors grouped by level (Emerald down to Silver). Each tier
+ *   drives one shelf row on the partners page. Empty sponsors arrays are
+ *   fine — the row just won't render any logos.
+ *
+ * deals — the coupon-card grid below the shelf. headStyle / percStyle let
+ *   you colour individual cards differently without touching the template.
+ */
+
 module.exports = {
   tiers: [
     {

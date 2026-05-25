@@ -1,0 +1,56 @@
+'use strict';
+
+/*
+ * pageController.js
+ *
+ * Handles all the "static-ish" pages — pages that just pull from a
+ * data model and render a view without any request-specific logic.
+ *
+ * Keeping these together avoids creating a one-function file for
+ * every single page, while still cleanly separating routing from rendering.
+ */
+
+const partners  = require('../models/partners');
+const faq       = require('../models/faq');
+const events    = require('../models/events');
+const catalogue = require('../models/cca-catalogue');
+
+// About page — receipt-print animation, team slider, e-voucher
+exports.about = (req, res) => {
+  res.render('about-page', { page: 'about' });
+};
+
+// FAQ page — accordion of common questions
+exports.faq = (req, res) => {
+  res.render('faq-page', { faq, page: 'faq' });
+};
+
+// Partners & Deals — sponsor shelf grid
+exports.partners = (req, res) => {
+  res.render('partners-page', { partners, page: 'partners' });
+};
+
+// Events / Calendar
+exports.events = (req, res) => {
+  res.render('events-page', { events });
+};
+
+// Venue map — zoomable campus map + location cards
+exports.map = (req, res) => {
+  res.render('map-page');
+};
+
+// Programmes / schedule — day-by-day lineup
+exports.programmes = (req, res) => {
+  res.render('programmes-page');
+};
+
+// Individual CCA detail page
+exports.ccaDetail = (req, res) => {
+  const cca = catalogue.find(c => c.id === req.params.id);
+
+  // Return a plain 404 if the slug doesn't exist — no need for a fancy error page
+  if (!cca) return res.status(404).send('CCA not found');
+
+  res.render('cca', { cca });
+};

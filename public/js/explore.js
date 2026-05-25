@@ -1,3 +1,21 @@
+/*
+ * public/js/explore.js
+ *
+ * Drives the CCA Explore page: filtering, search, progressive load-more,
+ * and the basket summary banner.
+ *
+ * All filter/search state lives in two variables: `activeCat` (which school
+ * umbrella chip is active) and the live value of the search input. Every
+ * state change funnels through applyFilter(), which re-evaluates visibility
+ * for every card in one pass — keeps the logic in one place.
+ *
+ * Load-more works in rows rather than a flat count so that the number of
+ * revealed cards scales with the grid column count on different screen sizes.
+ *
+ * If the server injected window.VIVACE_ACTIVE_SCHOOL (set by the
+ * /explore/:school route), the matching chip is pre-selected on page load.
+ */
+
 // ── State ────────────────────────────────────────────────────────────────────
 const chips         = document.querySelectorAll('#chips .chip');
 const products      = document.querySelectorAll('.product');

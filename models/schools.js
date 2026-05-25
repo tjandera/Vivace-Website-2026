@@ -1,3 +1,25 @@
+'use strict';
+
+/*
+ * models/schools.js
+ *
+ * The seven school umbrellas that organise every CCA at Vivace.
+ * This array is the single source of truth — it drives the basket
+ * hero on the home page, the filter chips on the explore page,
+ * and the aisle labels throughout the site.
+ *
+ * Field reference:
+ *   id            — URL slug used in /explore/:id routes
+ *   name          — short display name (chip labels, aisle tags)
+ *   fullName      — full official name shown under the basket item
+ *   color         — CSS custom property for the school's brand colour
+ *   count         — approximate number of CCAs under this umbrella
+ *   aisle         — human-readable aisle label shown on hover
+ *   basket.img    — path to the basket-goods PNG sitting in the hero
+ *   basket.modifierClass — extra class for per-item CSS tweaks (scale, etc.)
+ *   basket.style  — inline positioning for that item inside the basket scene
+ */
+
 module.exports = [
   {
     id: 'acf',
@@ -74,7 +96,7 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/SMUSA.png',
       modifierClass: '',
-      style: 'left:23%; top:58%; --r:-12deg; width:28%',
+      style: 'left:23%; top:66%; --r:-12deg; width:28%',
     },
   },
   {

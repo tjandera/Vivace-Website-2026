@@ -126,20 +126,40 @@
     </div>
 </footer>
 
-<!-- Floating Ask Us CTA -->
-<a class="ig-cta" href="https://instagram.com/smuvivace" target="_blank" rel="noopener">
-  <span class="ig-icon">IG</span>
-  <span>
-    <span style="display:block; line-height:1">Ask Us!</span>
-    <span style="display:block; font-family:'Space Mono',monospace; font-size:11px; opacity:.85; margin-top:2px">@smuvivace</span>
-  </span>
-  <span class="pulse"></span>
-</a>
+<!-- Floating Telegram CTA + Voucher Pill (pill visible on home page only) -->
+<div class="ig-cta-wrap">
+  <button class="voucher-pill" id="voucher-pill-btn" type="button" aria-label="Open exclusive gift voucher">
+    <span class="ig-icon" style="background:var(--ink);color:var(--yellow)">🎟</span>
+    <span>
+      <span style="display:block; line-height:1">Grab Your Voucher!</span>
+      <span style="display:block; font-family:'Space Mono',monospace; font-size:11px; opacity:.85; margin-top:2px">Vivace 2026 Exclusive</span>
+    </span>
+    <span class="voucher-pulse"></span>
+  </button>
+  <a class="ig-cta" href="https://t.me/Vivace2026_bot" target="_blank" rel="noopener">
+    <span class="ig-icon"><i class="fa-brands fa-telegram" style="font-size:18px"></i></span>
+    <span>
+      <span style="display:block; line-height:1">Chat with Us!</span>
+      <span style="display:block; font-family:'Space Mono',monospace; font-size:11px; opacity:.85; margin-top:2px">Vivace26 Chatbot</span>
+    </span>
+    <span class="pulse"></span>
+  </a>
+</div>
 
 <!-- Door-close overlay for page transitions -->
 <div id="page-transition" aria-hidden="true">
-  <div class="pt-door pt-door-l"></div>
-  <div class="pt-door pt-door-r"></div>
+  <div class="pt-door pt-door-l">
+    <div class="si-logo-half si-logo-half--l" aria-hidden="true">
+      <img src="/assets/resources-design/SMU_Vivace_Logo.png" alt="">
+    </div>
+    <div class="si-glare"></div>
+  </div>
+  <div class="pt-door pt-door-r">
+    <div class="si-logo-half si-logo-half--r" aria-hidden="true">
+      <img src="/assets/resources-design/SMU_Vivace_Logo.png" alt="">
+    </div>
+    <div class="si-glare"></div>
+  </div>
 </div>
 
 <script src="/js/nav.js"></script>

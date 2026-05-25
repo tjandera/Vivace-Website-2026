@@ -529,10 +529,43 @@
   }
   .school-fruit.product:focus-visible{ outline:0 }
 
+  /* ============ Floating CTA wrapper ============ */
+  .ig-cta-wrap{
+    position:fixed; right:24px; bottom:24px; z-index:60;
+    display:flex; flex-direction:column; align-items:flex-end; gap:10px;
+  }
+
+  /* ============ Voucher pill (home page only) ============ */
+  .voucher-pill{
+    display:none; position:relative;
+    align-items:center; gap:12px;
+    background:var(--yellow); color:var(--ink);
+    border:4px solid var(--ink); border-radius:999px;
+    padding:14px 20px;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
+    box-shadow:6px 6px 0 var(--ink);
+    transition: transform .14s ease, box-shadow .14s ease;
+    animation: pillBounce 2.5s ease-in-out infinite;
+    white-space:nowrap;
+    cursor:pointer;
+  }
+  body.home-page .voucher-pill{ display:flex }
+  .voucher-pill:hover{ transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--ink); animation:none }
+  .voucher-pill .voucher-pulse{
+    position:absolute; top:-6px; right:-6px;
+    width:22px; height:22px; border-radius:50%;
+    background:var(--red); border:3px solid var(--ink);
+    animation: pulseAnim 1.6s ease-out infinite;
+  }
+  @keyframes pillBounce{
+    0%,100%{ transform:translateY(0) }
+    50%{ transform:translateY(-5px) }
+  }
+
   /* ============ Floating IG Ask Us CTA ============ */
   .ig-cta{
-    position:fixed; right:24px; bottom:24px; z-index:60;
-    background:var(--pink); color:#fff;
+    position:static;
+    background:#0088cc; color:#fff;
     border:4px solid var(--ink); border-radius:999px;
     padding:14px 20px;
     font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
@@ -741,4 +774,117 @@
       repeating-linear-gradient(90deg, rgba(255,240,208,.08) 0 2px, transparent 2px 28px),
       var(--ink);
   }
-  .ig-cta{ background:var(--red) }
+  .ig-cta{ background:#0088cc }
+
+/* ============================================================
+   VOUCHER MODAL (home page only)
+   ============================================================ */
+.voucher-overlay{
+  display:none; position:fixed; inset:0; z-index:500;
+  background:rgba(0,0,0,.55);
+  align-items:center; justify-content:center;
+  padding:16px;
+}
+.voucher-overlay.is-open{ display:flex }
+
+.voucher-modal{
+  position:relative;
+  width:min(100%, 480px);
+  border:4px solid var(--ink); border-radius:16px;
+  overflow:hidden;
+  box-shadow:8px 8px 0 var(--ink);
+  background:#fff;
+  animation:vmPop .22s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes vmPop{
+  from{ transform:scale(.85); opacity:0 }
+  to  { transform:scale(1);   opacity:1 }
+}
+
+.voucher-close{
+  position:absolute; top:10px; right:12px; z-index:10;
+  background:var(--ink); color:#fff;
+  width:30px; height:30px; border-radius:50%;
+  font-size:14px; font-family:'Fredoka',sans-serif; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+  transition:background .12s ease;
+}
+.voucher-close:hover{ background:#333 }
+
+/* Top strip */
+.vm-top{
+  background:#7c1717; color:#fff;
+  padding:20px 28px 18px; text-align:center;
+}
+.vm-eyebrow{
+  display:block;
+  font-family:'Space Mono',monospace; font-size:10px;
+  letter-spacing:.22em; text-transform:uppercase;
+  opacity:.75; margin-bottom:10px;
+}
+.vm-title{
+  font-family:'Fredoka',sans-serif; font-size:clamp(26px,5vw,40px);
+  font-weight:700; letter-spacing:.04em; line-height:1.1;
+}
+.vm-desc{
+  font-family:'Fredoka',sans-serif; font-size:15px; opacity:.85; margin-top:6px;
+}
+
+/* Perforated tear line */
+.vm-tear{
+  display:flex; align-items:center;
+  background:#f5f0e8;
+  border-top:2px dashed rgba(26,26,26,.25);
+  border-bottom:2px dashed rgba(26,26,26,.25);
+  padding:6px 0;
+}
+.vm-notch{
+  width:20px; height:20px; border-radius:50%;
+  background:var(--paper); border:3px solid var(--ink); flex-shrink:0;
+}
+.vm-notch--l{ margin-left:-12px }
+.vm-notch--r{ margin-right:-12px }
+.vm-tear-label{
+  flex:1;
+  font-family:'Space Mono',monospace; font-size:9px;
+  letter-spacing:.25em; text-transform:uppercase;
+  color:rgba(26,26,26,.4); text-align:center;
+}
+
+/* Bottom claim area */
+.vm-bottom{
+  padding:18px 24px 22px; background:#fffdf8;
+  text-align:center; display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+.vm-gift-row{
+  display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:4px;
+}
+.vm-gift{
+  display:flex; flex-direction:column; align-items:center; gap:4px;
+  border:2px solid var(--ink); border-radius:10px;
+  padding:10px 14px; background:#fff; min-width:90px;
+  box-shadow:3px 3px 0 var(--ink);
+}
+.vm-gift-icon{ width:48px; height:48px; object-fit:contain; display:block }
+.vm-gift-label{
+  font-family:'Fredoka',sans-serif; font-weight:700; font-size:13px;
+  color:var(--ink); text-align:center; line-height:1.2;
+}
+.vm-code-wrap{ margin-top:4px }
+.vm-code-label{
+  font-family:'Space Mono',monospace; font-size:9px;
+  letter-spacing:.2em; text-transform:uppercase; color:rgba(26,26,26,.4);
+}
+.vm-code{
+  font-family:'Space Mono',monospace; font-size:20px; font-weight:700;
+  letter-spacing:.14em; color:#7c1717; margin-top:2px;
+}
+.vm-validity{
+  font-family:'Fredoka',sans-serif; font-size:13px; color:rgba(26,26,26,.5);
+}
+.vm-disclaimer{
+  font-family:'Space Mono',monospace; font-size:9px;
+  color:rgba(26,26,26,.35); letter-spacing:.06em;
+  line-height:1.6; max-width:34ch; margin:0 auto;
+}

@@ -1,3 +1,17 @@
+'use strict';
+
+/*
+ * models/events.js
+ *
+ * The three headline events shown on the Events / Calendar page.
+ * Each entry maps to one event card in the template.
+ *
+ * picClass — matches a CSS class in events.css that sets the card's
+ *   background illustration (p1, p2, p3).
+ * admission — short string shown as the "ticket" badge: "Free entry",
+ *   "Pre-book", or "Ticketed".
+ */
+
 module.exports = [
   {
     picClass: 'p1',

@@ -1,3 +1,17 @@
+/*
+ * public/js/nav.js
+ *
+ * Handles the full-screen overlay navigation and the page-transition effect.
+ *
+ *   Drawer menu       — open/close the overlay, trap scroll while open,
+ *                       restore focus to the trigger button on close.
+ *   Accordion sub-menus — only one sub-menu stays open at a time; clicking
+ *                         another collapses the previous one automatically.
+ *   Door transition   — any internal link inside the overlay triggers the
+ *                       door-close animation before actually navigating,
+ *                       so the opening-door effect plays on the destination.
+ */
+
 // ── Drawer menu ───────────────────────────────────────────────────────────────
 const menuBtn      = document.getElementById('menu-btn');
 const menuClose    = document.getElementById('menu-close');

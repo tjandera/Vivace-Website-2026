@@ -136,9 +136,13 @@
     .events-grid{ grid-template-columns: 1fr }
     .partners-row{ grid-template-columns: repeat(2, 1fr) }
     .foot-grid{ grid-template-columns: 1fr }
-    .ig-cta{ right:12px; bottom:12px; padding:7px; border-radius:16px; box-shadow:4px 4px 0 var(--ink) }
+    .ig-cta-wrap{ right:12px; bottom:12px }
+    .ig-cta{ padding:7px; border-radius:16px; box-shadow:4px 4px 0 var(--ink) }
     .ig-cta .ig-icon{ width:30px; height:30px }
     .ig-cta > span:nth-child(2){ display:none !important }
+    .voucher-pill{ padding:7px; border-radius:16px; box-shadow:4px 4px 0 var(--ink) }
+    .voucher-pill .ig-icon{ width:30px; height:30px }
+    .voucher-pill > span:nth-child(2){ display:none !important }
     .stat .n{ font-size:38px }
     .filter-bar{ padding:14px }
     .store-status{
