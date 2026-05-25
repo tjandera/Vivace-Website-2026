@@ -1,5 +1,5 @@
 <%- include('partials/head') %>
-<body>
+<body class="home-page">
 
 <%- include('partials/intro') %>
 <%- include('partials/nav') %>
@@ -7,5 +7,69 @@
 <%- include('partials/footer') %>
 
 <script src="/js/hero.js"></script>
+
+<!-- Voucher Modal (home page only) -->
+<div class="voucher-overlay" id="voucher-overlay" role="dialog" aria-modal="true" aria-label="Welcome gift voucher" style="display:none">
+  <div class="voucher-modal">
+    <button class="voucher-close" id="voucher-close" type="button" aria-label="Close voucher">✕</button>
+
+    <div class="vm-top">
+      <span class="vm-eyebrow">★ &nbsp; Vivace 2026 Exclusive &nbsp; ★</span>
+      <div class="vm-title">Welcome Gift Voucher</div>
+      <div class="vm-desc">Show this at any CCA booth on fair day to redeem</div>
+    </div>
+
+    <div class="vm-tear">
+      <div class="vm-notch vm-notch--l"></div>
+      <span class="vm-tear-label">✂ &nbsp; tear here &nbsp; ✂</span>
+      <div class="vm-notch vm-notch--r"></div>
+    </div>
+
+    <div class="vm-bottom">
+      <div class="vm-gift-row">
+        <div class="vm-gift">
+          <img class="vm-gift-icon" src="/assets/object-paper-bag.svg" alt="">
+          <span class="vm-gift-label">Free<br>Welcome Kit</span>
+        </div>
+        <div class="vm-gift">
+          <img class="vm-gift-icon" src="/assets/object-milk-carton.svg" alt="">
+          <span class="vm-gift-label">Free<br>Drink</span>
+        </div>
+        <div class="vm-gift">
+          <img class="vm-gift-icon" src="/assets/object-loyalty-card.svg" alt="">
+          <span class="vm-gift-label">Goodie<br>Bag</span>
+        </div>
+      </div>
+
+      <div class="vm-code-wrap">
+        <div class="vm-code-label">Redemption Code</div>
+        <div class="vm-code">VIVACE26-GIFT</div>
+      </div>
+
+      <div class="vm-validity">Valid: 13 – 14 Aug 2026 only &nbsp;·&nbsp; SMU Concourse</div>
+      <p class="vm-disclaimer">One redemption per person. Subject to availability.<br>Not transferable. Organised by SMUSA.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('voucher-pill-btn');
+  var overlay = document.getElementById('voucher-overlay');
+  var closeBtn = document.getElementById('voucher-close');
+  function openModal() {
+    overlay.style.display = 'flex';
+    overlay.classList.add('is-open');
+  }
+  function closeModal() {
+    overlay.style.display = 'none';
+    overlay.classList.remove('is-open');
+  }
+  if (btn) btn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (overlay) overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+})();
+</script>
 </body>
 </html>
