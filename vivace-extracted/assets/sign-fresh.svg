@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 160" width="300" height="160">
-  
-  <path d="M0,20 L15,80 L0,140 L300,140 L285,80 L300,20 Z" fill="#49AD77" stroke="#1A1A1A" stroke-width="4"></path>
-  
-  <path d="M8,30 L20,80 L8,130 L292,130 L280,80 L292,30 Z" fill="none" stroke="white" stroke-width="2.5" opacity="0.35"></path>
-  
-  <text font-family="sans-serif" font-weight="900" font-size="72" fill="white" text-anchor="middle" x="150" y="112" letter-spacing="2">FRESH</text>
-  <text font-family="sans-serif" font-weight="900" font-size="72" fill="none" stroke="#1A1A1A" stroke-width="3" text-anchor="middle" x="150" y="112" letter-spacing="2">FRESH</text>
-</svg>
