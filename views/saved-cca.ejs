@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saved CCA Receipt — SMU Vivace 2026</title>
+
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/saved-ccas.css?v=3">
+</head>
+<body class="receipt-page">
+
+  <nav class="receipt-page-nav" aria-label="Receipt navigation">
+    <a class="receipt-page-logo" href="/">
+      <span class="receipt-page-dot">V</span>
+      Vivace<span>'26</span>
+    </a>
+    <div class="receipt-page-actions">
+      <a href="/explore">Browse CCAs</a>
+      <a href="/">Home</a>
+      <span class="receipt-page-count"><span data-saved-nav-count>0</span> saved</span>
+    </div>
+  </nav>
+
+  <main class="receipt-page-shell">
+
+    <section class="receipt-page-copy" aria-label="Saved receipt intro">
+      <span class="receipt-page-eyebrow">Vivace Receiptify</span>
+      <h1>Your saved CCA lineup.</h1>
+      <p>A dark-mode receipt for the CCAs you liked, printed like a fresh checkout slip for your Vivace basket.</p>
+      <div class="receipt-page-stats" aria-label="Receipt details">
+        <span>2026 CCA Fair</span>
+        <span>SMU Concourse</span>
+        <span>Browser basket</span>
+      </div>
+    </section>
+
+    <section class="saved-receipt" id="saved-receipt" aria-label="Saved CCA receipt" style="color:#151515">
+      <div class="receipt-head">
+        <div class="receipt-kicker">Vivace mart checkout</div>
+        <h2 class="receipt-title">CCA Receipt</h2>
+        <span class="receipt-count" data-saved-count>0 saved</span>
+      </div>
+      <p class="receipt-empty" data-saved-empty>No saved CCAs yet. Your receipt is ready when your basket is.</p>
+      <ol class="receipt-list" data-saved-list></ol>
+      <div class="receipt-total">
+        <span>Total saved</span>
+        <strong data-saved-count>0 saved</strong>
+      </div>
+      <div class="receipt-actions">
+        <button class="receipt-print" type="button" data-print-saved>Print receipt</button>
+        <button class="receipt-clear" type="button" data-clear-saved>Clear receipt</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Inject catalogue so saved-ccas.js can resolve names -->
+  <script>window.VIVACE_CCAS = <%- JSON.stringify(ccas) %>;</script>
+  <script src="/js/saved-ccas.js"></script>
+
+</body>
+</html>

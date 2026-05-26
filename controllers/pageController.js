@@ -48,9 +48,11 @@ exports.programmes = (req, res) => {
 // Individual CCA detail page
 exports.ccaDetail = (req, res) => {
   const cca = catalogue.find(c => c.id === req.params.id);
-
-  // Return a plain 404 if the slug doesn't exist — no need for a fancy error page
   if (!cca) return res.status(404).send('CCA not found');
-
   res.render('cca', { cca });
+};
+
+// Saved CCA receipt page
+exports.savedCca = (req, res) => {
+  res.render('saved-cca', { ccas: catalogue });
 };

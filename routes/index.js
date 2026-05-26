@@ -34,4 +34,7 @@ router.get('/programmes',  pageController.programmes);
 // ── CCA detail ────────────────────────────────────────────────────────────────
 router.get('/cca/:id',     pageController.ccaDetail);
 
+// ── Saved CCA receipt ─────────────────────────────────────────────────────────
+router.get('/saved-cca',   pageController.savedCca);
+
 module.exports = router;

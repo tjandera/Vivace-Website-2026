@@ -1,4 +1,5 @@
 <%- include('partials/head') %>
+<link rel="stylesheet" href="/css/saved-ccas.css">
 <body>
 
 <%- include('partials/intro') %>
@@ -13,28 +14,6 @@
   </div>
 </section>
 
-<!-- CBF quick-access strip -->
-<div class="cbf-strip">
-  <div class="container">
-    <span class="cbf-label">Jump to:</span>
-    <% const cbfs = [
-      { id:'acf',  name:'ACF',      color:'var(--red)'    },
-      { id:'sics', name:'SICS',     color:'var(--green)'  },
-      { id:'icon', name:'ICON',     color:'var(--orange)' },
-      { id:'smux', name:'SMUX',     color:'var(--blue)'   },
-      { id:'ssu',  name:'SSU',      color:'var(--yellow)' },
-      { id:'gri',  name:'GRI',      color:'var(--pink)'   },
-      { id:'acad', name:'Academic', color:'var(--ink)'    },
-    ] %>
-    <% cbfs.forEach(c => { %>
-      <a href="/explore/<%= c.id %>" class="cbf-pill <%= activeSchool === c.id ? 'cbf-active' : '' %>" style="--cbf-color:<%= c.color %>"><%= c.name %></a>
-    <% }) %>
-    <% if (activeSchool) { %>
-      <a href="/explore" class="cbf-pill cbf-clear">✕ Show all</a>
-    <% } %>
-  </div>
-</div>
-
 <!-- Main explore section (reuses the shared partial) -->
 <%- include('partials/explore') %>
 
@@ -44,5 +23,6 @@
 <script>window.VIVACE_ACTIVE_SCHOOL = '<%= activeSchool %>';</script>
 <% } %>
 <script src="/js/explore.js"></script>
+<script src="/js/saved-ccas.js"></script>
 </body>
 </html>

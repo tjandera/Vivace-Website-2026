@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" style="--cca-color: <%= cca.color %>">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,81 +9,298 @@
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/base.css">
   <link rel="stylesheet" href="/css/cca.css">
+  <link rel="stylesheet" href="/css/saved-ccas.css">
+
+  <style>:root { --cca-color: <%= cca.color %>; }</style>
 </head>
 <body>
 
 <!-- Pennant marquee -->
 <div class="cca-pennant">
   <div class="strip" aria-hidden="true">
-    <span>Vivace 2026 · <%= cca.categoryShort %> · <%= cca.cluster %></span>
-    <span>Booth <%= cca.booth %> · Intake <%= cca.intake %></span>
+    <span>Vivace 2026 CCA shelf</span>
+    <span>Fresh profile page</span>
     <span>Pick what fills your basket</span>
-    <span>Vivace 2026 · <%= cca.categoryShort %> · <%= cca.cluster %></span>
-    <span>Booth <%= cca.booth %> · Intake <%= cca.intake %></span>
+    <span>Vivace 2026 CCA shelf</span>
+    <span>Fresh profile page</span>
     <span>Pick what fills your basket</span>
   </div>
 </div>
 
-<!-- Simplified nav -->
+<!-- Nav -->
 <nav class="cca-nav">
   <div class="nav-row">
     <a class="logo" href="/">
       <span class="logo-dot">V</span>
-      VIVACE<span style="font-size:.55em; color:var(--yellow); margin-left:6px">'26</span>
+      VIVACE<span style="font-size:.6em; color:var(--red); margin-left:6px">'26</span>
     </a>
-    <a class="back-link" href="/#explore">← Back to CCA shelf</a>
+    <div class="nav-actions">
+      <a class="back-link" href="/saved-cca">
+        Saved receipt <span class="saved-nav-count" data-saved-nav-count>0</span>
+      </a>
+      <a class="back-link" href="/explore">Back to CCA shelf</a>
+    </div>
   </div>
 </nav>
 
 <main class="cca-main">
   <div class="cca-page">
 
-    <!-- Hero: title + gallery -->
+    <!-- ── Hero: title panel + booth map ─────────────────────── -->
     <section class="cca-hero">
+
       <div class="title-panel">
-        <span class="cca-eyebrow"><%= cca.categoryShort %> · <%= cca.cluster %></span>
+        <div class="title-tags">
+          <span class="cca-eyebrow">Club Name</span>
+          <span class="cca-eyebrow"><%= cca.categoryShort %> — <%= cca.cluster %></span>
+        </div>
         <h1><%= cca.name %></h1>
         <div class="cca-meta-row">
           <span>Booth <%= cca.booth %></span>
-          <span>Commitment: <%= cca.commitment %></span>
-          <span>Intake: <%= cca.intake %></span>
+          <span>Commitment <%= cca.commitment %></span>
+          <span>Intake <%= cca.intake %></span>
         </div>
       </div>
 
-      <div class="gallery-card">
-        <% cca.images.forEach(function(src) { %>
-          <div class="paper-img">
-            <img src="<%= src %>" alt="">
+      <aside class="map-card" aria-label="Booth map preview">
+        <div class="map-head">
+          <h2>Booth Map</h2>
+          <span class="map-zone"><%= cca.boothMap.zone %></span>
+        </div>
+        <div class="map-board">
+          <span class="map-entry">ENTRY</span>
+          <span class="map-stage">STAGE</span>
+          <div class="map-marker" style="left:<%= cca.boothMap.x %>%; top:<%= cca.boothMap.y %>%">
+            <span><%= cca.icon %></span>
           </div>
-        <% }) %>
-      </div>
+        </div>
+        <div class="map-note">
+          <b>Booth <%= cca.booth %> — <%= cca.boothMap.block %></b>
+          <span><%= cca.boothMap.note %></span>
+        </div>
+      </aside>
+
     </section>
 
-    <!-- Content: about + quick facts -->
-    <section class="cca-content">
-      <div class="info-panel">
-        <h2>About This CCA</h2>
+    <!-- ── Profile: about + socials ──────────────────────────── -->
+    <section class="profile-grid" aria-label="CCA overview">
+
+      <article class="info-panel">
+        <span class="section-label">01 / About Us</span>
+        <h2>About Us</h2>
         <p><%= cca.description %></p>
         <p><%= cca.extra %></p>
-        <div class="cca-actions">
-          <a href="mailto:vivace@smu.edu.sg">Email interest</a>
-          <a class="ghost" href="/#explore">Browse more CCAs</a>
+        <div class="actions">
+          <button class="save-detail" type="button"
+            data-save-cca="<%= cca.id %>"
+            data-save-label="Save to receipt"
+            data-saved-label="Saved to receipt">Save to receipt</button>
+          <a href="mailto:<%= cca.membershipDetails.contact %>">Email interest</a>
+          <a href="/explore">Browse more CCAs</a>
+          <a href="/saved-cca">View saved receipt</a>
         </div>
+      </article>
+
+      <aside class="info-panel">
+        <span class="section-label">02 / Social Media</span>
+        <h2>Social Media</h2>
+        <div class="social-grid">
+          <% cca.socials.forEach(function(social) { %>
+            <div class="social-card">
+              <span>
+                <b><%= social.label %></b>
+                <span><%= social.value %></span>
+              </span>
+              <a href="<%= social.href %>">Open</a>
+            </div>
+          <% }) %>
+        </div>
+      </aside>
+
+    </section>
+
+    <!-- ── Section stack ─────────────────────────────────────── -->
+    <section class="section-stack" aria-label="CCA details">
+
+      <!-- Key Events -->
+      <article class="info-panel">
+        <span class="section-label">03 / Key Events</span>
+        <h2>Key Events</h2>
+        <div class="event-list">
+          <% cca.keyEvents.forEach(function(eventName, i) { %>
+            <div class="event-item">
+              <span class="event-num"><%= String(i + 1).padStart(2, '0') %></span>
+              <span>
+                <b><%= eventName %></b>
+                <span>Event description, date and venue can be added when confirmed by the CCA.</span>
+              </span>
+            </div>
+          <% }) %>
+        </div>
+      </article>
+
+      <!-- Gallery + optional video -->
+      <section class="media-section<%= cca.videoUrl ? ' has-video' : '' %>" id="media-section" aria-label="CCA gallery and video">
+
+        <div class="media-panel">
+          <div class="media-head">
+            <div>
+              <span class="section-label">04 / Gallery</span>
+              <h2>Gallery</h2>
+            </div>
+            <span class="map-zone" id="gallery-count">1 / <%= cca.images.length %></span>
+          </div>
+          <div class="carousel-shell">
+            <button class="carousel-btn prev" id="gallery-prev" type="button" aria-label="Previous image">&lsaquo;</button>
+            <div class="carousel-stage">
+              <img id="gallery-image" src="<%= cca.images[0] %>" alt="<%= cca.name %> gallery image 1">
+            </div>
+            <button class="carousel-btn next" id="gallery-next" type="button" aria-label="Next image">&rsaquo;</button>
+          </div>
+          <div class="carousel-meta" id="gallery-caption"><%= cca.name %> media preview 1 of <%= cca.images.length %></div>
+          <div class="thumb-row" id="gallery-thumbs" aria-label="Gallery thumbnails">
+            <% cca.images.forEach(function(src, i) { %>
+              <button class="thumb <%= i === 0 ? 'active' : '' %>" type="button" data-index="<%= i %>" aria-label="Show image <%= i + 1 %>">
+                <img src="<%= src %>" alt="">
+              </button>
+            <% }) %>
+          </div>
+        </div>
+
+        <% if (cca.videoUrl) { %>
+        <div class="media-panel video-panel" id="video-panel">
+          <div class="media-head">
+            <div>
+              <span class="section-label">Optional</span>
+              <h2>Video</h2>
+            </div>
+          </div>
+          <div class="video-frame" id="video-frame"></div>
+        </div>
+        <% } %>
+
+      </section>
+
+      <!-- Session details + Membership -->
+      <div class="detail-card-grid">
+
+        <article class="info-panel">
+          <span class="section-label">05 / Club Sessions</span>
+          <h2>Club Sessions</h2>
+          <div class="detail-list">
+            <div class="detail-item"><b>Frequency of Sessions</b><span><%= cca.sessionDetails.frequency %></span></div>
+            <div class="detail-item"><b>Session Format</b><span><%= cca.sessionDetails.format %></span></div>
+            <div class="detail-item"><b>Venue</b><span><%= cca.sessionDetails.venue %></span></div>
+            <div class="detail-item"><b>Notes</b><span><%= cca.sessionDetails.note %></span></div>
+          </div>
+        </article>
+
+        <article class="info-panel">
+          <span class="section-label">06 / Membership Details</span>
+          <h2>How To Join</h2>
+          <div class="detail-list">
+            <div class="detail-item">
+              <b>Membership Requirements</b>
+              <span><%= cca.membershipDetails.requirements %></span>
+            </div>
+            <% cca.membershipDetails.howToJoin.forEach(function(step, i) { %>
+              <div class="step-item">
+                <b>Step <%= i + 1 %></b>
+                <span><%= step %></span>
+              </div>
+            <% }) %>
+            <div class="detail-item">
+              <b>Contact</b>
+              <span><%= cca.membershipDetails.contact %></span>
+            </div>
+          </div>
+        </article>
+
       </div>
 
-      <div class="info-panel">
-        <h2>Quick Facts</h2>
-        <div class="cca-facts">
-          <div class="cca-fact"><b>Booth</b><%= cca.booth %></div>
-          <div class="cca-fact"><b>Commitment</b><%= cca.commitment %></div>
-          <div class="cca-fact"><b>Intake</b><%= cca.intake %></div>
+      <!-- FAQ -->
+      <article class="info-panel">
+        <span class="section-label">07 / FAQ</span>
+        <h2>FAQ</h2>
+        <div class="faq-list-mini">
+          <% cca.faq.forEach(function(item, i) { %>
+            <details class="faq-card" <%= i === 0 ? 'open' : '' %>>
+              <summary><%= item.question %></summary>
+              <p><%= item.answer %></p>
+            </details>
+          <% }) %>
         </div>
-      </div>
+      </article>
+
     </section>
 
   </div>
 </main>
 
-<script src="/js/cursor.js?v=2"></script>
+<!-- Gallery carousel script -->
+<script>
+(function() {
+  const images      = <%- JSON.stringify(cca.images) %>;
+  let   idx         = 0;
+  const imgEl       = document.getElementById('gallery-image');
+  const countEl     = document.getElementById('gallery-count');
+  const captionEl   = document.getElementById('gallery-caption');
+  const thumbsEl    = document.getElementById('gallery-thumbs');
+  const prevBtn     = document.getElementById('gallery-prev');
+  const nextBtn     = document.getElementById('gallery-next');
+  const ccaName     = <%- JSON.stringify(cca.name) %>;
+
+  function render() {
+    imgEl.src          = images[idx];
+    imgEl.alt          = ccaName + ' gallery image ' + (idx + 1);
+    countEl.textContent   = (idx + 1) + ' / ' + images.length;
+    captionEl.textContent = ccaName + ' media preview ' + (idx + 1) + ' of ' + images.length;
+    thumbsEl.querySelectorAll('.thumb').forEach(function(btn, i) {
+      btn.classList.toggle('active', i === idx);
+    });
+    prevBtn.hidden = images.length <= 1;
+    nextBtn.hidden = images.length <= 1;
+  }
+
+  prevBtn.addEventListener('click', function() {
+    idx = (idx - 1 + images.length) % images.length;
+    render();
+  });
+  nextBtn.addEventListener('click', function() {
+    idx = (idx + 1) % images.length;
+    render();
+  });
+  thumbsEl.querySelectorAll('.thumb').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      idx = Number(btn.dataset.index);
+      render();
+    });
+  });
+
+  render();
+
+  <% if (cca.videoUrl) { %>
+  (function() {
+    function getEmbedUrl(url) {
+      var yt = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]+)/);
+      if (yt) return 'https://www.youtube.com/embed/' + yt[1];
+      var vi = url.match(/vimeo\.com\/(\d+)/);
+      if (vi) return 'https://player.vimeo.com/video/' + vi[1];
+      return url;
+    }
+    var frame      = document.getElementById('video-frame');
+    var videoUrl   = <%- JSON.stringify(cca.videoUrl) %>;
+    var videoTitle = <%- JSON.stringify(cca.videoTitle || cca.name + ' video') %>;
+    if (/\.(mp4|webm|ogg)(\?.*)?$/i.test(videoUrl)) {
+      frame.innerHTML = '<video controls preload="metadata" src="' + videoUrl + '"></video>';
+    } else {
+      frame.innerHTML = '<iframe src="' + getEmbedUrl(videoUrl) + '" title="' + videoTitle + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    }
+  })();
+  <% } %>
+})();
+</script>
+
+<script src="/js/saved-ccas.js"></script>
 </body>
 </html>

@@ -40,7 +40,13 @@
           </div>
           <div class="foot">
             <span class="badge <%= cca.badge %>"><%= cca.intake %></span>
-            <a class="more" href="/cca/<%= cca.id %>">View →</a>
+            <div class="card-actions">
+              <button class="save-cca" type="button"
+                data-save-cca="<%= cca.id %>"
+                data-save-label="Save"
+                data-saved-label="Saved">Save</button>
+              <a class="more" href="/cca/<%= cca.id %>">View →</a>
+            </div>
           </div>
         </article>
       <% }) %>

@@ -170,17 +170,87 @@ function slugify(name, used) {
   return count ? `${base}-${count + 1}` : base;
 }
 
-const usedSlugs      = new Map();
-const catCounters    = {};
+const mapLanes = {
+  acf:  { zone: 'Aisle A — Arts Market',      y: 18 },
+  smux: { zone: 'Aisle B — Adventure Depot',  y: 29 },
+  ssu:  { zone: 'Aisle C — Sports Court',     y: 40 },
+  sics: { zone: 'Aisle D — Service Street',   y: 51 },
+  icon: { zone: 'Aisle E — Global Lane',      y: 62 },
+  acad: { zone: 'Aisle F — School Row',       y: 73 },
+  gri:  { zone: 'Aisle G — Growth Arcade',    y: 84 },
+};
+
+function makeKeyEvents(name, cluster) {
+  return [
+    `${name} Vivace Booth Introduction`,
+    `${cluster} Welcome Session`,
+    'Freshmen Meet-and-Greet',
+  ];
+}
+
+function makeSocials(id) {
+  const handle = '@' + id.replace(/-/g, '');
+  return [
+    { label: 'Instagram', value: handle,               href: '#' },
+    { label: 'Telegram',  value: 'Join interest chat', href: '#' },
+    { label: 'Email',     value: 'vivace@smu.edu.sg',  href: 'mailto:vivace@smu.edu.sg' },
+  ];
+}
+
+function makeSessionDetails(commitment, cluster) {
+  return {
+    frequency: commitment,
+    format:    `${cluster} sessions with beginner-friendly onboarding and member-led activities.`,
+    venue:     'Venue TBC during Vivace',
+    note:      'Final session timing, venue and trial dates can be updated once the CCA submits confirmed details.',
+  };
+}
+
+function makeMembershipDetails(intake) {
+  return {
+    howToJoin: [
+      'Visit the booth during Vivace.',
+      'Scan the CCA interest form or QR code.',
+      'Attend the welcome session, trial or interview if required.',
+    ],
+    requirements: intake,
+    contact:      'vivace@smu.edu.sg',
+  };
+}
+
+function makeFaq(name, commitment) {
+  return [
+    {
+      question: 'Do I need prior experience?',
+      answer:   `${name} can use this answer to clarify whether beginners are welcome, whether auditions are needed, and what new members should prepare.`,
+    },
+    {
+      question: 'How often are sessions held?',
+      answer:   `Current placeholder frequency: ${commitment}. Replace this with the final training, meeting or project cadence.`,
+    },
+    {
+      question: 'How do I join?',
+      answer:   'Submit interest during Vivace and follow the CCA-specific sign-up, trial, interview or onboarding instructions.',
+    },
+  ];
+}
+
+const usedSlugs   = new Map();
+const catCounters = {};
 
 const ccas = groups.flatMap(group => {
   const meta = categories[group.category];
   return group.names.map(name => {
     catCounters[group.category] = (catCounters[group.category] || 0) + 1;
-    const boothNum  = String(catCounters[group.category]).padStart(3, '0');
+    const boothIdx   = catCounters[group.category];
+    const boothNum   = String(boothIdx).padStart(3, '0');
     const commitment = commitmentByCluster[group.cluster] || 'Flexible';
+    const id         = slugify(name, usedSlugs);
+    const lane       = mapLanes[group.category];
+    const shelfIndex = (boothIdx - 1) % 9;
+    const blockIndex = Math.floor((boothIdx - 1) / 9) + 1;
     return {
-      id:           slugify(name, usedSlugs),
+      id,
       name,
       category:     group.category,
       categoryShort:meta.short,
@@ -197,6 +267,20 @@ const ccas = groups.flatMap(group => {
       cardText:     `${group.cluster} pick under ${meta.short}. Visit the booth to learn more and sign up.`,
       description:  `${name} is part of SMU's ${meta.name} (${meta.short}) umbrella, within the ${group.cluster} cluster. This is a great opportunity to get involved on campus and build lasting connections.`,
       extra:        `Commitment level: ${commitment}. Intake: ${meta.intake}. Come by the Vivace booth during the fair or reach out via the interest form below.`,
+      videoUrl:     null,
+      videoTitle:   '',
+      boothMap: {
+        zone:  lane.zone,
+        block: `Block ${blockIndex}`,
+        x:     10 + shelfIndex * 9.5,
+        y:     lane.y,
+        note:  `${group.cluster} shelf near ${lane.zone}`,
+      },
+      keyEvents:         makeKeyEvents(name, group.cluster),
+      socials:           makeSocials(id),
+      sessionDetails:    makeSessionDetails(commitment, group.cluster),
+      membershipDetails: makeMembershipDetails(meta.intake),
+      faq:               makeFaq(name, commitment),
     };
   });
 });
