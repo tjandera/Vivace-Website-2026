@@ -551,12 +551,6 @@
   }
   body.home-page .voucher-pill{ display:flex }
   .voucher-pill:hover{ transform:translate(-2px,-2px); box-shadow:8px 8px 0 var(--ink); animation:none }
-  .voucher-pill .voucher-pulse{
-    position:absolute; top:-6px; right:-6px;
-    width:22px; height:22px; border-radius:50%;
-    background:var(--red); border:3px solid var(--ink);
-    animation: pulseAnim 1.6s ease-out infinite;
-  }
   @keyframes pillBounce{
     0%,100%{ transform:translateY(0) }
     50%{ transform:translateY(-5px) }
@@ -581,17 +575,6 @@
     border:3px solid var(--ink);
     display:flex; align-items:center; justify-content:center;
     font-family:'Bagel Fat One',sans-serif; font-size:14px;
-  }
-  .ig-cta .pulse{
-    position:absolute; top:-6px; right:-6px;
-    width:22px; height:22px; border-radius:50%;
-    background:var(--yellow); border:3px solid var(--ink);
-    animation: pulseAnim 1.6s ease-out infinite;
-  }
-  @keyframes pulseAnim {
-    0%   { transform: scale(1) }
-    50%  { transform: scale(1.15) }
-    100% { transform: scale(1) }
   }
 
   /* ============ Decor sprinkles ============ */
