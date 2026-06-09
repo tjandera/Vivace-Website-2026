@@ -17,36 +17,19 @@
 <section style="padding:60px 22px 80px">
   <div class="container">
 
-    <!-- Floor plan image with zoom -->
+    <!-- Floor plan image -->
     <div style="border:4px solid var(--ink); border-radius:22px; overflow:hidden; box-shadow:8px 8px 0 var(--ink); background:var(--cream-2); margin-bottom:32px">
 
       <!-- Map header -->
       <div style="background:var(--ink); color:#fff; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px">
         <span style="font-family:'Bagel Fat One',sans-serif; font-size:22px; letter-spacing:.02em">VIVACE MART · FLOOR PLAN</span>
-        <div style="display:flex; align-items:center; gap:10px">
-          <span style="font-family:'Space Mono',monospace; font-size:12px; opacity:.7">13–14 AUG 2026 · SMU CAMPUS</span>
-          <!-- Zoom controls -->
-          <div id="map-zoom-controls" style="display:flex; gap:6px; margin-left:8px">
-            <button id="map-zoom-out" aria-label="Zoom out" style="width:32px; height:32px; border:2px solid rgba(255,255,255,.4); border-radius:8px; background:rgba(255,255,255,.12); color:#fff; font-size:20px; line-height:1; cursor:pointer; display:grid; place-items:center; transition:background .15s ease">−</button>
-            <button id="map-zoom-reset" aria-label="Reset zoom" style="height:32px; padding:0 10px; border:2px solid rgba(255,255,255,.4); border-radius:8px; background:rgba(255,255,255,.12); color:#fff; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.06em; cursor:pointer; transition:background .15s ease">RESET</button>
-            <button id="map-zoom-in" aria-label="Zoom in" style="width:32px; height:32px; border:2px solid rgba(255,255,255,.4); border-radius:8px; background:rgba(255,255,255,.12); color:#fff; font-size:20px; line-height:1; cursor:pointer; display:grid; place-items:center; transition:background .15s ease">+</button>
-          </div>
-        </div>
+        <span style="font-family:'Space Mono',monospace; font-size:12px; opacity:.7">13–14 AUG 2026 · SMU CAMPUS</span>
       </div>
 
-      <!-- Zoom viewport -->
-      <div id="map-viewport" style="overflow:hidden; cursor:grab; position:relative; max-height:72vh; background:var(--cream-2)">
-        <img
-          id="map-img"
-          src="/assets/resources-design/Vivace 2025 Campus Map_0.png"
-          alt="Vivace 2025 Campus Map"
-          style="display:block; width:100%; height:auto; transform-origin:0 0; user-select:none; pointer-events:none; will-change:transform">
-      </div>
-
-      <!-- Zoom hint -->
-      <div style="padding:10px 20px; background:rgba(255,255,255,.6); border-top:2px solid rgba(26,26,26,.08); text-align:center; font-family:'Fredoka',sans-serif; font-size:13px; color:#888">
-        Scroll or pinch to zoom · Drag to pan
-      </div>
+      <img
+        src="/assets/resources-design/Vivace 2025 Campus Map_0.png"
+        alt="Vivace 2025 Campus Map"
+        style="display:block; width:100%; height:auto">
 
     </div>
 
@@ -78,136 +61,6 @@
 
 <%- include('partials/footer') %>
 
-<script>
-(function () {
-  var viewport = document.getElementById('map-viewport');
-  var img      = document.getElementById('map-img');
-  var btnIn    = document.getElementById('map-zoom-in');
-  var btnOut   = document.getElementById('map-zoom-out');
-  var btnReset = document.getElementById('map-zoom-reset');
-
-  var scale = 1, minScale = 1, maxScale = 5;
-  var tx = 0, ty = 0;
-  var dragging = false, startX, startY, startTx, startTy;
-
-  function clamp(val, lo, hi) { return Math.max(lo, Math.min(hi, val)); }
-
-  function clampTranslate(s, x, y) {
-    var vw = viewport.clientWidth;
-    var vh = viewport.clientHeight;
-    var iw = img.naturalWidth  || img.clientWidth;
-    var ih = img.naturalHeight || img.clientHeight;
-    var sw = iw * s, sh = ih * s;
-    var maxX = 0, minX = Math.min(0, vw - sw);
-    var maxY = 0, minY = Math.min(0, vh - sh);
-    return { x: clamp(x, minX, maxX), y: clamp(y, minY, maxY) };
-  }
-
-  function applyTransform(animate) {
-    var clamped = clampTranslate(scale, tx, ty);
-    tx = clamped.x; ty = clamped.y;
-    img.style.transition = animate ? 'transform .22s ease' : 'none';
-    img.style.transform  = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
-    viewport.style.cursor = scale > 1 ? 'grab' : 'default';
-  }
-
-  function zoomTo(newScale, originX, originY) {
-    newScale = clamp(newScale, minScale, maxScale);
-    /* Keep the point under the cursor/finger fixed */
-    var ratio = newScale / scale;
-    tx = originX - ratio * (originX - tx);
-    ty = originY - ratio * (originY - ty);
-    scale = newScale;
-    applyTransform(false);
-  }
-
-  /* ── Scroll wheel zoom ── */
-  viewport.addEventListener('wheel', function (e) {
-    e.preventDefault();
-    var rect = viewport.getBoundingClientRect();
-    var ox = e.clientX - rect.left;
-    var oy = e.clientY - rect.top;
-    var delta = e.deltaY < 0 ? 1.12 : 1 / 1.12;
-    zoomTo(scale * delta, ox, oy);
-  }, { passive: false });
-
-  /* ── Mouse drag pan ── */
-  viewport.addEventListener('mousedown', function (e) {
-    if (scale <= 1) return;
-    dragging = true;
-    startX = e.clientX; startY = e.clientY;
-    startTx = tx; startTy = ty;
-    viewport.style.cursor = 'grabbing';
-    e.preventDefault();
-  });
-  window.addEventListener('mousemove', function (e) {
-    if (!dragging) return;
-    tx = startTx + (e.clientX - startX);
-    ty = startTy + (e.clientY - startY);
-    applyTransform(false);
-  });
-  window.addEventListener('mouseup', function () {
-    if (!dragging) return;
-    dragging = false;
-    viewport.style.cursor = scale > 1 ? 'grab' : 'default';
-  });
-
-  /* ── Touch: pinch zoom + drag ── */
-  var lastDist = 0, lastMidX = 0, lastMidY = 0, touching = false;
-  viewport.addEventListener('touchstart', function (e) {
-    if (e.touches.length === 2) {
-      var t = e.touches;
-      lastDist = Math.hypot(t[1].clientX - t[0].clientX, t[1].clientY - t[0].clientY);
-      var rect = viewport.getBoundingClientRect();
-      lastMidX = ((t[0].clientX + t[1].clientX) / 2) - rect.left;
-      lastMidY = ((t[0].clientY + t[1].clientY) / 2) - rect.top;
-    } else if (e.touches.length === 1 && scale > 1) {
-      touching = true;
-      startX = e.touches[0].clientX; startY = e.touches[0].clientY;
-      startTx = tx; startTy = ty;
-    }
-  }, { passive: true });
-  viewport.addEventListener('touchmove', function (e) {
-    if (e.touches.length === 2) {
-      e.preventDefault();
-      var t = e.touches;
-      var dist = Math.hypot(t[1].clientX - t[0].clientX, t[1].clientY - t[0].clientY);
-      var rect = viewport.getBoundingClientRect();
-      var midX = ((t[0].clientX + t[1].clientX) / 2) - rect.left;
-      var midY = ((t[0].clientY + t[1].clientY) / 2) - rect.top;
-      zoomTo(scale * (dist / lastDist), midX, midY);
-      lastDist = dist; lastMidX = midX; lastMidY = midY;
-    } else if (e.touches.length === 1 && touching) {
-      tx = startTx + (e.touches[0].clientX - startX);
-      ty = startTy + (e.touches[0].clientY - startY);
-      applyTransform(false);
-    }
-  }, { passive: false });
-  viewport.addEventListener('touchend', function () { touching = false; });
-
-  /* ── Buttons ── */
-  btnIn.addEventListener('click', function () {
-    var cx = viewport.clientWidth / 2, cy = viewport.clientHeight / 2;
-    zoomTo(scale * 1.4, cx, cy);
-    applyTransform(true);
-  });
-  btnOut.addEventListener('click', function () {
-    var cx = viewport.clientWidth / 2, cy = viewport.clientHeight / 2;
-    zoomTo(scale / 1.4, cx, cy);
-    applyTransform(true);
-  });
-  btnReset.addEventListener('click', function () {
-    scale = 1; tx = 0; ty = 0;
-    applyTransform(true);
-  });
-
-  /* Hover style for buttons */
-  [btnIn, btnOut, btnReset].forEach(function(btn) {
-    btn.addEventListener('mouseenter', function() { btn.style.background = 'rgba(255,255,255,.28)'; });
-    btn.addEventListener('mouseleave', function() { btn.style.background = 'rgba(255,255,255,.12)'; });
-  });
-}());
-</script>
 
 </body>
 </html>

@@ -608,6 +608,18 @@
     margin-top:16px;
     animation:basketCruise 4.6s ease-in-out infinite;
   }
+  .basket-showcase::before{
+    content:"";
+    position:absolute;
+    inset:-10% -12%;
+    background:radial-gradient(ellipse 70% 60% at 50% 50%,
+      rgba(255,255,255,0.72) 0%,
+      rgba(255,255,255,0.38) 45%,
+      rgba(255,255,255,0) 100%);
+    border-radius:50%;
+    z-index:1;
+    pointer-events:none;
+  }
   .find-cca-sign{
     position:relative;
     width:min(560px, 82vw);
@@ -647,7 +659,10 @@
   .market-basket{
     position:absolute;
     inset:0;
-    filter:drop-shadow(16px 18px 0 rgba(26,26,26,.92));
+    z-index:2;
+    filter:
+      drop-shadow(16px 18px 0 rgba(26,26,26,.92))
+      drop-shadow(0 28px 40px rgba(26,26,26,.38));
   }
   .basket-image{
     width:100%;
@@ -677,15 +692,16 @@
   .basket-decor.is-back{ z-index:3; opacity:.9 }
   .basket-decor.is-front{ z-index:8 }
   /* ── Stickers around the basket — --x/--y = position, --w = size, --r = tilt ── */
-  .basket-decor.sun-tag{       --x:8%;   --y:4%;  --w:32%; --r:-16deg; animation-delay:-1.5s } /* top-left */
-  .basket-decor.juice-tag{     --x:-9%;  --y:30%; --w:16%; --r:-9deg;  animation-delay:-2.2s } /* left-upper */
-  .basket-decor.button-tag{    --x:-9%;  --y:68%; --w:16%; --r:12deg;  animation-delay:-1s   } /* left-lower */
-  .basket-decor.croissant-tag{ --x:10%;  --y:92%; --w:38%; --r:11deg;  animation-delay:-2.8s } /* bottom-left */
+  .basket-decor.sun-tag{       --x:8%;   --y:4%;  --w:19%; --r:22deg;  animation-delay:-1.5s } /* top-left */
+  .basket-decor.juice-tag{     --x:-9%;  --y:22%; --w:27%; --r:-9deg;  animation-delay:-2.2s } /* left-upper */
+  .basket-decor.button-tag{    --x:-8%;  --y:70%; --w:26%; --r:12deg;  animation-delay:-1s   } /* left-lower */
+  .basket-decor.croissant-tag{ --x:10%;  --y:92%; --w:28%; --r:11deg;  animation-delay:-2.8s } /* bottom-left */
   /* ── New stickers — change --w to resize ── */
-  .basket-decor.sticker1-tag{  --x:-9%;  --y:50%; --w:35%; --r:-14deg; animation-delay:-1.3s } /* left-mid */
-  .basket-decor.sticker2-tag{  --x:92%;  --y:6%;  --w:35%; --r:8deg;   animation-delay:-.8s  } /* top-right */
-  .basket-decor.sticker3-tag{  --x:90%;  --y:94%; --w:32%; --r:-10deg; animation-delay:-.5s  } /* bottom-right */
-  .basket-decor.sticker4-tag{  --x:106%; --y:55%; --w:30%; --r:9deg;   animation-delay:-2.5s } /* right-mid */
+  .basket-decor.sticker1-tag{  --x:-9%;  --y:46%; --w:22%; --r:-14deg; animation-delay:-1.3s } /* left-mid */
+  .basket-decor.sticker2-tag{  --x:92%;  --y:6%;  --w:22%; --r:8deg;   animation-delay:-.8s  } /* top-right */
+  .basket-decor.clip-tag{      --x:104%; --y:80%; --w:14%; --r:-12deg; animation-delay:-1.8s } /* right-lower */
+  .basket-decor.sticker3-tag{  --x:98%;  --y:94%; --w:38%; --r:-10deg; animation-delay:-.5s  } /* bottom-right */
+  .basket-decor.sticker4-tag{  --x:106%; --y:55%; --w:20%; --r:9deg;   animation-delay:-2.5s } /* right-mid */
   .basket-decor.tomato-tag{    --x:106%; --y:28%; --w:35%; --r:16deg;  animation-delay:-.3s  } /* right-upper */
   @keyframes decorFloat{
     0%,100%{ translate:0 0 }
@@ -799,7 +815,7 @@
     box-shadow:
       4px 5px 0 rgba(26,26,26,.9),
       0 0 0 0 rgba(241,173,43,0);
-    opacity:.78;
+    opacity:0;
     transform:scale(.9) rotate(calc(var(--r, 0deg) * -1));
   }
   .school-fruit.product::after{
@@ -855,17 +871,11 @@
       drop-shadow(0 3px 0 #fff)
       drop-shadow(0 8px 8px rgba(0,0,0,.12));
   }
-  .school-fruit.smux-can img{
-    transform:scale(1.28);
-  }
-  .school-fruit.icon-good img{
-    transform:scale(1.08);
-  }
-  .school-fruit.ssu-good img{
-    transform:scale(1.42);
-  }
+  .school-fruit.smux-can img,
+  .school-fruit.icon-good img,
+  .school-fruit.ssu-good img,
   .school-fruit.acad-good img{
-    transform:scale(1.18);
+    transform:scale(1);
   }
   .school-fruit .fruit-label{
     position:absolute;
@@ -915,6 +925,7 @@
     text-transform:uppercase;
     opacity:0;
     pointer-events:none;
+    display:none;
     transition:opacity .18s ease, transform .22s cubic-bezier(.2,1.35,.32,1);
   }
   .school-fruit .aisle-tag::before{

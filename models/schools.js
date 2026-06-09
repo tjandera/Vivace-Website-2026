@@ -29,9 +29,9 @@ module.exports = [
     count: 18,
     aisle: 'Aisle 01 · Arts shelf',
     basket: {
-      img: 'assets/basket-goods/ACF.png',
+      img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_ACF.png',
       modifierClass: '',
-      style: 'left:14%; top:12%; --r:-8deg; width:22%',
+      style: 'left:16%; top:10%; --r:-8deg; width:30%',
     },
   },
   {
@@ -42,9 +42,9 @@ module.exports = [
     count: 24,
     aisle: 'Aisle 02 · Comm shelf',
     basket: {
-      img: 'assets/basket-goods/SICS.png',
+      img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_SICS.png',
       modifierClass: '',
-      style: 'left:62%; top:12%; --r:7deg; width:22%',
+      style: 'left:56%; top:10%; --r:7deg;  width:30%',
     },
   },
   {
@@ -55,9 +55,9 @@ module.exports = [
     count: 9,
     aisle: 'Aisle 03 · Global shelf',
     basket: {
-      img: 'assets/basket-goods/icon-chips.png',
+      img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_ICON.png',
       modifierClass: 'icon-good',
-      style: 'left:38%; top:28%; --r:-10deg; width:23%',
+      style: 'left:33%; top:28%; --r:-5deg;  width:34%',
     },
   },
   {
@@ -68,9 +68,9 @@ module.exports = [
     count: 26,
     aisle: 'Aisle 04 · Sports shelf',
     basket: {
-      img: 'assets/basket-goods/smux.png',
+      img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_SMUX.png',
       modifierClass: 'smux-can',
-      style: 'left:6%; top:40%; --r:14deg; width:36%',
+      style: 'left:16%; top:46%; --r:10deg;  width:30%',
     },
   },
   {
@@ -81,9 +81,9 @@ module.exports = [
     count: 12,
     aisle: 'Aisle 05 · Service shelf',
     basket: {
-      img: 'assets/basket-goods/ssu-bar.png',
+      img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_SSU.png',
       modifierClass: 'ssu-good',
-      style: 'left:60%; top:42%; --r:8deg; width:27%',
+      style: 'left:58%; top:46%; --r:8deg;  width:28%',
     },
   },
   {
@@ -94,9 +94,9 @@ module.exports = [
     count: 14,
     aisle: 'Aisle 06 · Growth shelf',
     basket: {
-      img: 'assets/basket-goods/SMUSA.png',
+      img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_GRI.png',
       modifierClass: '',
-      style: 'left:23%; top:66%; --r:-12deg; width:28%',
+      style: 'left:14%; top:64%; --r:-10deg; width:32%',
     },
   },
   {
@@ -107,9 +107,9 @@ module.exports = [
     count: 17,
     aisle: 'Aisle 07 · Academic shelf',
     basket: {
-      img: 'assets/basket-goods/academic-noodles.png',
+      img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_ACAD.png',
       modifierClass: 'acad-good',
-      style: 'left:58%; top:66%; --r:3deg; width:28%',
+      style: 'left:54%; top:64%; --r:5deg;  width:32%',
     },
   },
 ];

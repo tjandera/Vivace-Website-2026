@@ -71,14 +71,19 @@
     }
     .basket-decor.price-tag{ --x:91%; --y:10%; --w:16% }
     .basket-decor.sun-tag{ --x:10%; --y:10%; --w:17% }
-    .basket-decor.juice-tag{ --x:-2%; --y:33%; --w:14% }
+    .basket-decor.juice-tag{ --x:-2%; --y:33%; --w:18% }
     .basket-decor.label-tag{ --x:101%; --y:34%; --w:16% }
-    .basket-decor.button-tag{ --x:0%; --y:72%; --w:13% }
-    .basket-decor.clip-tag{ --x:101%; --y:91%; --w:26% }
-    .basket-decor.croissant-tag{ --x:8%; --y:96%; --w:23% }
+    .basket-decor.button-tag{ --x:0%; --y:82%; --w:10% }
+    .basket-decor.clip-tag{ --x:104%; --y:80%; --w:10% }
+    .basket-decor.croissant-tag{ --x:8%; --y:67%; --w:23% }
     .basket-decor.green-price-tag{ --x:0%; --y:16%; --w:13% }
     .basket-decor.red-price-tag{ --x:100%; --y:58%; --w:14% }
     .basket-decor.delmonte-tag{ --x:1%; --y:55%; --w:12% }
+    .basket-decor.sticker1-tag{ --x:-2%; --y:52%; --w:16% }
+    .basket-decor.sticker2-tag{ --x:100%; --y:6%;  --w:12% }
+    .basket-decor.sticker3-tag{ --x:90%; --y:94%; --w:18% }
+    .basket-decor.sticker4-tag{ --x:100%; --y:58%; --w:10% }
+    .basket-decor.tomato-tag{   --x:100%; --y:28%; --w:14% }
     .school-fruit .fruit-label{
       border-width:2px;
       box-shadow:2px 2px 0 var(--ink);
