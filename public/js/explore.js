@@ -142,11 +142,11 @@ document.getElementById('cbd-overview')?.addEventListener('click', e => {
   document.getElementById(`cbd-${cat}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 
-// Card click → navigate (disabled in CBD-specific mode)
+// Card click → navigate
 sectionsEl?.addEventListener('click', e => {
-  if (activeCat !== 'all') return;
   const card = e.target.closest('.cca-card');
   if (!card || e.target.closest('a') || e.target.closest('button')) return;
+  if (activeCat !== 'all') return;
   const link = card.querySelector('a.more');
   if (link) window.location.href = link.href;
 });

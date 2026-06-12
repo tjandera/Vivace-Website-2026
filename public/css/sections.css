@@ -394,6 +394,10 @@
     cursor:default;
     pointer-events:none;
   }
+  .cca-grid.cbd-active .cca-card a.more{
+    pointer-events:auto;
+    cursor:pointer;
+  }
   .cca-grid.cbd-active .cca-card .foot .card-actions{
     display:none;
   }
