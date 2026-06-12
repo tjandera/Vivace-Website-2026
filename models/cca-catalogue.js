@@ -218,6 +218,14 @@ function makeMembershipDetails(intake) {
   };
 }
 
+function makeAchievements(name, cluster) {
+  return [
+    { title: `${cluster} Inter-University Champion`, year: 'TBC', desc: 'Achievement details can be added once confirmed by the CCA.' },
+    { title: `${name} Best Booth Award`, year: 'TBC', desc: 'Achievement details can be added once confirmed by the CCA.' },
+    { title: 'SMU Student Choice Recognition', year: 'TBC', desc: 'Achievement details can be added once confirmed by the CCA.' },
+  ];
+}
+
 function makeFaq(name, commitment) {
   return [
     {
@@ -280,6 +288,7 @@ const ccas = groups.flatMap(group => {
       socials:           makeSocials(id),
       sessionDetails:    makeSessionDetails(commitment, group.cluster),
       membershipDetails: makeMembershipDetails(meta.intake),
+      achievements:      makeAchievements(name, group.cluster),
       faq:               makeFaq(name, commitment),
     };
   });

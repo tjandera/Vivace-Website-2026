@@ -27,7 +27,8 @@ router.get('/explore/:school',  exploreController.bySchool);   // e.g. /explore/
 router.get('/about',       pageController.about);
 router.get('/faq',         pageController.faq);
 router.get('/partners',    pageController.partners);
-router.get('/events',      pageController.events);
+router.get('/events/smoo-run',    pageController.smooRun);
+router.get('/events/artfest',     pageController.artfest);
 router.get('/map',         pageController.map);
 router.get('/programmes',  pageController.programmes);
 

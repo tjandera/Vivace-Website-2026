@@ -1,0 +1,133 @@
+<%- include('partials/head', { page: 'about' }) %>
+<body class="about-page smoo-run-page">
+
+<%- include('partials/nav') %>
+<%- include('partials/intro') %>
+
+<main class="about-main">
+
+  <div class="receipt-machine" id="receipt-machine" aria-hidden="true">
+    <div class="rm-body">
+      <span class="rm-brand">VIVACE MART &middot; RECEIPT PRINTER</span>
+      <div class="rm-led" id="rm-led"></div>
+    </div>
+    <div class="rm-slot-wrap">
+      <div class="rm-slot"></div>
+    </div>
+  </div>
+
+  <div class="receipt-feed" id="receipt-feed" aria-label="Printing SMOO Run receipt">
+    <div class="receipt-printer-head" id="printer-head"></div>
+
+    <div class="receipt-wrap">
+      <div class="receipt-edge receipt-edge--top"></div>
+
+      <div class="receipt-body smoo-receipt-body">
+
+        <h1 class="rl smoo-receipt-title">SMOO CHALLENGE 2026</h1>
+
+        <div class="rl smoo-hero-banner" aria-label="SMOO Challenge event banner">
+          <span>SMOO RUN '26</span>
+          <small>Run. Compete. Conquer.</small>
+        </div>
+
+        <p class="rl smoo-kicker">SMU's flagship student running event returns for 2026.</p>
+
+        <p class="rl smoo-intro-copy">
+          SMOO Run is a campus tradition that brings students together to compete,
+          connect, and celebrate an active lifestyle. Whether you are chasing a
+          personal best or joining your first community run, SMOO Run '26 is your
+          chance to cross the finish line with the SMU community.
+        </p>
+
+        <div class="rl smoo-break">Vivace Mart event receipt &middot; details dropping soon</div>
+
+        <section class="rl smoo-section" aria-labelledby="smoo-lookout-title">
+          <h2 id="smoo-lookout-title">What to look out for<br>SMOO Run 2026</h2>
+
+          <article class="smoo-feature-row">
+            <div class="smoo-feature-thumb smoo-feature-thumb--red">
+              <span>FLAG<br>OFF</span>
+            </div>
+            <div class="smoo-feature-copy">
+              <h3>Flag-Off Day</h3>
+              <p class="smoo-feature-meta">Sept 2026 &middot; SMU Campus Green</p>
+              <p>
+                Start the challenge with a full campus carnival: obstacle course,
+                games, photo booth, performances, prizes, and the official launch
+                of the SMOO Challenge.
+              </p>
+            </div>
+          </article>
+
+          <article class="smoo-feature-row">
+            <div class="smoo-feature-thumb smoo-feature-thumb--orange">
+              <span>VIRTUAL<br>RACE</span>
+            </div>
+            <div class="smoo-feature-copy">
+              <h3>SMOO Challenge Run</h3>
+              <p class="smoo-feature-meta">Walk, run, or cycle &middot; Anywhere</p>
+              <p>
+                Clock your distance and help the SMU community hit the 25,000 km
+                goal. Student rate is $12 with the code SMUSTUDENT.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <div class="rl smoo-break">Vivace Mart event receipt &middot; keep this stub</div>
+
+        <section class="rl smoo-register" aria-labelledby="smoo-register-title">
+          <h2 id="smoo-register-title">How to register for SMU Amazing Race?</h2>
+
+          <article class="smoo-step">
+            <h3>Step 1</h3>
+            <p>
+              Register for SMOO Challenge first. The SMU Amazing Race runs
+              concurrently with the Flag-Off, and all SMOO Challenge participants
+              are eligible to join.
+            </p>
+          </article>
+
+          <article class="smoo-step">
+            <h3>Step 2</h3>
+            <p>
+              Form a team of 5 students and complete the Amazing Race sign-up
+              when the registration form opens. Final race details will be released
+              closer to the event.
+            </p>
+          </article>
+
+          <p class="smoo-extra">Extra details if needed: route, reporting time, and prize mechanics will be announced soon.</p>
+        </section>
+
+        <p class="rl center bold">================================</p>
+        <p class="rl center bold">&#9733; SEE YOU AT THE FINISH LINE &#9733;</p>
+        <p class="rl center bold">================================</p>
+        <p class="rl">&nbsp;</p>
+
+        <div class="rl center" id="receipt-barcode-wrap">
+          <div class="receipt-barcode" id="receipt-barcode"></div>
+        </div>
+        <p class="rl center muted" style="font-size:10px;letter-spacing:.06em">SMOO-RUN-2026 &middot; SMU FAIR</p>
+        <p class="rl center bold">&#9733;&nbsp; RUN FOR SMU &nbsp;&#9733;</p>
+        <p class="rl">&nbsp;</p>
+
+      </div>
+
+      <div class="receipt-edge receipt-edge--bottom"></div>
+    </div>
+  </div>
+
+  <div class="about-cta" id="event-cta">
+    <a href="/events" class="btn primary"><span>All Events</span><span class="arrow">-></span></a>
+    <a href="/" class="btn ghost"><span>Back to Home</span></a>
+  </div>
+
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/nav.js"></script>
+<script src="/js/event-receipt.js"></script>
+</body>
+</html>

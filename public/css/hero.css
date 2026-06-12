@@ -604,8 +604,8 @@
   .basket-showcase{
     position:relative;
     width:min(720px, 94vw);
-    aspect-ratio:924 / 1550;
-    margin-top:16px;
+    aspect-ratio:16 / 25;
+    margin-top:56px;
     animation:basketCruise 4.6s ease-in-out infinite;
   }
   .basket-showcase::before{
@@ -623,7 +623,7 @@
   .find-cca-sign{
     position:relative;
     width:min(560px, 82vw);
-    margin:0 auto 8px;
+    margin:0 auto 16px;
     z-index:9;
     pointer-events:none;
     filter:
@@ -639,7 +639,7 @@
   .find-cca-arrow{
     display:flex;
     justify-content:center;
-    margin:4px auto 8px;
+    margin:4px auto 80px;
   }
   .find-cca-arrow svg{
     width:56px;
@@ -665,10 +665,13 @@
       drop-shadow(0 28px 40px rgba(26,26,26,.38));
   }
   .basket-image{
-    width:100%;
-    height:100%;
+    position:absolute;
+    width:156.25%;
+    aspect-ratio:25 / 16;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%) rotate(90deg) scale(1.75);
     object-fit:contain;
-    object-position:center;
   }
   .basket-decor{
     position:absolute;
@@ -680,8 +683,10 @@
     transform:translate(-50%, -50%) rotate(var(--r, 0deg));
     transform-origin:center;
     filter:
+      saturate(0.45)
       drop-shadow(0 3px 0 rgba(255,255,255,.9))
       drop-shadow(7px 10px 6px rgba(0,0,0,.26));
+    opacity:0.34;
     animation:decorFloat 4.8s ease-in-out infinite;
   }
   .basket-decor img{
@@ -689,8 +694,23 @@
     width:100%;
     height:auto;
   }
-  .basket-decor.is-back{ z-index:3; opacity:.9 }
-  .basket-decor.is-front{ z-index:8 }
+  .basket-decor.is-back{ z-index:3; opacity:.28 }
+  .basket-decor.is-front{ z-index:8; opacity:.38 }
+  /* smooth transitions for spotlight effect */
+  .basket-decor{ transition: filter 0.32s ease, opacity 0.32s ease }
+  /* ── Spotlight: dim decor + non-active logos when a CBD logo is hovered ── */
+  .basket-showcase.has-focus .basket-decor{
+    opacity:0.12;
+    filter:
+      grayscale(1)
+      drop-shadow(0 1px 0 rgba(255,255,255,.25))
+      drop-shadow(2px 3px 3px rgba(0,0,0,.1));
+  }
+  .basket-showcase.has-focus .school-fruit.product:not(:hover):not(:focus-visible):not(.is-selected){
+    opacity:0.56;
+    filter: grayscale(0.45) saturate(.82) drop-shadow(3px 5px 5px rgba(0,0,0,.14));
+    transition: filter 0.32s ease, opacity 0.32s ease, transform .24s cubic-bezier(.2,1.35,.32,1);
+  }
   /* ── Stickers around the basket — --x/--y = position, --w = size, --r = tilt ── */
   .basket-decor.sun-tag{       --x:8%;   --y:4%;  --w:19%; --r:22deg;  animation-delay:-1.5s } /* top-left */
   .basket-decor.juice-tag{     --x:-9%;  --y:22%; --w:27%; --r:-9deg;  animation-delay:-2.2s } /* left-upper */
@@ -700,8 +720,8 @@
   .basket-decor.sticker1-tag{  --x:-9%;  --y:46%; --w:22%; --r:-14deg; animation-delay:-1.3s } /* left-mid */
   .basket-decor.sticker2-tag{  --x:92%;  --y:6%;  --w:22%; --r:8deg;   animation-delay:-.8s  } /* top-right */
   .basket-decor.clip-tag{      --x:104%; --y:80%; --w:14%; --r:-12deg; animation-delay:-1.8s } /* right-lower */
-  .basket-decor.sticker3-tag{  --x:98%;  --y:94%; --w:38%; --r:-10deg; animation-delay:-.5s  } /* bottom-right */
-  .basket-decor.sticker4-tag{  --x:106%; --y:55%; --w:20%; --r:9deg;   animation-delay:-2.5s } /* right-mid */
+  .basket-decor.sticker3-tag{  --x:98%;  --y:94%; --w:38%; --r:-10deg; animation-delay:-.5s;  opacity:.16 } /* bottom-right */
+  .basket-decor.sticker4-tag{  --x:106%; --y:55%; --w:20%; --r:9deg;   animation-delay:-2.5s; opacity:.16 } /* right-mid */
   .basket-decor.tomato-tag{    --x:106%; --y:28%; --w:35%; --r:16deg;  animation-delay:-.3s  } /* right-upper */
   @keyframes decorFloat{
     0%,100%{ translate:0 0 }
@@ -786,7 +806,7 @@
   }
   .school-fruit.product{
     position:absolute;
-    z-index:6;
+    z-index:9;
     isolation:isolate;
     width:20%;
     aspect-ratio:1;
@@ -794,7 +814,11 @@
     background:transparent;
     padding:0;
     cursor:pointer;
-    filter:drop-shadow(8px 12px 9px rgba(0,0,0,.26));
+    filter:
+      saturate(1.18)
+      contrast(1.08)
+      drop-shadow(0 0 16px rgba(255,255,255,.72))
+      drop-shadow(8px 12px 9px rgba(0,0,0,.26));
     transform:rotate(var(--r, 0deg));
     transition:transform .24s cubic-bezier(.2,1.35,.32,1), filter .24s ease;
     will-change:transform, filter;
@@ -823,15 +847,20 @@
     inset:-20%;
     border-radius:50%;
     background:
-      radial-gradient(circle, rgba(241,173,43,.65) 0 35%, rgba(255,120,40,.28) 48%, rgba(234,90,137,0) 72%);
-    opacity:0;
-    transform:scale(.72);
+      radial-gradient(circle, rgba(255,255,255,.92) 0 20%, rgba(241,173,43,.48) 42%, rgba(255,120,40,.18) 56%, rgba(234,90,137,0) 74%);
+    opacity:.28;
+    transform:scale(.86);
   }
   .school-fruit.product:hover,
   .school-fruit.product:focus-visible{
     z-index:14;
     transform:translateY(-24px) scale(1.2) rotate(var(--r, 0deg));
-    filter:drop-shadow(14px 22px 13px rgba(0,0,0,.36));
+    filter:
+      saturate(1.35)
+      contrast(1.14)
+      drop-shadow(0 0 20px rgba(255,255,255,.9))
+      drop-shadow(0 0 22px rgba(241,173,43,.58))
+      drop-shadow(14px 22px 13px rgba(0,0,0,.36));
     outline:0;
   }
   .school-fruit.product:hover::before,
@@ -852,8 +881,8 @@
   }
   .school-fruit.product:hover::after,
   .school-fruit.product:focus-visible::after{
-    opacity:1;
-    transform:scale(1);
+    opacity:.95;
+    transform:scale(1.06);
   }
   .school-fruit img{
     position:relative;
@@ -861,7 +890,11 @@
     width:100%;
     height:100%;
     object-fit:contain;
-    filter:drop-shadow(0 2px 0 rgba(255,255,255,.8));
+    filter:
+      saturate(1.48)
+      contrast(1.08)
+      drop-shadow(0 2px 0 rgba(255,255,255,.88))
+      drop-shadow(0 0 10px rgba(255,255,255,.4));
     transition:filter .24s ease;
   }
   .school-fruit.product:hover img,

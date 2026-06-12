@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/cca.css">
+  <link rel="stylesheet" href="/css/cca.css?v=10">
   <link rel="stylesheet" href="/css/saved-ccas.css">
 
   <style>:root { --cca-color: <%= cca.color %>; }</style>
@@ -46,47 +46,58 @@
 <main class="cca-main">
   <div class="cca-page">
 
-    <!-- ── Hero: title panel + booth map ─────────────────────── -->
-    <section class="cca-hero">
+    <!-- ── 1. Club card + Booth photo carousel ───────────────── -->
+    <div class="ms-row ms-top-row">
 
-      <div class="title-panel">
-        <div class="title-tags">
-          <span class="cca-eyebrow">Club Name</span>
-          <span class="cca-eyebrow"><%= cca.categoryShort %> — <%= cca.cluster %></span>
+      <!-- Left: Club identity card -->
+      <div class="ms-club-col">
+        <div class="ms-logo-badge">
+          <span class="ms-badge-icon"><%= cca.icon %></span>
+          <span class="ms-badge-sub"><%= cca.categoryShort %></span>
         </div>
-        <h1><%= cca.name %></h1>
-        <div class="cca-meta-row">
-          <span>Booth <%= cca.booth %></span>
-          <span>Commitment <%= cca.commitment %></span>
-          <span>Intake <%= cca.intake %></span>
+        <div class="ms-club-card">
+          <div class="ms-banner-area">
+            <% if (cca.images && cca.images.length > 0) { %>
+              <img src="<%= cca.images[0] %>" alt="<%= cca.name %> banner">
+            <% } %>
+          </div>
+          <div class="ms-club-name-bar">
+            <span class="ms-club-name"><%= cca.name %></span>
+          </div>
         </div>
       </div>
 
-      <aside class="map-card" aria-label="Booth map preview">
-        <div class="map-head">
-          <h2>Booth Map</h2>
-          <span class="map-zone"><%= cca.boothMap.zone %></span>
+      <!-- Right: Booth photo carousel -->
+      <div class="ms-booth-card">
+        <div class="ms-card-label">
+          <span class="ms-label-title">Booth Map</span>
+          <span class="ms-label-sub">(<%= cca.images.length %> pic<%= cca.images.length !== 1 ? 's' : '' %>)</span>
+          <span class="ms-count-pill" id="booth-count">1 / <%= cca.images.length %></span>
         </div>
-        <div class="map-board">
-          <span class="map-entry">ENTRY</span>
-          <span class="map-stage">STAGE</span>
-          <div class="map-marker" style="left:<%= cca.boothMap.x %>%; top:<%= cca.boothMap.y %>%">
-            <span><%= cca.icon %></span>
+        <div class="ms-carousel-wrap">
+          <div class="ms-carousel-stage">
+            <img id="booth-image" src="<%= cca.images[0] %>" alt="<%= cca.name %> booth image 1">
           </div>
+          <button class="ms-arr-btn ms-arr-prev" id="booth-prev" type="button" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="ms-arr-btn ms-arr-next" id="booth-next" type="button" aria-label="Next image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
         </div>
-        <div class="map-note">
-          <b>Booth <%= cca.booth %> — <%= cca.boothMap.block %></b>
-          <span><%= cca.boothMap.note %></span>
-        </div>
-      </aside>
+      </div>
 
-    </section>
+    </div>
 
-    <!-- ── Profile: about + socials ──────────────────────────── -->
+    <!-- ── 3. About + Socials ────────────────────────────────── -->
     <section class="profile-grid" aria-label="CCA overview">
 
       <article class="info-panel">
-        <span class="section-label">01 / About Us</span>
+        <span class="section-label">02 / About Us</span>
         <h2>About Us</h2>
         <p><%= cca.description %></p>
         <p><%= cca.extra %></p>
@@ -102,7 +113,7 @@
       </article>
 
       <aside class="info-panel">
-        <span class="section-label">02 / Social Media</span>
+        <span class="section-label">03 / Social Media</span>
         <h2>Social Media</h2>
         <div class="social-grid">
           <% cca.socials.forEach(function(social) { %>
@@ -119,12 +130,12 @@
 
     </section>
 
-    <!-- ── Section stack ─────────────────────────────────────── -->
+    <!-- ── 4. Detail sections ────────────────────────────────── -->
     <section class="section-stack" aria-label="CCA details">
 
       <!-- Key Events -->
       <article class="info-panel">
-        <span class="section-label">03 / Key Events</span>
+        <span class="section-label">04 / Key Events</span>
         <h2>Key Events</h2>
         <div class="event-list">
           <% cca.keyEvents.forEach(function(eventName, i) { %>
@@ -145,7 +156,7 @@
         <div class="media-panel">
           <div class="media-head">
             <div>
-              <span class="section-label">04 / Gallery</span>
+              <span class="section-label">05 / Gallery</span>
               <h2>Gallery</h2>
             </div>
             <span class="map-zone" id="gallery-count">1 / <%= cca.images.length %></span>
@@ -185,7 +196,7 @@
       <div class="detail-card-grid">
 
         <article class="info-panel">
-          <span class="section-label">05 / Club Sessions</span>
+          <span class="section-label">06 / Club Sessions</span>
           <h2>Club Sessions</h2>
           <div class="detail-list">
             <div class="detail-item"><b>Frequency of Sessions</b><span><%= cca.sessionDetails.frequency %></span></div>
@@ -196,7 +207,7 @@
         </article>
 
         <article class="info-panel">
-          <span class="section-label">06 / Membership Details</span>
+          <span class="section-label">07 / Membership Details</span>
           <h2>How To Join</h2>
           <div class="detail-list">
             <div class="detail-item">
@@ -218,9 +229,26 @@
 
       </div>
 
+      <!-- Achievements -->
+      <article class="info-panel">
+        <span class="section-label">08 / Achievements</span>
+        <h2>Achievements</h2>
+        <div class="event-list">
+          <% cca.achievements.forEach(function(item, i) { %>
+            <div class="event-item">
+              <span class="event-num"><%= String(i + 1).padStart(2, '0') %></span>
+              <span>
+                <b><%= item.title %></b>
+                <span><%= item.year %> — <%= item.desc %></span>
+              </span>
+            </div>
+          <% }) %>
+        </div>
+      </article>
+
       <!-- FAQ -->
       <article class="info-panel">
-        <span class="section-label">07 / FAQ</span>
+        <span class="section-label">09 / FAQ</span>
         <h2>FAQ</h2>
         <div class="faq-list-mini">
           <% cca.faq.forEach(function(item, i) { %>
@@ -237,22 +265,48 @@
   </div>
 </main>
 
-<!-- Gallery carousel script -->
+<!-- Booth photo carousel (top) -->
 <script>
 (function() {
-  const images      = <%- JSON.stringify(cca.images) %>;
-  let   idx         = 0;
-  const imgEl       = document.getElementById('gallery-image');
-  const countEl     = document.getElementById('gallery-count');
-  const captionEl   = document.getElementById('gallery-caption');
-  const thumbsEl    = document.getElementById('gallery-thumbs');
-  const prevBtn     = document.getElementById('gallery-prev');
-  const nextBtn     = document.getElementById('gallery-next');
-  const ccaName     = <%- JSON.stringify(cca.name) %>;
+  var boothImages = <%- JSON.stringify(cca.images) %>;
+  var boothName   = <%- JSON.stringify(cca.name) %>;
+  var boothIdx    = 0;
+  var boothImg    = document.getElementById('booth-image');
+  var boothCount  = document.getElementById('booth-count');
+  var boothPrev   = document.getElementById('booth-prev');
+  var boothNext   = document.getElementById('booth-next');
+
+  function renderBooth() {
+    boothImg.src           = boothImages[boothIdx];
+    boothImg.alt           = boothName + ' booth image ' + (boothIdx + 1);
+    boothCount.textContent = (boothIdx + 1) + ' / ' + boothImages.length;
+    boothPrev.hidden       = boothImages.length <= 1;
+    boothNext.hidden       = boothImages.length <= 1;
+  }
+
+  boothPrev.addEventListener('click', function() { boothIdx = (boothIdx - 1 + boothImages.length) % boothImages.length; renderBooth(); });
+  boothNext.addEventListener('click', function() { boothIdx = (boothIdx + 1) % boothImages.length; renderBooth(); });
+
+  renderBooth();
+})();
+</script>
+
+<!-- Full gallery carousel + video (lower) -->
+<script>
+(function() {
+  const images    = <%- JSON.stringify(cca.images) %>;
+  let   idx       = 0;
+  const imgEl     = document.getElementById('gallery-image');
+  const countEl   = document.getElementById('gallery-count');
+  const captionEl = document.getElementById('gallery-caption');
+  const thumbsEl  = document.getElementById('gallery-thumbs');
+  const prevBtn   = document.getElementById('gallery-prev');
+  const nextBtn   = document.getElementById('gallery-next');
+  const ccaName   = <%- JSON.stringify(cca.name) %>;
 
   function render() {
-    imgEl.src          = images[idx];
-    imgEl.alt          = ccaName + ' gallery image ' + (idx + 1);
+    imgEl.src             = images[idx];
+    imgEl.alt             = ccaName + ' gallery image ' + (idx + 1);
     countEl.textContent   = (idx + 1) + ' / ' + images.length;
     captionEl.textContent = ccaName + ' media preview ' + (idx + 1) + ' of ' + images.length;
     thumbsEl.querySelectorAll('.thumb').forEach(function(btn, i) {
@@ -262,19 +316,10 @@
     nextBtn.hidden = images.length <= 1;
   }
 
-  prevBtn.addEventListener('click', function() {
-    idx = (idx - 1 + images.length) % images.length;
-    render();
-  });
-  nextBtn.addEventListener('click', function() {
-    idx = (idx + 1) % images.length;
-    render();
-  });
+  prevBtn.addEventListener('click', function() { idx = (idx - 1 + images.length) % images.length; render(); });
+  nextBtn.addEventListener('click', function() { idx = (idx + 1) % images.length; render(); });
   thumbsEl.querySelectorAll('.thumb').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      idx = Number(btn.dataset.index);
-      render();
-    });
+    btn.addEventListener('click', function() { idx = Number(btn.dataset.index); render(); });
   });
 
   render();

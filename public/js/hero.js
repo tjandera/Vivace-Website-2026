@@ -66,3 +66,27 @@ document.querySelectorAll('.school-fruit').forEach(btn => {
     if (school) navigateWithDoors(`/explore/${school}`);
   });
 });
+
+// ── Basket spotlight: dim decor + other logos when a CBD logo is active ───────
+const basketShowcase = document.getElementById('scene');
+if (basketShowcase) {
+  const fruits = basketShowcase.querySelectorAll('.school-fruit');
+
+  fruits.forEach(btn => {
+    btn.addEventListener('mouseenter', () => basketShowcase.classList.add('has-focus'));
+    btn.addEventListener('mouseleave', () => {
+      // Small delay so moving between logos doesn't flicker off
+      setTimeout(() => {
+        if (!basketShowcase.querySelector('.school-fruit:hover')) {
+          basketShowcase.classList.remove('has-focus');
+        }
+      }, 30);
+    });
+    btn.addEventListener('focus', () => basketShowcase.classList.add('has-focus'));
+    btn.addEventListener('blur', e => {
+      if (!e.relatedTarget?.closest?.('.school-fruit')) {
+        basketShowcase.classList.remove('has-focus');
+      }
+    });
+  });
+}

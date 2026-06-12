@@ -53,7 +53,114 @@
 .cca-main{ padding:44px 20px 80px }
 .cca-page{ max-width:1180px; margin:0 auto }
 
-/* Hero grid */
+/* ── 1. Full-width name header ── */
+.cca-header-panel{
+  border:4px solid var(--ink);
+  border-radius:14px;
+  box-shadow:10px 10px 0 var(--ink);
+  padding:36px 36px 30px;
+  color:#fff;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 12px, transparent 12px 28px),
+    var(--cca-color, var(--blue));
+  position:relative; overflow:hidden;
+}
+.cca-header-panel::after{
+  content:"";
+  position:absolute; right:-40px; bottom:-32px;
+  width:260px; height:260px;
+  border:5px dashed rgba(255,255,255,.55); border-radius:50%;
+  pointer-events:none;
+}
+.header-tags{
+  display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px;
+}
+.cca-header-panel h1{
+  margin:0 0 20px;
+  font-family:'Bagel Fat One',sans-serif;
+  font-size:clamp(52px, 9vw, 120px);
+  line-height:.86; letter-spacing:0;
+  text-shadow:5px 5px 0 var(--ink);
+  position:relative; z-index:1;
+}
+
+/* ── 2. Gallery + Logo row ── */
+.cca-media-hero{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:22px; margin-top:22px; align-items:start;
+}
+.gallery-panel{ flex:1 }
+
+/* CCA logo panel */
+.cca-logo-panel{ display:flex; flex-direction:column; gap:0 }
+.cca-logo-card{
+  border:4px solid var(--ink);
+  border-radius:14px;
+  box-shadow:10px 10px 0 var(--ink);
+  overflow:hidden;
+  background:var(--paper);
+  display:flex; flex-direction:column;
+}
+.logo-icon-wrap{
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.18) 0 12px, transparent 12px 28px),
+    var(--cca-color, var(--blue));
+  display:grid; place-items:center;
+  padding:48px 24px;
+  border-bottom:4px solid var(--ink);
+}
+.logo-icon-text{
+  font-family:'Bagel Fat One',sans-serif;
+  font-size:clamp(72px, 12vw, 120px);
+  color:#fff;
+  text-shadow:6px 6px 0 var(--ink);
+  line-height:1;
+  letter-spacing:-.02em;
+}
+.logo-info{
+  padding:20px 22px 16px;
+  display:grid; gap:4px;
+  border-bottom:3px dashed rgba(26,26,26,.18);
+}
+.logo-school{
+  font-family:'Space Mono',monospace;
+  font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+  color:#888;
+}
+.logo-name{
+  font-family:'Bagel Fat One',sans-serif;
+  font-size:clamp(20px, 3vw, 28px);
+  line-height:1.1; color:var(--ink);
+}
+.logo-cluster{
+  font-family:'Fredoka',sans-serif;
+  font-size:15px; color:#555;
+}
+.logo-actions{
+  padding:18px 22px 22px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.logo-actions a,
+.logo-actions button{
+  width:100%; text-align:center;
+  border:3px solid var(--ink); border-radius:999px;
+  padding:11px 16px;
+  background:var(--ink); color:var(--cream);
+  font-family:'Fredoka',sans-serif; font-weight:700; font-size:16px;
+  box-shadow:4px 4px 0 var(--yellow);
+  transition:transform .14s ease, box-shadow .14s ease;
+  cursor:pointer;
+}
+.logo-actions a:hover,
+.logo-actions button:hover{ transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--yellow) }
+.logo-actions a:last-child{
+  background:var(--cream); color:var(--ink);
+  box-shadow:4px 4px 0 var(--ink);
+}
+.logo-actions a:last-child:hover{ box-shadow:6px 6px 0 var(--ink) }
+
+/* Hero grid (legacy — keep for any old references) */
 .cca-hero{
   display:grid;
   grid-template-columns: .9fr 1.1fr;
@@ -384,6 +491,15 @@
   object-fit:contain; padding:28px;
   filter:drop-shadow(4px 4px 0 rgba(21,21,21,.22));
 }
+.banner-stage{
+  aspect-ratio:3 / 1;
+  min-height:unset;
+}
+.banner-stage img{
+  object-fit:cover;
+  padding:0;
+  filter:none;
+}
 .carousel-btn{
   position:absolute; top:50%; transform:translateY(-50%);
   width:46px; height:46px;
@@ -457,15 +573,19 @@
 @media (max-width: 860px){
   .cca-hero, .cca-content, .profile-grid,
   .media-section, .detail-card-grid{ grid-template-columns:1fr }
+  .cca-media-hero{ grid-template-columns:1fr }
   .title-panel{ min-height:420px }
   .map-card{ min-height:420px }
   .cca-facts{ grid-template-columns:1fr }
+  .logo-icon-wrap{ padding:36px 24px }
 }
 @media (max-width: 640px){
   .cca-nav .nav-row{ align-items:flex-start; flex-direction:column }
   .cca-nav .nav-actions{ width:100% }
   .cca-nav .back-link{ flex:1; justify-content:center }
   .cca-main{ padding:24px 14px 58px }
+  .cca-header-panel{ padding:24px 20px 22px }
+  .cca-header-panel h1{ font-size:clamp(42px, 16vw, 72px) }
   .title-panel{ min-height:360px; padding:20px }
   .title-panel h1{ font-size:clamp(42px, 16vw, 66px); line-height:.9; overflow-wrap:anywhere }
   .map-card{ min-height:360px; padding:16px }
@@ -486,4 +606,291 @@
   .cca-nav .logo{ font-size:24px }
   .title-panel h1{ font-size:40px }
   .title-panel{ min-height:320px; padding:16px }
+}
+
+/* ============================================================
+   NEW MOCKUP LAYOUT — ms-* prefix
+   ============================================================ */
+
+/* Base grid row */
+.ms-row{
+  display:grid;
+  gap:22px;
+  margin-top:22px;
+}
+
+/* Top row: club identity (2fr) | booth carousel (3fr) */
+.ms-top-row{
+  grid-template-columns:2fr 3fr;
+  align-items:stretch;
+}
+
+/* Bottom row: about us (3fr) | social media (2fr) */
+.ms-bottom-row{
+  grid-template-columns:3fr 2fr;
+  align-items:start;
+}
+
+/* ── Club identity column ── */
+.ms-club-col{
+  position:relative;
+  display:flex; flex-direction:column;
+}
+
+/* Dark overlapping badge — sits inside the banner, top-left */
+.ms-logo-badge{
+  position:absolute;
+  top:-16px; left:-16px; z-index:5;
+  width:112px; min-height:112px;
+  background:var(--ink);
+  border-radius:22px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:6px; padding:16px 12px;
+  box-shadow:6px 6px 0 rgba(26,26,26,.45);
+  transform:rotate(-6deg);
+}
+.ms-badge-icon{
+  font-family:'Bagel Fat One',sans-serif;
+  font-size:40px; color:#fff;
+  line-height:1;
+  text-shadow:3px 3px 0 rgba(0,0,0,.3);
+}
+.ms-badge-sub{
+  font-family:'Space Mono',monospace;
+  font-size:10px; letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+}
+
+/* Club card */
+.ms-club-card{
+  flex:1;
+  border:4px solid var(--ink);
+  border-radius:20px;
+  box-shadow:10px 10px 0 var(--ink);
+  overflow:hidden;
+  background:var(--paper);
+  display:flex; flex-direction:column;
+}
+
+/* Banner image area */
+.ms-banner-area{
+  position:relative;
+  flex:1;
+  min-height:280px;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.14) 0 10px, transparent 10px 24px),
+    var(--cca-color, var(--blue));
+  overflow:hidden;
+}
+.ms-banner-area img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; display:block;
+}
+
+/* Club name bar at bottom of card */
+.ms-club-name-bar{
+  border-top:4px solid var(--ink);
+  background:#fff;
+  padding:22px 24px;
+}
+.ms-club-name{
+  font-family:'Bagel Fat One',sans-serif;
+  font-size:clamp(22px, 2.8vw, 32px);
+  line-height:1.1; color:var(--ink);
+  display:block;
+}
+
+/* ── Booth photo carousel card ── */
+.ms-booth-card{
+  border:4px solid var(--ink);
+  border-radius:20px;
+  box-shadow:10px 10px 0 var(--ink);
+  padding:24px;
+  display:flex; flex-direction:column;
+  gap:18px;
+  background:var(--paper);
+}
+
+/* Card header row (title + subtitle + counter pill) */
+.ms-card-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.ms-label-title{
+  font-family:'Bagel Fat One',sans-serif;
+  font-size:clamp(26px, 3.5vw, 40px);
+  line-height:1; letter-spacing:0;
+  color:var(--ink);
+}
+.ms-label-sub{
+  font-family:'Space Mono',monospace;
+  font-size:13px; color:#888;
+}
+.ms-count-pill{
+  margin-left:auto;
+  border:3px solid var(--ink); border-radius:999px;
+  padding:6px 12px;
+  background:var(--yellow);
+  font-family:'Space Mono',monospace; font-size:12px;
+  box-shadow:3px 3px 0 var(--ink);
+  white-space:nowrap;
+}
+
+/* Carousel */
+.ms-carousel-wrap{ position:relative }
+.ms-carousel-stage{
+  width:100%; aspect-ratio:16 / 9;
+  border:4px solid var(--ink); border-radius:16px;
+  overflow:hidden;
+  background:#1a1a1a;
+  box-shadow:7px 7px 0 var(--ink);
+}
+.ms-carousel-stage img{
+  width:100%; height:100%;
+  object-fit:cover; display:block;
+}
+
+/* Arrow buttons overlapping edges of the image */
+.ms-arr-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:52px; height:52px;
+  border:4px solid var(--ink); border-radius:50%;
+  background:rgba(255,255,255,.92);
+  box-shadow:4px 4px 0 var(--ink);
+  cursor:pointer; z-index:2;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--ink);
+  transition:transform .14s ease, box-shadow .14s ease;
+}
+.ms-arr-btn:hover{
+  transform:translateY(-50%) translate(-2px,-2px);
+  box-shadow:6px 6px 0 var(--ink);
+}
+.ms-arr-prev{ left:10px }
+.ms-arr-next{ right:10px }
+.ms-arr-btn svg{
+  width:22px; height:22px;
+  flex:0 0 auto;
+}
+
+/* ── About Us card ── */
+.ms-about-card{
+  border:4px solid var(--ink);
+  border-radius:20px;
+  box-shadow:10px 10px 0 var(--ink);
+  background:var(--cream-2);
+  padding:28px;
+  display:flex; flex-direction:column;
+}
+
+/* Small pill tag */
+.ms-pill{
+  display:inline-flex; align-self:flex-start;
+  border:3px solid var(--ink); border-radius:999px;
+  padding:5px 14px;
+  background:#fff;
+  font-family:'Space Mono',monospace; font-size:12px;
+  box-shadow:3px 3px 0 var(--ink);
+  margin-bottom:14px;
+}
+
+/* Large bold section heading */
+.ms-section-title{
+  margin:0 0 16px;
+  font-family:'Bagel Fat One',sans-serif;
+  font-size:clamp(36px, 5vw, 52px);
+  line-height:1; letter-spacing:0;
+  color:var(--ink);
+}
+
+/* Description text area */
+.ms-about-body{
+  flex:1;
+  margin-bottom:20px;
+}
+.ms-about-body p{
+  margin:0 0 12px;
+  font-family:'Space Mono',monospace;
+  font-size:13px; line-height:1.65; color:#333;
+}
+
+/* Action buttons row */
+.ms-actions{
+  display:flex; flex-wrap:wrap; gap:10px;
+  padding-top:18px;
+  border-top:3px dashed rgba(26,26,26,.2);
+  margin-top:auto;
+}
+.ms-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  border:3px solid var(--ink); border-radius:999px;
+  padding:10px 18px;
+  background:var(--ink); color:#fff;
+  font-family:'Fredoka',sans-serif; font-weight:700; font-size:14px;
+  box-shadow:3px 3px 0 var(--ink);
+  cursor:pointer; text-decoration:none;
+  transition:transform .14s ease, box-shadow .14s ease;
+  white-space:nowrap;
+}
+.ms-btn:hover{
+  transform:translate(-2px,-2px);
+  box-shadow:5px 5px 0 var(--ink);
+}
+.ms-btn-ghost{
+  background:#fff;
+  color:var(--ink);
+}
+
+/* ── Social Media card ── */
+.ms-social-card{
+  border:4px solid var(--ink);
+  border-radius:20px;
+  box-shadow:10px 10px 0 var(--ink);
+  background:var(--cream-2);
+  padding:28px;
+  display:flex; flex-direction:column;
+}
+
+/* Stacked social link buttons */
+.ms-social-list{
+  display:flex; flex-direction:column;
+  gap:12px;
+}
+.ms-social-link{
+  display:flex; align-items:center; justify-content:center;
+  border:3px solid var(--ink); border-radius:999px;
+  padding:16px 20px;
+  background:#fff; color:var(--ink);
+  font-family:'Fredoka',sans-serif; font-weight:700; font-size:18px;
+  box-shadow:4px 4px 0 var(--ink);
+  text-decoration:none;
+  transition:transform .14s ease, box-shadow .14s ease, background .14s ease, color .14s ease;
+}
+.ms-social-link:hover{
+  transform:translate(-2px,-2px);
+  box-shadow:6px 6px 0 var(--ink);
+  background:var(--cca-color, var(--blue));
+  color:#fff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px){
+  .ms-top-row,
+  .ms-bottom-row{
+    grid-template-columns:1fr;
+  }
+}
+@media (max-width: 640px){
+  .ms-actions{
+    flex-direction:column;
+  }
+  .ms-btn{
+    width:100%;
+    text-align:center;
+  }
 }

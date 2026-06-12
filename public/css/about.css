@@ -17,6 +17,14 @@
   background-size: 100% auto;
 }
 
+.smoo-run-page .about-main {
+  background-image: url('/assets/resources-design/smoo_run_bg.png');
+}
+
+.artfest-page .about-main {
+  background-image: url('/assets/resources-design/art_fest_bg.png');
+}
+
 /* ── Thermal printer machine ── */
 .receipt-machine {
   width: min(760px, calc(100vw - 32px));
@@ -555,6 +563,311 @@
   margin: 0 auto;
 }
 
+/* ── Event receipt: banner block ──────────────────────────────────────────── */
+.receipt-banner-wrap {
+  width: 100%;
+}
+.receipt-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px 18px;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.receipt-banner--red  { background: #e84040; }
+.receipt-banner--pink { background: var(--pink); }
+.receipt-banner-title {
+  font-family: 'Bagel Fat One', sans-serif;
+  font-size: clamp(22px, 4vw, 34px);
+  color: #fff;
+  letter-spacing: .06em;
+  text-shadow: 2px 2px 0 var(--ink);
+  line-height: 1;
+}
+.receipt-banner-sub {
+  font-size: clamp(11px, 1.5vw, 14px);
+  color: rgba(255,255,255,.85);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* ── Event receipt: split-row (icon banner + info) ────────────────────────── */
+.receipt-split-row {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 3px solid var(--ink);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--ink);
+  text-align: left;
+  width: 100%;
+}
+.receipt-split-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 14px 12px;
+  min-width: 62px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 1px 1px 0 var(--ink);
+  border-right: 3px solid var(--ink);
+}
+.receipt-split-banner--red    { background: #e84040; }
+.receipt-split-banner--orange { background: #f57c00; }
+.receipt-split-info {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: clamp(12px, 1.5vw, 15px);
+  line-height: 1.55;
+  background: var(--paper);
+}
+.receipt-split-title {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+/* ── SMOO Run receipt: mock-layout structure with thermal styling ─────────── */
+.smoo-receipt-body {
+  text-align: center;
+  font-size: clamp(15px, 1.55vw, 18px);
+  line-height: 1.58;
+}
+.smoo-receipt-title {
+  margin: 0 0 30px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: clamp(42px, 5.8vw, 66px);
+  line-height: .96;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.smoo-hero-banner {
+  min-height: 260px;
+  margin: 0 0 20px;
+  border: 4px solid var(--ink);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(26,26,26,.2), rgba(26,26,26,0) 45%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.18) 0 8px, transparent 8px 18px),
+    #e84040;
+  box-shadow: 6px 6px 0 var(--ink);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+}
+.smoo-hero-banner span {
+  display: block;
+  font-family: 'Bagel Fat One', sans-serif;
+  font-size: clamp(44px, 7.6vw, 82px);
+  line-height: .9;
+  letter-spacing: .04em;
+  text-shadow: 4px 4px 0 var(--ink);
+}
+.smoo-hero-banner small {
+  display: block;
+  margin-top: 14px;
+  font-size: 14px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.smoo-kicker {
+  margin: 0 0 24px;
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+}
+.smoo-intro-copy {
+  max-width: 68ch;
+  margin: 0 auto 34px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+.smoo-break {
+  margin: 30px 0 38px;
+  padding: 26px 28px;
+  border: 4px solid var(--ink);
+  border-radius: 24px;
+  background: var(--blue);
+  box-shadow: 6px 6px 0 var(--ink);
+  color: #fff;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+.smoo-section h2,
+.smoo-register h2 {
+  margin: 0 0 34px;
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(36px, 5vw, 58px);
+  line-height: 1.12;
+  text-align: center;
+  letter-spacing: .01em;
+}
+.smoo-feature-row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin: 0 auto 30px;
+  max-width: 620px;
+}
+.smoo-feature-thumb {
+  min-height: 176px;
+  border: 4px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 var(--ink);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  text-align: center;
+}
+.smoo-feature-thumb--red { background: #e84040; }
+.smoo-feature-thumb--orange { background: #f57c00; }
+.smoo-feature-thumb span {
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  text-shadow: 2px 2px 0 var(--ink);
+}
+.smoo-feature-copy {
+  padding: 6px 0;
+  text-align: center;
+}
+.smoo-feature-copy h3,
+.smoo-step h3 {
+  margin: 0 0 8px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1;
+}
+.smoo-feature-meta {
+  margin: 0 0 12px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.smoo-feature-copy p,
+.smoo-step p,
+.smoo-extra {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+.smoo-register {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.smoo-register h2 {
+  text-transform: uppercase;
+}
+.smoo-step {
+  margin: 0 0 32px;
+}
+.smoo-extra {
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+/* ── SMU Arts Fest receipt: compact mock structure ────────────────────────── */
+.artfest-receipt-body {
+  text-align: center;
+  font-size: clamp(15px, 1.55vw, 18px);
+  line-height: 1.58;
+}
+.artfest-receipt-title {
+  margin: 0 0 34px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: clamp(44px, 6vw, 72px);
+  line-height: 1;
+  letter-spacing: .01em;
+  text-align: center;
+}
+.artfest-hero-banner {
+  min-height: 300px;
+  margin: 0 0 24px;
+  border: 4px solid var(--ink);
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(26,26,26,.15), rgba(26,26,26,0) 45%),
+    repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 8px, transparent 8px 18px),
+    var(--pink);
+  box-shadow: 6px 6px 0 var(--ink);
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+.artfest-hero-banner span {
+  display: block;
+  font-family: 'Bagel Fat One', sans-serif;
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: .92;
+  letter-spacing: .04em;
+  text-shadow: 4px 4px 0 var(--ink);
+}
+.artfest-hero-banner small {
+  display: block;
+  margin-top: 14px;
+  font-size: 14px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.artfest-kicker {
+  margin: 0 0 34px;
+  font-weight: 700;
+  font-size: 15px;
+}
+.artfest-intro-copy {
+  max-width: 68ch;
+  margin: 0 auto 34px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+.artfest-link-wrap {
+  margin: 0 0 34px;
+}
+.artfest-receipt-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: min(380px, 100%);
+  padding: 14px 28px;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--blue);
+  box-shadow: 5px 5px 0 var(--ink);
+  color: #fff;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.1;
+  text-decoration: none;
+}
+.artfest-receipt-link:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
 @media (max-width: 700px) {
   .about-main {
     background-size: auto 760px;
@@ -579,6 +892,87 @@
   .receipt-evoucher {
     width: 100%;
     margin-top: 26px;
+  }
+
+  .smoo-receipt-title {
+    margin-bottom: 22px;
+    font-size: 36px;
+  }
+
+  .smoo-hero-banner {
+    min-height: 170px;
+  }
+
+  .smoo-hero-banner small {
+    font-size: 11px;
+  }
+
+  .smoo-kicker,
+  .smoo-intro-copy,
+  .smoo-break {
+    font-size: 13px;
+  }
+
+  .smoo-break {
+    margin: 24px 0 30px;
+    padding: 20px 16px;
+    border-radius: 18px;
+  }
+
+  .smoo-feature-row {
+    grid-template-columns: 104px 1fr;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .smoo-feature-thumb {
+    min-height: 124px;
+  }
+
+  .smoo-feature-thumb span {
+    font-size: 15px;
+  }
+
+  .smoo-section h2,
+  .smoo-register h2 {
+    margin-bottom: 24px;
+    font-size: 30px;
+  }
+
+  .smoo-feature-copy h3,
+  .smoo-step h3 {
+    font-size: 24px;
+  }
+
+  .smoo-feature-meta,
+  .smoo-feature-copy p,
+  .smoo-step p {
+    font-size: 12px;
+  }
+
+  .artfest-receipt-title {
+    margin-bottom: 24px;
+    font-size: 36px;
+  }
+
+  .artfest-hero-banner {
+    min-height: 180px;
+  }
+
+  .artfest-hero-banner small {
+    font-size: 11px;
+  }
+
+  .artfest-kicker,
+  .artfest-intro-copy {
+    font-size: 13px;
+  }
+
+  .artfest-receipt-link {
+    min-width: 0;
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
   }
 
   .evoucher-top,

@@ -206,6 +206,202 @@
   }
   .chip.active .count{ background:rgba(255,255,255,.18) }
 
+  /* ── CBD section wrapper ── */
+  .cbd-section{ margin-bottom:64px }
+  .cbd-section[hidden]{ display:none }
+
+  /* ── CBD info card (same visual language as .cca-card) ── */
+  .cbd-card{
+    background:#fff;
+    border:4px solid var(--ink);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:6px 6px 0 var(--ink);
+    margin-bottom:18px;
+  }
+  .cbd-card .top{
+    padding:18px 20px;
+    border-bottom:3px solid var(--ink);
+    display:flex; gap:14px; align-items:center;
+  }
+  /* Tone colours — mirrors .cca-card .top.tone-xxx */
+  .cbd-card .top.tone-acf { background:var(--red);    color:#fff }
+  .cbd-card .top.tone-sics{ background:var(--green);  color:#fff }
+  .cbd-card .top.tone-icon{ background:var(--orange); color:#fff }
+  .cbd-card .top.tone-smux{ background:var(--blue);   color:#fff }
+  .cbd-card .top.tone-ssu { background:var(--yellow); color:var(--ink) }
+  .cbd-card .top.tone-gri { background:var(--pink);   color:#fff }
+  .cbd-card .top.tone-acad{ background:var(--ink);    color:var(--cream) }
+  /* Logo circle — same as CCA card but slightly larger */
+  .cbd-card .logo-circle{
+    width:56px; height:56px; flex:0 0 auto;
+    background:#fff; border:3px solid var(--ink); border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:24px; color:var(--ink);
+  }
+  .cbd-card .top h3{
+    font-family:'Fredoka',sans-serif; font-weight:700;
+    font-size:clamp(20px, 2.8vw, 30px); line-height:1.1;
+    margin:0 0 3px;
+  }
+  .cbd-card .top .meta{
+    font-family:'Space Mono',monospace; font-size:11px; opacity:.85; margin-top:2px;
+  }
+  .cbd-count-pill{
+    margin-left:auto; flex-shrink:0;
+    border:3px solid var(--ink); border-radius:999px;
+    padding:7px 12px;
+    background:var(--yellow);
+    font-family:'Space Mono',monospace; font-size:12px;
+    box-shadow:3px 3px 0 var(--ink);
+    white-space:nowrap; color:var(--ink);
+  }
+  .cbd-card-body{
+    padding:16px 20px;
+    background:var(--paper);
+  }
+  .cbd-card-body p{
+    margin:0;
+    font-family:'Space Mono',monospace;
+    font-size:13px; line-height:1.65; color:rgba(26,26,26,.78);
+  }
+
+  /* Grid inside a CBD section */
+  .cbd-section .cca-grid{ margin-top:0 }
+
+  /* ── CBD Overview: all houses stacked at top ── */
+  #cbd-overview{ margin-bottom:0 }
+  #cbd-overview[hidden]{ display:none }
+  .cbd-overview-intro{ margin-bottom:28px }
+  .cbd-overview-title{
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:clamp(36px,5.5vw,66px);
+    line-height:1.08; margin:10px 0 10px;
+  }
+  .cbd-hi{
+    background:var(--yellow); color:var(--ink);
+    border:4px solid var(--ink); padding:0 12px 4px;
+    border-radius:14px; display:inline-block;
+    transform:rotate(-2deg);
+    box-shadow:5px 5px 0 var(--ink);
+  }
+  .cbd-overview-desc{
+    font-family:'Space Mono',monospace;
+    font-size:13px; line-height:1.65;
+    color:rgba(26,26,26,.65); margin:0;
+    max-width:56ch;
+  }
+  .cbd-overview-stack{ display:flex; flex-direction:column; gap:16px }
+  .cbd-house-card[hidden]{ display:none !important }
+  .cbd-house-body{
+    display:flex; align-items:center;
+    justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .cbd-house-body p{ flex:1; min-width:200px; margin:0 }
+  .cbd-jump-link{
+    display:inline-flex; align-items:center;
+    padding:10px 20px;
+    border:3px solid var(--ink); border-radius:999px;
+    background:var(--yellow);
+    font-family:'Fredoka',sans-serif; font-weight:700;
+    font-size:14px; color:var(--ink);
+    box-shadow:3px 3px 0 var(--ink);
+    text-decoration:none; white-space:nowrap;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .cbd-jump-link:hover{ transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--ink) }
+
+  /* ── CBD-to-CCA divider ── */
+  .cbd-cca-divider{
+    display:flex; align-items:center; gap:0;
+    margin:56px 0 56px;
+    position:relative;
+  }
+  .cbd-cca-divider[hidden]{ display:none }
+  .cbd-divider-line{
+    flex:1; height:0;
+    border-top:3px dashed var(--ink);
+  }
+  .cbd-divider-badge{
+    display:flex; flex-direction:column; align-items:center; gap:3px;
+    background:var(--ink); color:var(--cream);
+    border:4px solid var(--ink); border-radius:18px;
+    padding:14px 28px;
+    margin:0 -2px;
+    box-shadow:5px 5px 0 rgba(26,26,26,.2);
+    position:relative; z-index:1;
+    white-space:nowrap;
+  }
+  .cbd-divider-badge::before,
+  .cbd-divider-badge::after{
+    content:"";
+    position:absolute; top:50%;
+    width:18px; height:18px; border-radius:50%;
+    background:var(--yellow); border:3px solid var(--ink);
+    transform:translateY(-50%);
+  }
+  .cbd-divider-badge::before{ left:-11px }
+  .cbd-divider-badge::after{ right:-11px }
+  .cbd-divider-label{
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:clamp(20px,3vw,28px); letter-spacing:.03em;
+    line-height:1;
+  }
+  .cbd-divider-sub{
+    font-family:'Space Mono',monospace;
+    font-size:10px; letter-spacing:.12em; text-transform:uppercase;
+    opacity:.65; line-height:1;
+  }
+
+  /* ── Compact section header in CBD sections ── */
+  .cbd-section-header{
+    --section-accent:var(--ink);
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    flex-wrap:wrap;
+    width:fit-content; max-width:100%;
+    margin:0 0 22px;
+    padding:12px 14px 12px 18px;
+    background:#fff;
+    border:4px solid var(--ink);
+    border-left-width:14px;
+    border-left-color:var(--section-accent);
+    border-radius:16px;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+  .cbd-section-header.tone-acf { --section-accent:var(--red) }
+  .cbd-section-header.tone-sics{ --section-accent:var(--green) }
+  .cbd-section-header.tone-icon{ --section-accent:var(--orange) }
+  .cbd-section-header.tone-smux{ --section-accent:var(--blue) }
+  .cbd-section-header.tone-ssu { --section-accent:var(--yellow) }
+  .cbd-section-header.tone-gri { --section-accent:var(--pink) }
+  .cbd-section-header.tone-acad{ --section-accent:var(--ink) }
+  .cbd-overview-intro[hidden]{ display:none }
+  .cbd-section-fullname{
+    flex:1 1 280px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(18px,2.2vw,28px);
+    line-height:1.05;
+    color:var(--ink);
+    text-transform:uppercase;
+  }
+  .cbd-section-header .cbd-count-pill{
+    margin-left:6px;
+  }
+
+  /* ── CBD-active card state (non-clickable display cards) ── */
+  .cca-grid.cbd-active .cca-card{
+    cursor:default;
+    pointer-events:none;
+  }
+  .cca-grid.cbd-active .cca-card .foot .card-actions{
+    display:none;
+  }
+  .cca-grid.cbd-active .cca-card:hover{
+    transform:none;
+    box-shadow:6px 6px 0 var(--ink);
+  }
+
   .cca-grid{
     display:grid; grid-template-columns: repeat(4, 1fr);
     gap:18px;
@@ -457,6 +653,279 @@
     padding:6px 14px; border-radius:999px;
     box-shadow:3px 3px 0 var(--ink);
   }
+
+  /* ============================================================
+     WEEKLY DEALS FLYER CARD
+  ============================================================ */
+  .deals-flyer-card{
+    position:relative;
+    border:5px solid var(--ink);
+    border-radius:6px;
+    background:#fffef9;
+    box-shadow:8px 8px 0 var(--ink);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    /* entrance animation */
+    opacity:0;
+    transform:translateY(-32px) rotate(-2deg);
+    transition:opacity .5s ease, transform .5s cubic-bezier(.34,1.36,.64,1);
+  }
+  .deals-flyer-card.is-revealed{
+    opacity:1;
+    transform:translateY(0) rotate(-1.2deg);
+  }
+  .deals-flyer-card:hover{
+    transform:rotate(0deg) translateY(-4px) !important;
+    box-shadow:12px 12px 0 var(--ink);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+
+  /* Starburst badge */
+  .flyer-starburst{
+    position:absolute; top:-14px; right:16px; z-index:3;
+    width:72px; height:72px;
+    background:var(--flyer-accent, var(--red));
+    clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    display:grid; place-items:center;
+    filter:drop-shadow(2px 2px 0 var(--ink));
+  }
+  .flyer-starburst span{
+    font-family:'Fredoka',sans-serif; font-weight:700;
+    font-size:8px; color:#fff; text-align:center;
+    letter-spacing:.04em; text-transform:uppercase;
+    line-height:1.2; padding:0 10px;
+  }
+
+  /* Flyer header strip */
+  .flyer-head{
+    background:var(--flyer-accent, var(--red));
+    padding:16px 20px 14px;
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:4px solid var(--ink);
+  }
+  .flyer-badge{
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:13px; letter-spacing:.16em; text-transform:uppercase;
+    color:#fff; opacity:.9;
+  }
+  .flyer-date-block{
+    display:flex; flex-direction:column; align-items:flex-end;
+    background:rgba(255,255,255,.18); border-radius:8px;
+    padding:6px 12px; border:2px solid rgba(255,255,255,.4);
+  }
+  .flyer-day{
+    font-family:'Bagel Fat One',sans-serif; font-size:28px;
+    color:#fff; line-height:1; text-shadow:2px 2px 0 var(--ink);
+  }
+  .flyer-daylabel{
+    font-family:'Space Mono',monospace; font-size:9px;
+    color:#fff; letter-spacing:.14em; opacity:.85;
+  }
+
+  /* Title & tagline */
+  .flyer-title{
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:clamp(26px,4vw,36px); line-height:1;
+    color:var(--ink); padding:16px 20px 4px;
+    text-shadow:3px 3px 0 rgba(26,26,26,.12);
+  }
+  .flyer-tagline{
+    font-family:'Fredoka',sans-serif; font-weight:700;
+    font-size:14px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--flyer-accent, var(--red));
+    padding:0 20px 14px;
+  }
+
+  /* Perforated tear line */
+  .flyer-tear{
+    height:0;
+    border-top:3px dashed rgba(26,26,26,.25);
+    margin:0 12px;
+    position:relative;
+  }
+  .flyer-tear::before,
+  .flyer-tear::after{
+    content:"";
+    position:absolute; top:50%;
+    width:20px; height:20px; border-radius:50%;
+    background:var(--flyer-accent, var(--red));
+    border:3px solid var(--ink);
+    transform:translateY(-50%);
+  }
+  .flyer-tear::before{ left:-22px }
+  .flyer-tear::after{ right:-22px }
+
+  /* Body */
+  .flyer-body{
+    padding:16px 20px; flex:1;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .flyer-body p{
+    margin:0; font-size:14px; line-height:1.55; color:#333;
+  }
+  .flyer-meta{
+    display:flex; flex-direction:column; gap:4px;
+    font-family:'Space Mono',monospace; font-size:11px; color:#666;
+  }
+
+  /* Footer */
+  .flyer-foot{
+    padding:12px 20px;
+    background:repeating-linear-gradient(
+      90deg, rgba(26,26,26,.06) 0 6px, transparent 6px 12px
+    );
+    border-top:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .flyer-admission{
+    font-family:'Fredoka',sans-serif; font-weight:700; font-size:15px;
+    background:var(--yellow); color:var(--ink);
+    border:2px solid var(--ink); border-radius:999px;
+    padding:4px 12px; box-shadow:2px 2px 0 var(--ink);
+  }
+  .flyer-rsvp{
+    font-family:'Space Mono',monospace; font-size:11px;
+    color:var(--flyer-accent, var(--red)); letter-spacing:.06em;
+    text-decoration:none;
+  }
+  .flyer-rsvp:hover{ text-decoration:underline }
+
+  /* ============================================================
+     PRODUCT SHELF LABEL CARD
+  ============================================================ */
+  .shelf-label-card{
+    border:4px solid var(--ink);
+    border-radius:8px;
+    background:#fff;
+    box-shadow:8px 8px 0 var(--ink);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    /* entrance animation */
+    opacity:0;
+    transform:translateX(-48px);
+    transition:opacity .5s ease, transform .55s cubic-bezier(.34,1.2,.64,1);
+  }
+  .shelf-label-card.is-revealed{
+    opacity:1;
+    transform:translateX(0);
+  }
+  .shelf-label-card:hover{
+    transform:translateY(-4px) !important;
+    box-shadow:10px 12px 0 var(--ink);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+
+  /* Left accent strip */
+  .label-accent-strip{
+    background:var(--label-accent, var(--pink));
+    padding:10px 14px;
+    display:flex; align-items:center;
+    border-bottom:4px solid var(--ink);
+  }
+  .label-aisle{
+    font-family:'Space Mono',monospace; font-size:10px;
+    letter-spacing:.18em; text-transform:uppercase;
+    color:#fff;
+  }
+
+  /* Main body */
+  .label-body{ padding:18px 18px 12px; flex:1 }
+  .label-top{
+    display:flex; align-items:flex-start;
+    justify-content:space-between; gap:14px;
+    margin-bottom:14px;
+  }
+  .label-text{ flex:1 }
+  .label-sku{
+    display:block;
+    font-family:'Space Mono',monospace; font-size:9px;
+    letter-spacing:.18em; text-transform:uppercase;
+    color:#aaa; margin-bottom:6px;
+  }
+  .label-title{
+    font-family:'Bagel Fat One',sans-serif;
+    font-size:clamp(22px,3.5vw,30px); line-height:1;
+    color:var(--ink); margin:0 0 6px;
+  }
+  .label-tagline{
+    font-family:'Fredoka',sans-serif; font-size:13px;
+    color:var(--label-accent, var(--pink)); font-weight:700;
+    letter-spacing:.04em;
+  }
+
+  /* Price tag */
+  .label-price-tag{
+    flex:0 0 auto;
+    border:3px solid var(--ink); border-radius:10px;
+    background:var(--yellow);
+    padding:8px 12px; text-align:center;
+    box-shadow:3px 3px 0 var(--ink);
+    transform:rotate(3deg);
+  }
+  .label-price-free{
+    display:block;
+    font-family:'Bagel Fat One',sans-serif; font-size:18px;
+    color:var(--ink); line-height:1;
+  }
+  .label-price-sub{
+    display:block;
+    font-family:'Space Mono',monospace; font-size:9px;
+    color:var(--ink); opacity:.65; letter-spacing:.12em;
+  }
+
+  .label-divider{
+    border-top:2px dashed rgba(26,26,26,.2); margin:0 0 12px;
+  }
+  .label-desc{
+    margin:0 0 10px; font-size:13px; line-height:1.55; color:#444;
+  }
+  .label-meta-row{
+    display:flex; flex-wrap:wrap; gap:8px 16px;
+    font-family:'Space Mono',monospace; font-size:10px; color:#666;
+  }
+
+  /* Barcode footer strip */
+  .label-barcode-strip{
+    padding:10px 18px;
+    background:#f5f5f5;
+    border-top:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .label-barcode{ display:flex; flex-direction:column; align-items:flex-start; gap:3px }
+  .barcode-lines{
+    width:80px; height:22px;
+    background:repeating-linear-gradient(
+      90deg,
+      var(--ink) 0 2px, transparent 2px 4px,
+      var(--ink) 4px 5px, transparent 5px 8px,
+      var(--ink) 8px 11px, transparent 11px 13px,
+      var(--ink) 13px 14px, transparent 14px 17px,
+      var(--ink) 17px 20px, transparent 20px 22px,
+      var(--ink) 22px 23px, transparent 23px 26px,
+      var(--ink) 26px 29px, transparent 29px 32px,
+      var(--ink) 32px 33px, transparent 33px 36px,
+      var(--ink) 36px 38px, transparent 38px 40px,
+      var(--ink) 40px 42px, transparent 42px 44px,
+      var(--ink) 44px 46px, transparent 46px 48px,
+      var(--ink) 48px 50px, transparent 50px 53px,
+      var(--ink) 53px 55px, transparent 55px 57px,
+      var(--ink) 57px 60px, transparent 60px 62px,
+      var(--ink) 62px 64px, transparent 64px 66px,
+      var(--ink) 66px 68px, transparent 68px 71px,
+      var(--ink) 71px 74px, transparent 74px 76px,
+      var(--ink) 76px 78px, transparent 78px 80px
+    );
+  }
+  .barcode-num{
+    font-family:'Space Mono',monospace; font-size:8px;
+    letter-spacing:.1em; color:#666;
+  }
+  .label-rsvp{
+    font-family:'Space Mono',monospace; font-size:11px;
+    color:var(--label-accent, var(--pink)); letter-spacing:.06em;
+    text-decoration:none;
+  }
+  .label-rsvp:hover{ text-decoration:underline }
 
   /* FOOTER */
   footer.site{
@@ -797,7 +1266,7 @@
 
 /* Top strip */
 .vm-top{
-  background:#7c1717; color:#fff;
+  background:var(--blue); color:#fff;
   padding:20px 28px 18px; text-align:center;
 }
 .vm-eyebrow{

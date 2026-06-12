@@ -17,45 +17,101 @@
         <span class="dotc" style="background:var(--ink)"></span> All <span class="count">120</span>
       </button>
       <% schools.forEach(school => { %>
-        <button class="chip" data-cat="<%= school.id %>" data-title="<%= school.name %>" data-count="<%= school.count %>" data-aisle="<%= school.aisle %>">
+        <button class="chip"
+          data-cat="<%= school.id %>"
+          data-title="<%= school.name %>"
+          data-fullname="<%= school.fullName %>"
+          data-icon="<%= school.icon %>"
+          data-color="<%= school.color %>"
+          data-count="<%= school.count %>"
+          data-aisle="<%= school.aisle %>"
+          data-desc="<%= school.description %>">
           <span class="dotc" style="background:var(<%= school.color %>)"></span>
           <%= school.name %> <span class="count"><%= school.count %></span>
         </button>
       <% }) %>
     </div>
 
-    <!-- CCA grid — rendered from catalogue model, links to /cca/:id -->
-    <div class="cca-grid" id="cca-grid" aria-live="polite">
-      <% ccas.forEach(cca => { %>
-        <article class="cca-card" data-cat="<%= cca.category %>">
-          <div class="top <%= cca.tone %>">
-            <div class="logo-circle"><%= cca.icon %></div>
+    <!-- CBD Overview: all 7 umbrella houses stacked before the CCA listing -->
+    <div id="cbd-overview">
+      <div class="cbd-overview-intro">
+        <span class="section-label">CCA Houses</span>
+        <h2 class="cbd-overview-title">The <span class="cbd-hi">7 Houses.</span></h2>
+        <p class="cbd-overview-desc">Get to know each umbrella organisation — then scroll down to explore every CCA below.</p>
+      </div>
+      <div class="cbd-overview-stack">
+        <% schools.forEach(school => { %>
+        <%   const schoolCcas = ccas.filter(c => c.category === school.id); %>
+        <div class="cbd-card cbd-house-card" data-school="<%= school.id %>">
+          <div class="top tone-<%= school.id %>">
+            <div class="logo-circle"><%= school.icon %></div>
             <div>
-              <h3><%= cca.name %></h3>
-              <div class="meta"><%= cca.categoryShort %> · <%= cca.cluster.toUpperCase() %></div>
+              <h3><%= school.name %></h3>
+              <div class="meta"><%= school.fullName.toUpperCase() %></div>
             </div>
+            <span class="cbd-count-pill"><%= schoolCcas.length %> CCAs</span>
           </div>
-          <div class="body">
-            <p><%= cca.cardText %></p>
+          <div class="cbd-card-body cbd-house-body">
+            <p><%= school.description %></p>
+            <a href="#cbd-<%= school.id %>" class="cbd-jump-link">Explore CCAs ↓</a>
           </div>
-          <div class="foot">
-            <span class="badge <%= cca.badge %>"><%= cca.intake %></span>
-            <div class="card-actions">
-              <button class="save-cca" type="button"
-                data-save-cca="<%= cca.id %>"
-                data-save-label="Save"
-                data-saved-label="Saved">Save</button>
-              <a class="more" href="/cca/<%= cca.id %>">View →</a>
-            </div>
-          </div>
-        </article>
-      <% }) %>
+        </div>
+        <% }) %>
+      </div>
     </div>
 
-    <div class="more-row" id="load-more-row">
-      <button class="btn load-more" id="load-more" type="button">
-        <span>Load more</span><span class="arrow">→</span>
-      </button>
+    <!-- Divider between overview and individual CCA sections -->
+    <div class="cbd-cca-divider" id="cbd-cca-divider">
+      <div class="cbd-divider-line"></div>
+      <div class="cbd-divider-badge">
+        <span class="cbd-divider-label">All CCAs</span>
+        <span class="cbd-divider-sub">120 clubs · 7 aisles</span>
+      </div>
+      <div class="cbd-divider-line"></div>
+    </div>
+
+    <!-- CBD sections — one block per school with compact header + CCA grid -->
+    <div id="cbd-sections">
+      <% schools.forEach(school => { %>
+      <%   const schoolCcas = ccas.filter(c => c.category === school.id); %>
+      <div class="cbd-section" id="cbd-<%= school.id %>" data-school="<%= school.id %>">
+
+        <!-- Compact section header -->
+        <div class="cbd-section-header tone-<%= school.id %>">
+          <span class="cbd-section-fullname"><%= school.fullName.toUpperCase() %></span>
+          <span class="cbd-count-pill"><%= schoolCcas.length %> CCAs</span>
+        </div>
+
+        <!-- CCA cards for this school -->
+        <div class="cca-grid">
+          <% schoolCcas.forEach(cca => { %>
+            <article class="cca-card" data-cat="<%= cca.category %>">
+              <div class="top <%= cca.tone %>">
+                <div class="logo-circle"><%= cca.icon %></div>
+                <div>
+                  <h3><%= cca.name %></h3>
+                  <div class="meta"><%= cca.categoryShort %> · <%= cca.cluster.toUpperCase() %></div>
+                </div>
+              </div>
+              <div class="body">
+                <p><%= cca.cardText %></p>
+              </div>
+              <div class="foot">
+                <span class="badge <%= cca.badge %>"><%= cca.intake %></span>
+                <div class="card-actions">
+                  <button class="save-cca" type="button"
+                    data-save-cca="<%= cca.id %>"
+                    data-save-label="Save"
+                    data-saved-label="Saved">Save</button>
+                  <a class="more" href="/cca/<%= cca.id %>">View →</a>
+                </div>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+
+      </div>
+      <% }) %>
     </div>
 
   </div>

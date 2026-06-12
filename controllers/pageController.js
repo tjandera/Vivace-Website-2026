@@ -12,7 +12,6 @@
 
 const partners  = require('../models/partners');
 const faq       = require('../models/faq');
-const events    = require('../models/events');
 const catalogue = require('../models/cca-catalogue');
 
 // About page — receipt-print animation, team slider, e-voucher
@@ -28,11 +27,6 @@ exports.faq = (req, res) => {
 // Partners & Deals — sponsor shelf grid
 exports.partners = (req, res) => {
   res.render('partners-page', { partners, page: 'partners' });
-};
-
-// Events / Calendar
-exports.events = (req, res) => {
-  res.render('events-page', { events });
 };
 
 // Venue map — zoomable campus map + location cards
@@ -55,4 +49,14 @@ exports.ccaDetail = (req, res) => {
 // Saved CCA receipt page
 exports.savedCca = (req, res) => {
   res.render('saved-cca', { ccas: catalogue });
+};
+
+// SMOO Run 2026 event page
+exports.smooRun = (req, res) => {
+  res.render('smoo-run', { page: 'events' });
+};
+
+// SMU Artfest 2026 event page
+exports.artfest = (req, res) => {
+  res.render('artfest', { page: 'events' });
 };

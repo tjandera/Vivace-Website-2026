@@ -1,0 +1,78 @@
+<%- include('partials/head', { page: 'about' }) %>
+<body class="about-page artfest-page">
+
+<%- include('partials/nav') %>
+<%- include('partials/intro') %>
+
+<main class="about-main">
+
+  <div class="receipt-machine" id="receipt-machine" aria-hidden="true">
+    <div class="rm-body">
+      <span class="rm-brand">VIVACE MART &middot; RECEIPT PRINTER</span>
+      <div class="rm-led" id="rm-led"></div>
+    </div>
+    <div class="rm-slot-wrap">
+      <div class="rm-slot"></div>
+    </div>
+  </div>
+
+  <div class="receipt-feed" id="receipt-feed" aria-label="Printing SMU Artfest receipt">
+    <div class="receipt-printer-head" id="printer-head"></div>
+
+    <div class="receipt-wrap">
+      <div class="receipt-edge receipt-edge--top"></div>
+
+      <div class="receipt-body artfest-receipt-body">
+
+        <h1 class="rl artfest-receipt-title">SMU Arts Fest 2026</h1>
+
+        <div class="rl artfest-hero-banner" aria-label="SMU Arts Fest event banner">
+          <span>SMU ARTFEST '26</span>
+          <small>Where creativity hits the shelves.</small>
+        </div>
+
+        <p class="rl artfest-kicker">A campus-wide celebration of student art, music, and creative expression.</p>
+
+        <p class="rl artfest-intro-copy">
+          SMU Arts Fest is an annual showcase of creativity across the student
+          community. Expect live performances, visual art, interactive
+          exhibitions, music sets, and community-led workshops from SMU's most
+          imaginative student creators.
+        </p>
+
+        <div class="rl artfest-link-wrap">
+          <a class="artfest-receipt-link" href="https://artsfest.smu.edu.sg" target="_blank" rel="noopener noreferrer">
+            Hyperlink to the website
+          </a>
+        </div>
+
+        <p class="rl center bold">================================</p>
+        <p class="rl center bold">&#9733; CREATIVITY NEVER CLOCKS OUT &#9733;</p>
+        <p class="rl center bold">================================</p>
+        <p class="rl">&nbsp;</p>
+
+        <div class="rl center" id="receipt-barcode-wrap">
+          <div class="receipt-barcode" id="receipt-barcode"></div>
+        </div>
+        <p class="rl center muted" style="font-size:10px;letter-spacing:.06em">ARTFEST-2026 &middot; SMU FAIR</p>
+        <p class="rl center bold">&#9733;&nbsp; ART FOR SMU &nbsp;&#9733;</p>
+        <p class="rl">&nbsp;</p>
+
+      </div>
+
+      <div class="receipt-edge receipt-edge--bottom"></div>
+    </div>
+  </div>
+
+  <div class="about-cta" id="event-cta">
+    <a href="https://artsfest.smu.edu.sg" class="btn primary" target="_blank" rel="noopener noreferrer"><span>Visit Artfest Site</span><span class="arrow">-></span></a>
+    <a href="/events" class="btn ghost"><span>All Events</span></a>
+  </div>
+
+</main>
+
+<%- include('partials/footer') %>
+<script src="/js/nav.js"></script>
+<script src="/js/event-receipt.js"></script>
+</body>
+</html>

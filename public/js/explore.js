@@ -1,68 +1,40 @@
 /*
  * public/js/explore.js
  *
- * Drives the CCA Explore page: filtering, search, progressive load-more,
- * and the basket summary banner.
- *
- * All filter/search state lives in two variables: `activeCat` (which school
- * umbrella chip is active) and the live value of the search input. Every
- * state change funnels through applyFilter(), which re-evaluates visibility
- * for every card in one pass — keeps the logic in one place.
- *
- * Load-more works in rows rather than a flat count so that the number of
- * revealed cards scales with the grid column count on different screen sizes.
- *
- * If the server injected window.VIVACE_ACTIVE_SCHOOL (set by the
- * /explore/:school route), the matching chip is pre-selected on page load.
+ * Drives the CCA Explore page: filtering and search across CBD sections.
+ * CCAs are grouped by school umbrella. Each school gets its own CBD info
+ * card + grid below it. Clicking a specific chip shows only that umbrella
+ * with non-clickable info cards. "All" shows every section with fully
+ * clickable CCA cards.
  */
 
-// ── State ────────────────────────────────────────────────────────────────────
-const chips         = document.querySelectorAll('#chips .chip');
-const products      = document.querySelectorAll('.product');
-const grid          = document.getElementById('cca-grid');
-const search        = document.getElementById('search-input');
-const resultsCount  = document.getElementById('results-count');
-const loadMoreRow   = document.getElementById('load-more-row');
-const loadMoreBtn   = document.getElementById('load-more');
+// ── Elements ──────────────────────────────────────────────────────────────────
+const chips        = document.querySelectorAll('#chips .chip');
+const products     = document.querySelectorAll('.product');
+const search       = document.getElementById('search-input');
+const resultsCount = document.getElementById('results-count');
+const sectionsEl   = document.getElementById('cbd-sections');
+
 const basketSummary = document.getElementById('basket-summary');
 const summaryName   = document.getElementById('summary-name');
 const summaryCount  = document.getElementById('summary-count');
 const summaryLine   = document.getElementById('summary-line');
 const summaryClear  = document.getElementById('summary-clear');
 
-const ROWS_PER_LOAD = 3;
-let activeCat  = 'all';
-let loadedRows = ROWS_PER_LOAD;
+// ── State ─────────────────────────────────────────────────────────────────────
+let activeCat = 'all';
 
-// ── Helpers ──────────────────────────────────────────────────────────────────
-function getCards() {
-  return grid ? Array.from(grid.querySelectorAll('.cca-card')) : [];
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function getSections() {
+  return sectionsEl ? Array.from(sectionsEl.querySelectorAll('.cbd-section')) : [];
 }
 
-function getGridColumns() {
-  if (!grid) return 1;
-  const tracks = getComputedStyle(grid).gridTemplateColumns
-    .split(/\s+/).filter(t => t && t !== 'none');
-  return Math.max(1, tracks.length);
-}
-
-function visibleLimit() {
-  return loadedRows * getGridColumns();
-}
-
-// ── UI updates ───────────────────────────────────────────────────────────────
-function updateResultsCount(visible, total) {
+// ── UI updates ────────────────────────────────────────────────────────────────
+function updateResultsCount(shown) {
   if (!resultsCount) return;
   const chip  = document.querySelector(`#chips .chip[data-cat="${activeCat}"]`);
   const label = activeCat === 'all' ? 'Full shelf' : (chip?.dataset.title || activeCat.toUpperCase());
-  resultsCount.textContent = `${label}: ${visible} / ${total}`;
-}
-
-function updateLoadMore(shown, total) {
-  if (!loadMoreRow || !loadMoreBtn) return;
-  const hasMore = shown < total;
-  loadMoreRow.hidden = !hasMore;
-  loadMoreBtn.hidden = !hasMore;
+  resultsCount.textContent = `${label}: ${shown} results`;
 }
 
 function updateBasketSummary(cat) {
@@ -77,54 +49,79 @@ function updateBasketSummary(cat) {
   if (summaryLine)  summaryLine.textContent  = `${chip?.dataset.aisle || ''} added to your basket.`;
 }
 
-// ── Filter ───────────────────────────────────────────────────────────────────
-function applyFilter(cat, resetRows) {
+// ── Filter ────────────────────────────────────────────────────────────────────
+function applyFilter(cat) {
   if (cat !== undefined) activeCat = cat;
-  if (resetRows) loadedRows = ROWS_PER_LOAD;
 
   chips.forEach(c => c.classList.toggle('active', c.dataset.cat === activeCat));
   products.forEach(p => p.classList.toggle('is-selected', activeCat !== 'all' && p.dataset.cat === activeCat));
   updateBasketSummary(activeCat);
 
-  const q     = search ? search.value.trim().toLowerCase() : '';
-  const limit = visibleLimit();
-  let matched = 0;
-  let shown   = 0;
+  const q        = search ? search.value.trim().toLowerCase() : '';
+  const showAll  = !q && activeCat === 'all';
+  const showOne  = activeCat !== 'all';
+  let totalShown = 0;
 
-  getCards().forEach(card => {
-    const catMatch  = activeCat === 'all' || card.dataset.cat === activeCat;
-    const textMatch = !q || card.textContent.toLowerCase().includes(q);
-    const isMatch   = catMatch && textMatch;
-    if (isMatch) matched++;
-    const show = isMatch && matched <= limit;
-    card.style.display = show ? '' : 'none';
-    if (show) shown++;
+  // CBD overview + divider visibility
+  const cbdOverview = document.getElementById('cbd-overview');
+  const cbdDivider  = document.getElementById('cbd-cca-divider');
+  if (cbdOverview) {
+    const intro = cbdOverview.querySelector('.cbd-overview-intro');
+    if (intro) intro.style.display = showAll ? '' : 'none';
+    cbdOverview.querySelectorAll('.cbd-house-card').forEach(card => {
+      if (showAll) {
+        card.style.display = '';
+      } else if (showOne) {
+        card.style.display = card.dataset.school === activeCat ? '' : 'none';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    cbdOverview.style.display = (!showAll && !showOne) ? 'none' : '';
+  }
+  if (cbdDivider) cbdDivider.style.display = showAll ? '' : 'none';
+
+  getSections().forEach(section => {
+    const sectionCat = section.dataset.school;
+    const catMatch   = activeCat === 'all' || sectionCat === activeCat;
+
+    if (!catMatch) {
+      section.hidden = true;
+      return;
+    }
+
+    // In specific-CBD mode cards become non-clickable display cards
+    const grid = section.querySelector('.cca-grid');
+    if (grid) grid.classList.toggle('cbd-active', activeCat !== 'all');
+
+    // Filter cards within this section by search query
+    const cards = Array.from(section.querySelectorAll('.cca-card'));
+    let sectionShown = 0;
+
+    cards.forEach(card => {
+      const matches = !q || card.textContent.toLowerCase().includes(q);
+      card.style.display = matches ? '' : 'none';
+      if (matches) { sectionShown++; totalShown++; }
+    });
+
+    // Hide entire section if search yields no cards here
+    section.hidden = q !== '' && sectionShown === 0;
   });
 
-  updateResultsCount(shown, matched);
-  updateLoadMore(shown, matched);
+  updateResultsCount(totalShown);
 }
 
-// ── Event binding ─────────────────────────────────────────────────────────────
-chips.forEach(c => c.addEventListener('click', () => applyFilter(c.dataset.cat, true)));
+// ── Events ────────────────────────────────────────────────────────────────────
+chips.forEach(c => c.addEventListener('click', () => applyFilter(c.dataset.cat)));
 
-summaryClear?.addEventListener('click', () => applyFilter('all', true));
+summaryClear?.addEventListener('click', () => applyFilter('all'));
 
-if (loadMoreBtn) {
-  loadMoreBtn.addEventListener('click', () => {
-    loadedRows += ROWS_PER_LOAD;
-    applyFilter(activeCat, false);
-  });
-}
+search?.addEventListener('input', () => applyFilter(activeCat));
 
-if (search) {
-  search.addEventListener('input', () => applyFilter(activeCat, true));
-}
-
-window.addEventListener('resize', () => applyFilter(activeCat, false), { passive: true });
+window.addEventListener('resize', () => applyFilter(activeCat), { passive: true });
 
 products.forEach(p => p.addEventListener('click', () => {
-  applyFilter(p.dataset.cat, true);
+  applyFilter(p.dataset.cat);
   const delay = p.classList.contains('school-fruit') ? 200 : 0;
   setTimeout(() =>
     document.getElementById('explore')?.scrollIntoView({ behavior: 'smooth', block: 'start' }),
@@ -132,22 +129,33 @@ products.forEach(p => p.addEventListener('click', () => {
   );
 }));
 
-// ── Card click → navigate (if not clicking the "View →" link directly) ───────
-if (grid) {
-  grid.addEventListener('click', e => {
-    const card = e.target.closest('.cca-card');
-    if (!card || e.target.closest('a')) return;
-    const link = card.querySelector('a.more');
-    if (link) window.location.href = link.href;
-  });
-}
+document.getElementById('cbd-overview')?.addEventListener('click', e => {
+  const link = e.target.closest('.cbd-jump-link');
+  if (!link) return;
 
-// ── Init ─────────────────────────────────────────────────────────────────────
-// Check for a pre-selected school injected by the page (e.g. /explore/acf)
+  const card = link.closest('.cbd-house-card');
+  const cat = card?.dataset.school;
+  if (!cat) return;
+
+  e.preventDefault();
+  applyFilter(cat);
+  document.getElementById(`cbd-${cat}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+// Card click → navigate (disabled in CBD-specific mode)
+sectionsEl?.addEventListener('click', e => {
+  if (activeCat !== 'all') return;
+  const card = e.target.closest('.cca-card');
+  if (!card || e.target.closest('a') || e.target.closest('button')) return;
+  const link = card.querySelector('a.more');
+  if (link) window.location.href = link.href;
+});
+
+// ── Init ──────────────────────────────────────────────────────────────────────
 const _preset = (typeof window !== 'undefined' && window.VIVACE_ACTIVE_SCHOOL) || '';
 if (_preset) {
   const preChip = document.querySelector(`#chips .chip[data-cat="${_preset}"]`);
-  preChip ? applyFilter(_preset, true) : applyFilter('all', true);
+  preChip ? applyFilter(_preset) : applyFilter('all');
 } else {
-  applyFilter('all', true);
+  applyFilter('all');
 }

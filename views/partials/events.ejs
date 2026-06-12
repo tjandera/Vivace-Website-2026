@@ -12,6 +12,72 @@
 
     <div class="events-grid">
       <% events.forEach(event => { %>
+
+        <% if (event.cardType === 'deals-flyer') { %>
+        <!-- ── Weekly Deals Flyer card ── -->
+        <div class="deals-flyer-card reveal-drop" style="--flyer-accent:<%= event.accentColor %>">
+          <div class="flyer-starburst">
+            <span><%= event.starburst %></span>
+          </div>
+          <div class="flyer-head">
+            <span class="flyer-badge"><%= event.badge %></span>
+            <div class="flyer-date-block">
+              <span class="flyer-day"><%= event.day %></span>
+              <span class="flyer-daylabel"><%= event.dayLabel %></span>
+            </div>
+          </div>
+          <div class="flyer-title"><%= event.title %></div>
+          <div class="flyer-tagline"><%= event.tagline %></div>
+          <div class="flyer-tear"></div>
+          <div class="flyer-body">
+            <p><%= event.desc %></p>
+            <div class="flyer-meta">
+              <span>🕐 <%= event.time %></span>
+              <span>📍 <%= event.venue %></span>
+            </div>
+          </div>
+          <div class="flyer-foot">
+            <span class="flyer-admission"><%= event.admission %></span>
+            <a class="flyer-rsvp" href="/events/smoo-run">Find out more →</a>
+          </div>
+        </div>
+
+        <% } else if (event.cardType === 'shelf-label') { %>
+        <!-- ── Product Shelf Label card ── -->
+        <div class="shelf-label-card reveal-slide" style="--label-accent:<%= event.accentColor %>">
+          <div class="label-accent-strip">
+            <span class="label-aisle"><%= event.aisle %></span>
+          </div>
+          <div class="label-body">
+            <div class="label-top">
+              <div class="label-text">
+                <span class="label-sku"><%= event.sku %></span>
+                <h3 class="label-title"><%= event.title %></h3>
+                <span class="label-tagline"><%= event.tagline %></span>
+              </div>
+              <div class="label-price-tag">
+                <span class="label-price-free"><%= event.admission %></span>
+                <span class="label-price-sub">entry</span>
+              </div>
+            </div>
+            <div class="label-divider"></div>
+            <p class="label-desc"><%= event.desc %></p>
+            <div class="label-meta-row">
+              <span>🕐 <%= event.time %></span>
+              <span>📍 <%= event.venue %></span>
+            </div>
+          </div>
+          <div class="label-barcode-strip">
+            <div class="label-barcode">
+              <div class="barcode-lines"></div>
+              <span class="barcode-num">VVC-2026-EVT</span>
+            </div>
+            <a class="label-rsvp" href="/events/artfest">Find out more →</a>
+          </div>
+        </div>
+
+        <% } else { %>
+        <!-- ── Standard event card ── -->
         <div class="event-card">
           <div class="pic <%= event.picClass %>">
             <span class="date-pill">
@@ -36,8 +102,27 @@
             <span class="rsvp">RSVP →</span>
           </div>
         </div>
+        <% } %>
+
       <% }) %>
     </div>
 
   </div>
 </section>
+
+<script>
+(function () {
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal-drop, .reveal-slide').forEach(function (el) {
+    observer.observe(el);
+  });
+}());
+</script>
