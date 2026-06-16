@@ -3,9 +3,8 @@
  *
  * Drives the CCA Explore page: filtering and search across CBD sections.
  * CCAs are grouped by school umbrella. Each school gets its own CBD info
- * card + grid below it. Clicking a specific chip shows only that umbrella
- * with non-clickable info cards. "All" shows every section with fully
- * clickable CCA cards.
+ * card + grid below it. CCA cards stay fully clickable in every mode so
+ * users can open the individual CCA microsite from any filter state.
  */
 
 // ── Elements ──────────────────────────────────────────────────────────────────
@@ -90,10 +89,6 @@ function applyFilter(cat) {
       return;
     }
 
-    // In specific-CBD mode cards become non-clickable display cards
-    const grid = section.querySelector('.cca-grid');
-    if (grid) grid.classList.toggle('cbd-active', activeCat !== 'all');
-
     // Filter cards within this section by search query
     const cards = Array.from(section.querySelectorAll('.cca-card'));
     let sectionShown = 0;
@@ -146,7 +141,6 @@ document.getElementById('cbd-overview')?.addEventListener('click', e => {
 sectionsEl?.addEventListener('click', e => {
   const card = e.target.closest('.cca-card');
   if (!card || e.target.closest('a') || e.target.closest('button')) return;
-  if (activeCat !== 'all') return;
   const link = card.querySelector('a.more');
   if (link) window.location.href = link.href;
 });

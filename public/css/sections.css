@@ -389,23 +389,6 @@
     margin-left:6px;
   }
 
-  /* ── CBD-active card state (non-clickable display cards) ── */
-  .cca-grid.cbd-active .cca-card{
-    cursor:default;
-    pointer-events:none;
-  }
-  .cca-grid.cbd-active .cca-card a.more{
-    pointer-events:auto;
-    cursor:pointer;
-  }
-  .cca-grid.cbd-active .cca-card .foot .card-actions{
-    display:none;
-  }
-  .cca-grid.cbd-active .cca-card:hover{
-    transform:none;
-    box-shadow:6px 6px 0 var(--ink);
-  }
-
   .cca-grid{
     display:grid; grid-template-columns: repeat(4, 1fr);
     gap:18px;
