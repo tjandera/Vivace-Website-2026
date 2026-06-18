@@ -56,6 +56,9 @@
           <span class="ms-badge-sub"><%= cca.categoryShort %></span>
         </div>
         <div class="ms-club-card">
+          <div class="ms-club-card-pill">
+            <span class="ms-pill">02 / CCA</span>
+          </div>
           <div class="ms-banner-area">
             <% if (cca.images && cca.images.length > 0) { %>
               <img src="<%= cca.images[0] %>" alt="<%= cca.name %> banner">
@@ -69,11 +72,7 @@
 
       <!-- Right: Booth photo carousel -->
       <div class="ms-booth-card">
-        <div class="ms-card-label">
-          <span class="ms-label-title">Booth Map</span>
-          <span class="ms-label-sub">(<%= cca.images.length %> pic<%= cca.images.length !== 1 ? 's' : '' %>)</span>
-          <span class="ms-count-pill" id="booth-count">1 / <%= cca.images.length %></span>
-        </div>
+        <span class="ms-pill">02 / CCA</span>
         <div class="ms-carousel-wrap">
           <div class="ms-carousel-stage">
             <img id="booth-image" src="<%= cca.images[0] %>" alt="<%= cca.name %> booth image 1">
@@ -89,46 +88,48 @@
             </svg>
           </button>
         </div>
+        <div class="ms-booth-footer">
+          <span class="ms-label-title">Booth Map</span>
+          <span class="ms-count-pill" id="booth-count">1 / <%= cca.images.length %></span>
+        </div>
       </div>
 
     </div>
 
-    <!-- ── 3. About + Socials ────────────────────────────────── -->
-    <section class="profile-grid" aria-label="CCA overview">
+    <!-- ── 2. About + Socials ─────────────────────────────────── -->
+    <div class="ms-row ms-bottom-row">
 
-      <article class="info-panel">
-        <span class="section-label">02 / About Us</span>
-        <h2>About Us</h2>
-        <p><%= cca.description %></p>
-        <p><%= cca.extra %></p>
-        <div class="actions">
-          <button class="save-detail" type="button"
+      <!-- Left: About Us -->
+      <div class="ms-about-card">
+        <span class="ms-pill">about us</span>
+        <h2 class="ms-section-title">About Us</h2>
+        <div class="ms-about-body">
+          <p><%= cca.description %></p>
+          <% if (cca.extra) { %><p><%= cca.extra %></p><% } %>
+        </div>
+        <div class="ms-actions">
+          <button class="ms-btn save-detail" type="button"
             data-save-cca="<%= cca.id %>"
             data-save-label="Save to receipt"
             data-saved-label="Saved to receipt">Save to receipt</button>
-          <a href="mailto:<%= cca.membershipDetails.contact %>">Email interest</a>
-          <a href="/explore">Browse more CCAs</a>
-          <a href="/saved-cca">View saved receipt</a>
+          <a class="ms-btn ms-btn-ghost" href="mailto:<%= cca.membershipDetails.contact %>">Email interest</a>
+          <a class="ms-btn ms-btn-ghost" href="/explore">Browse more CCAs</a>
+          <a class="ms-btn ms-btn-ghost" href="/saved-cca">View saved receipt</a>
         </div>
-      </article>
+      </div>
 
-      <aside class="info-panel">
-        <span class="section-label">03 / Social Media</span>
-        <h2>Social Media</h2>
-        <div class="social-grid">
+      <!-- Right: Social Media -->
+      <div class="ms-social-card">
+        <span class="ms-pill">Social Media</span>
+        <h2 class="ms-section-title">Social Media</h2>
+        <div class="ms-social-list">
           <% cca.socials.forEach(function(social) { %>
-            <div class="social-card">
-              <span>
-                <b><%= social.label %></b>
-                <span><%= social.value %></span>
-              </span>
-              <a href="<%= social.href %>">Open</a>
-            </div>
+            <a class="ms-social-link" href="<%= social.href %>"><%= social.label %></a>
           <% }) %>
         </div>
-      </aside>
+      </div>
 
-    </section>
+    </div>
 
     <!-- ── 4. Detail sections ────────────────────────────────── -->
     <section class="section-stack" aria-label="CCA details">
