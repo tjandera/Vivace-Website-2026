@@ -275,8 +275,9 @@ const ccas = groups.flatMap(group => {
       cardText:     `${group.cluster} pick under ${meta.short}. Visit the booth to learn more and sign up.`,
       description:  `${name} is part of SMU's ${meta.name} (${meta.short}) umbrella, within the ${group.cluster} cluster. This is a great opportunity to get involved on campus and build lasting connections.`,
       extra:        `Commitment level: ${commitment}. Intake: ${meta.intake}. Come by the Vivace booth during the fair or reach out via the interest form below.`,
-      videoUrl:     null,
-      videoTitle:   '',
+      videoUrl:        null,
+      videoTitle:      '',
+      registrationUrl: '',
       boothMap: {
         zone:  lane.zone,
         block: `Block ${blockIndex}`,

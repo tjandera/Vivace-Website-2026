@@ -8,12 +8,12 @@
   <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/tokens.css">
   <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/cca.css?v=10">
+  <link rel="stylesheet" href="/css/cca.css?v=12">
   <link rel="stylesheet" href="/css/saved-ccas.css">
 
   <style>:root { --cca-color: <%= cca.color %>; }</style>
 </head>
-<body>
+<body data-cca-id="<%= cca.id %>">
 
 <!-- Pennant marquee -->
 <div class="cca-pennant">
@@ -347,5 +347,14 @@
 </script>
 
 <script src="/js/saved-ccas.js"></script>
+
+<!-- Register Here floating pill -->
+<a class="register-pill"
+   href="<%= cca.registrationUrl || '#' %>"
+   <% if (cca.registrationUrl) { %>target="_blank" rel="noopener noreferrer"<% } %>
+   aria-label="Register for <%= cca.name %>">
+  <span class="register-pill-icon">✦</span>
+  <span>Register Here!</span>
+</a>
 </body>
 </html>

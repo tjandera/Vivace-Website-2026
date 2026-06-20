@@ -894,3 +894,50 @@
     text-align:center;
   }
 }
+
+/* ── Register Here floating pill ── */
+.register-pill {
+  position: fixed;
+  bottom: 32px;
+  left: 28px;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 22px;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: .02em;
+  box-shadow: 5px 5px 0 var(--ink);
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.register-pill:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0 var(--ink);
+  color: #fff;
+}
+.register-pill-icon {
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* ── SMUSA: blue & gold stripe background ── */
+body[data-cca-id="smusa"] {
+  --cca-color: #003DA5;
+}
+body[data-cca-id="smusa"] .cca-main {
+  background:
+    repeating-linear-gradient(
+      135deg,
+      #003DA5 0px,
+      #003DA5 32px,
+      #C9A848 32px,
+      #C9A848 64px
+    );
+}
