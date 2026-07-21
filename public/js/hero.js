@@ -59,33 +59,33 @@ function navigateWithDoors(url) {
   }
 }
 
-// ── School fruit buttons → door-close then route to /explore/:school ─────────
-document.querySelectorAll('.school-fruit').forEach(btn => {
+// ── Shelf crate buttons → door-close then route to /explore/:school ─────────
+document.querySelectorAll('.shelf-crate').forEach(btn => {
   btn.addEventListener('click', () => {
     const school = btn.dataset.cat;
     if (school) navigateWithDoors(`/explore/${school}`);
   });
 });
 
-// ── Basket spotlight: dim decor + other logos when a CBD logo is active ───────
-const basketShowcase = document.getElementById('scene');
-if (basketShowcase) {
-  const fruits = basketShowcase.querySelectorAll('.school-fruit');
+// ── Shelf focus state: toggles a class on the scene while any crate is hovered
+// (retained for future scene-wide effects like dimming siblings). ──────────────
+const shelfScene = document.getElementById('scene');
+if (shelfScene) {
+  const crates = shelfScene.querySelectorAll('.shelf-crate');
 
-  fruits.forEach(btn => {
-    btn.addEventListener('mouseenter', () => basketShowcase.classList.add('has-focus'));
+  crates.forEach(btn => {
+    btn.addEventListener('mouseenter', () => shelfScene.classList.add('has-focus'));
     btn.addEventListener('mouseleave', () => {
-      // Small delay so moving between logos doesn't flicker off
       setTimeout(() => {
-        if (!basketShowcase.querySelector('.school-fruit:hover')) {
-          basketShowcase.classList.remove('has-focus');
+        if (!shelfScene.querySelector('.shelf-crate:hover')) {
+          shelfScene.classList.remove('has-focus');
         }
       }, 30);
     });
-    btn.addEventListener('focus', () => basketShowcase.classList.add('has-focus'));
+    btn.addEventListener('focus', () => shelfScene.classList.add('has-focus'));
     btn.addEventListener('blur', e => {
-      if (!e.relatedTarget?.closest?.('.school-fruit')) {
-        basketShowcase.classList.remove('has-focus');
+      if (!e.relatedTarget?.closest?.('.shelf-crate')) {
+        shelfScene.classList.remove('has-focus');
       }
     });
   });

@@ -461,7 +461,9 @@
   /* centered grocery basket hero */
   .hero.basket-hero{
     min-height:calc(100vh - 110px);
-    padding:34px 22px 72px;
+    /* No bottom padding — the shelf art needs to touch the hero's bottom edge
+       so it visually locks against the receipt strip / footer below. */
+    padding:34px 22px 0;
     overflow:hidden;
     border-bottom:4px solid var(--ink);
     isolation:isolate;
@@ -1035,14 +1037,16 @@
     min-height:52px !important;
   }
 
-  /* ── Basket zone ── */
+  /* ── Basket zone ── Locked to the bottom of the flex wrap so the shelf
+     art hugs the footer, giving the "standing inside a shop" feel. */
   .basket-zone{
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
-    margin-top:0;
-    padding-top:var(--hero-basket-gap);
+    margin-top:auto;
+    padding-top:40px;
+    padding-bottom:0;
   }
 
   .basket-hero-actions{
@@ -1052,7 +1056,8 @@
     justify-content:center;
     gap:14px;
     flex-wrap:wrap;
-    margin-top:36px;
+    margin-top:12px;    /* tight against the arrow above */
+    margin-bottom:30px; /* breathing room above the shelf below */
   }
   .basket-hero-actions .btn:focus-visible{
     outline: 3px solid var(--ink);
@@ -1141,6 +1146,108 @@
   .basket-summary .summary-actions button{
     background:#fff;
     color:var(--ink);
+  }
+
+  /* ── Shelf scene (new home hero) ─────────────────────────────────────────
+     Flat art (new_shelve_design.png) sits as the visual base. Each of the 7
+     .shelf-crate buttons is positioned over one of the baked-in logos in the
+     art, and carries a matching PNG overlay (.crate-logo) that sits STATICALLY
+     on top of the flat logo — no hover pop-up. This keeps the visual identical
+     but gives us live DOM elements to hang future interactions on. */
+  .shelf-scene{
+    position:relative;
+    width:min(820px, 94vw);
+    aspect-ratio: 4472 / 5590;
+    margin: 0 auto;
+  }
+  .shelf-art{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+    z-index:1;
+  }
+  .shelf-crate{
+    position:absolute;
+    z-index:5;
+    border:0;
+    background:transparent;
+    padding:0;
+    cursor:pointer;
+    overflow:visible;
+    isolation:isolate;
+  }
+  .shelf-crate .crate-logo{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%) scale(1);
+    width:100%;
+    height:auto;
+    pointer-events:none;
+    /* Ambient soft glow at rest → intense pop on hover. */
+    filter: drop-shadow(0 0 0 rgba(241,173,43,0));
+    transition:
+      transform .28s cubic-bezier(.2,1.35,.32,1),
+      filter    .28s ease;
+  }
+  /* Pop-up + glow — the logo lifts off the shelf on hover / keyboard focus. */
+  .shelf-crate:hover .crate-logo,
+  .shelf-crate:focus-visible .crate-logo{
+    transform:translate(-50%, calc(-50% - 30px)) scale(1.35);
+    filter:
+      drop-shadow(0 0 12px rgba(255,255,255,.95))
+      drop-shadow(0 0 22px rgba(241,173,43,.65))
+      drop-shadow(0 0 30px rgba(255,255,255,.55))
+      drop-shadow(10px 16px 12px rgba(0,0,0,.36));
+  }
+  /* Name label peeks in above the popped logo. */
+  .shelf-crate .crate-label{
+    position:absolute;
+    left:50%;
+    top:-60px;
+    transform:translate(-50%, -6px);
+    background:#fff;
+    border:3px solid var(--ink);
+    border-radius:10px;
+    padding:5px 11px;
+    box-shadow:3px 3px 0 var(--ink);
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    line-height:1.15;
+    white-space:nowrap;
+    color:var(--ink);
+    opacity:0;
+    pointer-events:none;
+    z-index:6;
+    transition:
+      opacity .18s ease,
+      transform .22s cubic-bezier(.2,1.35,.32,1),
+      background .2s ease,
+      box-shadow .22s ease;
+  }
+  .shelf-crate:hover .crate-label,
+  .shelf-crate:focus-visible .crate-label{
+    opacity:1;
+    transform:translate(-50%, -7px);
+    background:var(--cream-2);
+    box-shadow:5px 5px 0 var(--ink);
+  }
+  .shelf-crate:focus-visible{
+    outline:3px dashed var(--ink);
+    outline-offset:3px;
+    border-radius:8px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .shelf-crate .crate-logo,
+    .shelf-crate .crate-label{ transition:none }
+    .shelf-crate:hover .crate-logo,
+    .shelf-crate:focus-visible .crate-logo{
+      transform:translate(-50%, -50%) scale(1.06);
+    }
   }
 
   /* receipt strip below hero */

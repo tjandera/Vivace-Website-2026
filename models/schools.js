@@ -15,9 +15,11 @@
  *   color         — CSS custom property for the school's brand colour
  *   count         — approximate number of CCAs under this umbrella
  *   aisle         — human-readable aisle label shown on hover
- *   basket.img    — path to the basket-goods PNG sitting in the hero
+ *   basket.img    — path to the school logo PNG (reused in the shelf hero)
  *   basket.modifierClass — extra class for per-item CSS tweaks (scale, etc.)
- *   basket.style  — inline positioning for that item inside the basket scene
+ *   shelf.hotspot — inline positioning (left/top/width/height in %) for the
+ *                   invisible hover hotspot laid over each crate's logo in
+ *                   the new_shelve_design.png artwork.
  */
 
 module.exports = [
@@ -33,7 +35,9 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_ACF.png',
       modifierClass: '',
-      style: 'left:16%; top:10%; --r:-8deg; width:30%',
+    },
+    shelf: {
+      hotspot: 'left:19%; top:7.1%; width:28%; height:14%',
     },
   },
   {
@@ -48,7 +52,9 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_SICS.png',
       modifierClass: '',
-      style: 'left:56%; top:10%; --r:7deg;  width:30%',
+    },
+    shelf: {
+      hotspot: 'left:53%; top:7.4%; width:27%; height:14%',
     },
   },
   {
@@ -63,7 +69,9 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_ICON.png',
       modifierClass: 'icon-good',
-      style: 'left:33%; top:28%; --r:-5deg;  width:34%',
+    },
+    shelf: {
+      hotspot: 'left:6%; top:32%; width:28.5%; height:14%',
     },
   },
   {
@@ -78,7 +86,9 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_SMUX.png',
       modifierClass: 'smux-can',
-      style: 'left:16%; top:46%; --r:10deg;  width:30%',
+    },
+    shelf: {
+      hotspot: 'left:36%; top:32%; width:28.5%; height:14%',
     },
   },
   {
@@ -93,7 +103,9 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_SSU.png',
       modifierClass: 'ssu-good',
-      style: 'left:58%; top:46%; --r:8deg;  width:28%',
+    },
+    shelf: {
+      hotspot: 'left:67%; top:32%; width:28%; height:14%',
     },
   },
   {
@@ -108,7 +120,9 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_GRI.png',
       modifierClass: '',
-      style: 'left:14%; top:64%; --r:-10deg; width:32%',
+    },
+    shelf: {
+      hotspot: 'left:19%; top:57%; width:27.5%; height:14%',
     },
   },
   {
@@ -123,7 +137,9 @@ module.exports = [
     basket: {
       img: 'assets/basket-goods/VIVACE26_CBD_RGB_FA_pathed_ACAD.png',
       modifierClass: 'acad-good',
-      style: 'left:54%; top:64%; --r:5deg;  width:32%',
+    },
+    shelf: {
+      hotspot: 'left:53%; top:57%; width:28%; height:14%',
     },
   },
 ];
