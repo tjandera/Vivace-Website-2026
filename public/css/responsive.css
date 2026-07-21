@@ -184,6 +184,41 @@
     .hero-ctas .btn{ width:100%; justify-content:center }
     .hero-scene{ min-height:480px }
     .floor-disc{ width:120% }
+
+    /* ── Programmes page ── */
+    .prog-section{ padding:44px 16px 60px }
+    .prog-tabs{ gap:8px; margin-bottom:26px }
+    .prog-tab{
+      padding:9px 16px;
+      font-size:14px;
+      box-shadow:3px 3px 0 var(--ink);
+    }
+    .prog-card-header{ padding:11px 16px; gap:12px }
+    .prog-card-daynum{ font-size:26px }
+    .prog-card-dow{ font-size:10px }
+    .prog-card-daytitle{ font-size:16px }
+    .prog-card-body{ padding:18px; gap:12px }
+    /* Stack time on top of title so long event names have full width. */
+    .prog-slot{ flex-direction:column; gap:2px; align-items:stretch }
+    .prog-slot-time{
+      min-width:0;
+      padding-top:0;
+      font-size:12px;
+    }
+    .prog-slot-title{ font-size:15px }
+    .prog-slot-desc{ font-size:13px }
+
+    /* ── Map page ── */
+    .map-section{ padding:40px 16px 60px }
+    .map-panel{
+      border-radius:16px;
+      box-shadow:6px 6px 0 var(--ink);
+      margin-bottom:24px;
+    }
+    .map-panel-header{ padding:12px 16px; gap:8px }
+    .map-panel-title{ font-size:18px }
+    .map-panel-sub{ font-size:10px }
+    .page-header-lede{ font-size:16px }
   }
   @media (max-width: 420px){
     .label-pack{ grid-template-columns:1fr }
@@ -209,6 +244,15 @@
     .basket-product .school-full{ display:none }
     .basket-shell::after{ font-size:9px }
     .section-h2{ font-size:34px }
+
+    /* Programmes: tighter cards on tiny screens */
+    .prog-card-body{ padding:14px; gap:10px }
+    .prog-card-header{ padding:10px 12px }
+    .prog-card-daynum{ font-size:22px }
+    .prog-tab{ padding:8px 14px; font-size:13px }
+
+    /* Map: keep header from becoming cramped */
+    .map-panel-title{ font-size:16px }
   }
   @media (prefers-reduced-motion: reduce){
     .hero.basket-hero::before,
